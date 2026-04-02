@@ -648,7 +648,10 @@ def run_interactive_cli():
                 else:
                     print(f"\nScanning public structure for domain: {target_arg}...")
                     domain = target_arg
-                    targets = {"scan_targets": [_fetch_public_domain_data(domain)]}
+                    subdomain_targets = discover_subdomains_for_assessment(domain)
+                    if not subdomain_targets:
+                        subdomain_targets = [_fetch_public_domain_data(domain)]
+                    targets = {"scan_targets": subdomain_targets}
 
                 if targets:
                     assessment = agent.scan(targets)
