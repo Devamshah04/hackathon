@@ -2,13 +2,10 @@ import os
 from datetime import datetime
 from pathlib import Path
 
-try:
-    from reportlab.lib.pagesizes import letter
-    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
-    from reportlab.lib import colors
-except ImportError:
-    pass # Managed gracefully by ensuring reportlab is pip installed
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
+from reportlab.lib import colors
 
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_REPORTS_DIR = _PROJECT_ROOT / "output" / "reports"

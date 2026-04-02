@@ -17,3 +17,6 @@ pandas>=2.0.0
 
 # Environment Management
 python-dotenv>=1.0.0
+
+# Document Generation
+reportlab>=4.0.0
