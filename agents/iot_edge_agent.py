@@ -29,13 +29,21 @@ if str(_project_root) not in sys.path:
     sys.path.insert(0, str(_project_root))
 
 from core.base_agent import BaseAgent
-from core.scoring_engine import ScoringEngine
 from core.learning_store import LearningStore
+# Enhanced scoring system
+from core.enhanced_scoring_engine import EnhancedScoringEngine
+from core.enhanced_region_standards import get_enhanced_region_profile
 
-# Scanner tools
+# Scanner tools (enhanced to 10 parameters)
 from tools.iot_scanner import scan_iot_device
 from tools.keymgmt_scanner import scan_key_management
 from tools.quantum_readiness_scanner import scan_quantum_readiness
+# Additional enhanced scanners for IoT
+from tools.enhanced_scanners import (
+    scan_certificate_security,
+    scan_data_at_rest,
+    scan_regulatory_compliance
+)
 
 logger = logging.getLogger("pqc.iot_edge_agent")
 
@@ -44,21 +52,28 @@ _DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 
 class IoTEdgeAgent(BaseAgent):
     """
-    Specialized agent for scanning IoT & Edge infrastructure.
+    Enhanced agent for scanning IoT & Edge infrastructure with regional compliance.
 
-    Evaluates 5 parameters per asset:
-      1. Firmware Signing     (weight: 0.30)
-      2. Device Longevity     (weight: 0.25)
-      3. OTA Security         (weight: 0.20)
-      4. Key Management       (weight: 0.15)
-      5. Quantum Readiness    (weight: 0.10)
+    Evaluates 10 parameters per asset:
+      1. Firmware Signing       (weight: 15%)
+      2. Device Longevity       (weight: 12%)
+      3. OTA Security           (weight: 10%)
+      4. Key Management         (weight: 12%)
+      5. Quantum Readiness      (weight: 8%)
+      6. Hardware Security      (weight: 10%)
+      7. Communication Protocol (weight: 8%)
+      8. Certificate Security   (weight: 8%)
+      9. Data at Rest           (weight: 9%)
+      10. Regulatory Compliance (weight: 8%)
 
-    Produces a 1–10 rating and priority-ranked migration list.
+    Produces a 0–100 rating with regional weighting and priority-ranked migration list.
     """
 
-    def __init__(self):
+    def __init__(self, region: str = "US"):
         super().__init__(agent_name="iot_edge_agent")
-        self.scoring_engine = ScoringEngine(domain="iot_edge")
+        self.region = region.upper()
+        self.region_profile = get_enhanced_region_profile(self.region)
+        self.scoring_engine = EnhancedScoringEngine(domain="iot_edge", region=self.region)
         self.learning_store = LearningStore(agent_name="iot_edge_agent")
         self._strands_agent = None
 
@@ -90,14 +105,24 @@ class IoTEdgeAgent(BaseAgent):
             system_prompt = f"""You are a Post-Quantum Cryptography (PQC) security analyst AI agent.
 
 Your job is to analyze IoT & Edge infrastructure for quantum-vulnerable cryptographic
-implementations and recommend NIST-approved PQC replacements.
+implementations and recommend region-specific PQC replacements.
 
-For each asset you analyze, you will receive scan results from security parameters:
+Regional Context: {self.region} ({self.region_profile['name']})
+Regulatory Body: {self.region_profile['body_full']}
+Standards: {', '.join(self.region_profile['standards'])}
+Compliance Deadline: {self.region_profile['deadline']}
+
+For each asset you analyze, you will receive scan results from 10 security parameters:
 1. Firmware Signing — Algorithms used to sign firmware (e.g. RSA, LMS, XMSS)
 2. Device Longevity — Expected lifespan relative to the quantum threat year (2030)
 3. OTA Security — Secure update channels and their signing algorithms
 4. Key Management — Storage, rotation, algorithms for device keys
 5. Quantum Readiness — PQC deployment, hybrid mode, crypto agility
+6. Hardware Security — Hardware Root of Trust, secure enclaves, TPM
+7. Communication Protocol — Device-to-cloud communication encryption
+8. Certificate Security — Device certificates and PKI infrastructure
+9. Data at Rest — Local storage encryption on the device
+10. Regulatory Compliance — {self.region_profile['body']} requirements, documentation
 
 Your analysis should:
 - Identify the most critical vulnerabilities, particularly for long-lived devices
@@ -105,6 +130,7 @@ Your analysis should:
 - Provide specific, actionable migration recommendations
 - Reference NIST standards (NIST SP 800-208 for stateful hash-based signatures)
 - Consider that field-deployed IoT devices often cannot be easily updated
+- Provide 0-100 scoring context with regional priorities
 
 {learning_ctx}
 """
@@ -130,7 +156,7 @@ Your analysis should:
 
     def _scan_asset_tools(self, target: dict) -> dict:
         """
-        Run scanner tools on a single IoT asset. Returns raw scores.
+        Run all 10 scanner tools on a single IoT asset. Returns raw scores.
         This runs locally — no LLM needed.
         """
         scores = {}
@@ -201,6 +227,80 @@ Your analysis should:
             ])
         else:
             scores["quantum_readiness"] = (None, "No verifiable quantum readiness data provided")
+
+        # 6. Hardware Security
+        hw_config = target.get("hardware_security", firmware_metadata)
+        if hw_config and hw_config.get("hardware_root_of_trust") is not None:
+            hw_score = 0.8 if hw_config.get("hardware_root_of_trust") else 0.2
+            scores["hardware_security"] = (
+                hw_score,
+                f"HRoT: {hw_config.get('hardware_root_of_trust', False)}, TPM: {hw_config.get('tpm_enabled', False)}"
+            )
+        else:
+            scores["hardware_security"] = (None, "No hardware security data provided")
+
+        # 7. Communication Protocol
+        comm_config = target.get("communication_protocol", {})
+        if comm_config and comm_config.get("protocol"):
+            # Simple scoring based on protocol security
+            protocol = comm_config.get("protocol", "unknown")
+            if "TLS" in protocol.upper() or "DTLS" in protocol.upper():
+                comm_score = 0.7
+            elif "MQTT" in protocol.upper() or "COAP" in protocol.upper():
+                comm_score = 0.5
+            else:
+                comm_score = 0.2
+            scores["communication_protocol"] = (
+                comm_score,
+                f"Protocol: {protocol}, Encryption: {comm_config.get('encryption', 'unknown')}"
+            )
+        else:
+            scores["communication_protocol"] = (None, "No communication protocol data provided")
+
+        # 8. Certificate Security
+        cert_config = target.get("certificate_security", {})
+        if cert_config and cert_config.get("cert_algorithm"):
+            cert_result = json.loads(scan_certificate_security(config=json.dumps(cert_config)))
+            scores["certificate_security"] = (
+                cert_result.get("score", 0.0),
+                f"Cert: {cert_config.get('cert_algorithm', '?')}, {cert_config.get('validity_years', '?')}y validity"
+            )
+            all_findings.extend([
+                {"parameter": "certificate_security", "asset": asset, **f}
+                for f in cert_result.get("findings", [])
+            ])
+        else:
+            scores["certificate_security"] = (None, "No certificate data provided")
+
+        # 9. Data at Rest
+        data_rest_config = target.get("data_at_rest", {})
+        if data_rest_config and data_rest_config.get("encryption_algorithm"):
+            data_result = json.loads(scan_data_at_rest(config=json.dumps(data_rest_config)))
+            scores["data_at_rest"] = (
+                data_result.get("score", 0.0),
+                f"Storage: {data_rest_config.get('encryption_algorithm', '?')}"
+            )
+            all_findings.extend([
+                {"parameter": "data_at_rest", "asset": asset, **f}
+                for f in data_result.get("findings", [])
+            ])
+        else:
+            scores["data_at_rest"] = (None, "No data-at-rest encryption data provided")
+
+        # 10. Regulatory Compliance
+        compliance_config = target.get("regulatory_compliance", {})
+        if compliance_config and (compliance_config.get("frameworks") or compliance_config.get("pqc_migration_plan")):
+            compliance_result = json.loads(scan_regulatory_compliance(config=json.dumps(compliance_config)))
+            scores["regulatory_compliance"] = (
+                compliance_result.get("score", 0.0),
+                f"Frameworks: {len(compliance_config.get('frameworks', []))}, PQC plan: {compliance_config.get('pqc_migration_plan', False)}"
+            )
+            all_findings.extend([
+                {"parameter": "regulatory_compliance", "asset": asset, **f}
+                for f in compliance_result.get("findings", [])
+            ])
+        else:
+            scores["regulatory_compliance"] = (None, "No regulatory compliance data provided")
 
         return {
             "asset": asset,
@@ -342,12 +442,12 @@ Provide:
             # Step 4: Record in learning store
             self.learning_store.record_scan(
                 asset=asset,
-                rating=asset_rating.rating,
+                rating=asset_rating.score_100,
                 parameter_scores={
                     p.name: p.score for p in asset_rating.parameter_scores
                 },
                 findings_summary=f"{len(scan_result['findings'])} findings, "
-                                 f"rating {asset_rating.rating}/10 ({asset_rating.verdict})",
+                                 f"rating {asset_rating.score_100}/100 ({asset_rating.verdict})",
                 run_id=self.run_id,
             )
 
@@ -357,7 +457,7 @@ Provide:
 
             logger.info(
                 f"  [{i}/{len(targets)}] {asset}: "
-                f"Rating {asset_rating.rating}/10 — {asset_rating.verdict}"
+                f"Rating {asset_rating.score_100}/100 — {asset_rating.verdict}"
             )
 
         # Step 5: Priority ranking (worst first)
@@ -412,7 +512,8 @@ def _generate_mock_iot_target(device_name: str) -> dict:
             "expected_lifespan_years": 10,
             "ota_enabled": True,
             "ota_signing": "ECDSA-P256",
-            "hardware_root_of_trust": False
+            "hardware_root_of_trust": False,
+            "tpm_enabled": False
         },
         "key_management": {
             "storage_type": "flash",
@@ -431,6 +532,35 @@ def _generate_mock_iot_target(device_name: str) -> dict:
             "migration_plan_timeline": "",
             "pqc_testing_done": False,
             "library_supports_pqc": False
+        },
+        "hardware_security": {
+            "hardware_root_of_trust": False,
+            "tpm_enabled": False,
+            "secure_enclave": False,
+            "hardware_crypto_acceleration": False
+        },
+        "communication_protocol": {
+            "protocol": "MQTT",
+            "encryption": "TLS 1.2",
+            "authentication": "username_password",
+            "message_integrity": True
+        },
+        "certificate_security": {
+            "cert_algorithm": "RSA-2048",
+            "validity_years": 3,
+            "chain_depth": 3,
+            "ca_trusted": True
+        },
+        "data_at_rest": {
+            "encryption_algorithm": "AES-128",
+            "key_storage": "flash",
+            "key_rotation_days": 0
+        },
+        "regulatory_compliance": {
+            "frameworks": [],
+            "pqc_migration_plan": False,
+            "audit_logging": False,
+            "crypto_documentation": False
         }
     }
 
@@ -461,10 +591,40 @@ def _discover_domain_targets(domain: str) -> list[dict]:
                 "expected_lifespan_years": 15,  # Web services often run longer
                 "ota_enabled": True,
                 "ota_signing": "RSA-2048",
-                "hardware_root_of_trust": False
+                "hardware_root_of_trust": False,
+                "tpm_enabled": False
             },
             "key_management": target.get("key_management", {}),
-            "quantum_readiness": target.get("quantum_readiness", {})
+            "quantum_readiness": target.get("quantum_readiness", {}),
+            "hardware_security": {
+                "hardware_root_of_trust": False,
+                "tpm_enabled": False,
+                "secure_enclave": False,
+                "hardware_crypto_acceleration": True  # Assume cloud infrastructure
+            },
+            "communication_protocol": {
+                "protocol": "HTTPS",
+                "encryption": target.get("tls_config", {}).get("tls_version", "TLS 1.2"),
+                "authentication": "certificate",
+                "message_integrity": True
+            },
+            "certificate_security": target.get("certificate_security", {
+                "cert_algorithm": "RSA-2048",
+                "validity_years": 1,
+                "chain_depth": 3,
+                "ca_trusted": True
+            }),
+            "data_at_rest": target.get("data_at_rest", {
+                "encryption_algorithm": "AES-256",
+                "key_storage": "cloud_kms",
+                "key_rotation_days": 90
+            }),
+            "regulatory_compliance": target.get("regulatory_compliance", {
+                "frameworks": [],
+                "pqc_migration_plan": False,
+                "audit_logging": True,
+                "crypto_documentation": False
+            })
         }
         iot_targets.append(iot_target)
     
@@ -545,9 +705,11 @@ def run_interactive_cli():
                     for item in assessment.get("rated_assets", []):
                         print(f"\n{'-' * 60}")
                         print(f"  #{item['priority_rank']} │ {item['asset']}")
-                        print(f"     Rating:  {item['rating']}/10 — {item['verdict']}")
+                        print(f"     Rating:  {item['score_100']}/100 — {item['verdict']}")
+                        print(f"     Priority: {item['priority_level']}")
                         print(f"     Action:  {item['action']}")
                         print(f"     Score:   {item['weighted_score']:.4f}")
+                        print(f"     Region:  {item.get('region', 'US')}")
                         print(f"     Params:")
                         for param, data in item.get("parameter_scores", {}).items():
                             if data["score"] is None:
@@ -555,14 +717,14 @@ def run_interactive_cli():
                                 print(f"       {param:25s} {bar} N/A (Not Assessed)")
                             else:
                                 bar = "█" * int(data["score"] * 20) + "░" * (20 - int(data["score"] * 20))
-                                print(f"       {param:25s} {bar} {data['score']:.2f}")
+                                print(f"       {param:25s} {bar} {data['score']:.2f} (weight: {data.get('effective_weight', 0):.2f})")
 
                     # Automatically export PDF report
                     try:
                         from core.pdf_report_generator import PdfReportGenerator
                         generator = PdfReportGenerator()
                         pdf_path = generator.generate_report(assessment, domain_name=f"IoT_{target_arg}")
-                        print(f"\n📄 Complete Risk Assessment PDF exported to: {pdf_path}")
+                        print(f"\n[*] Complete Risk Assessment PDF exported to: {pdf_path}")
                     except Exception as e:
                         print(f"\n[!] Failed to generate PDF Report: {e}")
 

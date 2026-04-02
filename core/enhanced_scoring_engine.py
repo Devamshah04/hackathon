@@ -87,7 +87,9 @@ class EnhancedParameterScore:
             "effective_weight": round(self.effective_weight, 3),
             "weighted_score": round(self.weighted, 4),
             "details": self.details,
-            **({\"sub_scores\": self.sub_scores} if self.sub_scores else {}),
+            **({
+                "sub_scores": self.sub_scores
+            } if self.sub_scores else {}),
         }
 
 @dataclass

@@ -27,13 +27,13 @@ def test_google_scan():
             print(f"  - {target['asset']}")
         
         print(f"\nRunning PQC assessment on discovered targets...")
-        agent = IoTEdgeAgent()
+        agent = IoTEdgeAgent(region="US")
         assessment = agent.scan({"scan_targets": targets})
         agent.save_local()
         
         print("\nResults:")
         for item in assessment.get("rated_assets", []):
-            print(f"  #{item['priority_rank']} | {item['asset']} - {item['rating']}/10 ({item['verdict']})")
+            print(f"  #{item['priority_rank']} | {item['asset']} - {item['score_100']}/100 ({item['verdict']})")
     
     return assessment
 
