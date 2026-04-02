@@ -61,7 +61,6 @@ from tools.enhanced_scanners import (
 )
 # Advanced features
 from tools.subdomain_discovery import discover_subdomains_for_assessment
-from tools.git_repo_scanner import scan_git_repository
 
 logger = logging.getLogger("pqc.web_api_agent")
 
@@ -417,12 +416,12 @@ Provide:
             # Step 4: Record in learning store
             self.learning_store.record_scan(
                 asset=asset,
-                rating=asset_rating.rating,
+                rating=asset_rating.score_100,
                 parameter_scores={
                     p.name: p.score for p in asset_rating.parameter_scores
                 },
                 findings_summary=f"{len(scan_result['findings'])} findings, "
-                                 f"rating {asset_rating.rating}/10 ({asset_rating.verdict})",
+                                 f"rating {asset_rating.score_100}/100 ({asset_rating.verdict})",
                 run_id=self.run_id,
             )
 
@@ -432,7 +431,7 @@ Provide:
 
             logger.info(
                 f"  [{i}/{len(targets)}] {asset}: "
-                f"Rating {asset_rating.rating}/10 — {asset_rating.verdict}"
+                f"Rating {asset_rating.score_100}/100 — {asset_rating.verdict}"
             )
 
         # Step 5: Priority ranking (worst first)
@@ -659,7 +658,7 @@ def run_interactive_cli():
                 for item in assessment.get("rated_assets", []):
                     print(f"\n{'─' * 60}")
                     print(f"  #{item['priority_rank']} │ {item['asset']}")
-                    print(f"     Rating:  {item['rating']}/10 — {item['verdict']}")
+                    print(f"     Rating:  {item['score_100']}/100 — {item['verdict']}")
                     print(f"     Action:  {item['action']}")
                     print(f"     Score:   {item['weighted_score']:.4f}")
                     print(f"     Params:")

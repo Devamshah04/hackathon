@@ -8,6 +8,13 @@ for comprehensive quantum vulnerability analysis.
 import json
 from typing import Dict, Any, List
 
+try:
+    from strands import tool
+except ImportError:
+    def tool(f):
+        return f
+
+@tool
 def scan_certificate_security(config: str) -> str:
     """
     Scan certificate security configuration for quantum vulnerabilities.
@@ -71,6 +78,7 @@ def scan_certificate_security(config: str) -> str:
         "assessment": "Certificate security evaluation complete"
     })
 
+@tool
 def scan_api_encryption(config: str) -> str:
     """
     Scan API encryption configuration for quantum vulnerabilities.
@@ -132,6 +140,7 @@ def scan_api_encryption(config: str) -> str:
         "assessment": "API encryption evaluation complete"
     })
 
+@tool
 def scan_session_management(config: str) -> str:
     """
     Scan session management configuration for quantum vulnerabilities.
@@ -196,6 +205,7 @@ def scan_session_management(config: str) -> str:
         "assessment": "Session management evaluation complete"
     })
 
+@tool
 def scan_data_at_rest(config: str) -> str:
     """
     Scan data-at-rest encryption for quantum vulnerabilities.
@@ -257,6 +267,7 @@ def scan_data_at_rest(config: str) -> str:
         "assessment": "Data-at-rest encryption evaluation complete"
     })
 
+@tool
 def scan_regulatory_compliance(config: str) -> str:
     """
     Scan regulatory compliance configuration for quantum readiness.

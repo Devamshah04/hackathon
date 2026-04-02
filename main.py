@@ -22,7 +22,7 @@ logging.basicConfig(
 logger = logging.getLogger("pqc-migration")
 
 
-def main():
+'''def main():
     """Main entry point for the PQC Migration Agent Platform."""
 
     logger.info("=" * 60)
@@ -103,7 +103,7 @@ def main():
 
     logger.info("=" * 60)
     logger.info("  Platform ready — implement agent scan() methods to begin")
-    logger.info("=" * 60)
+    logger.info("=" * 60)'''
 
 
 import subprocess
