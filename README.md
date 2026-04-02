@@ -6,57 +6,65 @@ A multi-agent AI system that helps organizations transition their infrastructure
 
 The platform uses specialized AI agents powered by **AWS Bedrock (Claude 3.5 Sonnet)** and the **Strands SDK** to:
 
-1. **Scan** various infrastructure domains (Web APIs, IoT/Edge devices, Cloud)
-2. **Identify** quantum-vulnerable cryptographic implementations
+1. **Scan** 6 infrastructure domains for quantum-vulnerable cryptography
+2. **Identify** RSA, ECC, DH, AES-128, and other at-risk implementations
 3. **Generate** automated migration roadmaps with NIST-approved PQC replacements
 
 ## 🏗️ Architecture
 
 ```
-┌─────────────────────────────────────────────────────┐
-│                  Master Orchestrator                 │
-│            (Aggregates + Final Report)               │
-└────────────┬──────────────────┬──────────────────────┘
-             │                  │
-    ┌────────▼────────┐  ┌──────▼──────────────┐
-    │  Web/API Agent  │  │  IoT/Edge Agent      │
-    │  (JWT, OAuth,   │  │  (Firmware, OTA,     │
-    │   Certificates) │  │   Device Longevity)  │
-    └────────┬────────┘  └──────┬──────────────┘
-             │                  │
-    ┌────────▼──────────────────▼──────────────┐
-    │         Shared Assessment Schema          │
-    │         (S3 / Local Output)               │
-    └──────────────────────────────────────────┘
+┌───────────────────────────────────────────────────────────────────┐
+│                      Master Orchestrator                         │
+│               (Aggregates + Final PQC Readiness Report)          │
+└───┬──────────┬──────────┬──────────┬──────────┬──────────┬───────┘
+    │          │          │          │          │          │
+┌───▼───┐ ┌───▼───┐ ┌───▼───┐ ┌───▼───┐ ┌───▼───┐ ┌───▼────┐
+│Public │ │Symme- │ │Network│ │API &  │ │IoT &  │ │Cloud & │
+│Key    │ │tric   │ │Proto- │ │Web    │ │Edge   │ │Storage │
+│Agent  │ │Agent  │ │col    │ │Agent  │ │Agent  │ │Agent   │
+└───┬───┘ └───┬───┘ └───┬───┘ └───┬───┘ └───┬───┘ └───┬────┘
+    │         │         │         │         │         │
+┌───▼─────────▼─────────▼─────────▼─────────▼─────────▼────┐
+│            Shared Assessment Schema v1.0                  │
+│                  (S3 / Local Output)                      │
+└──────────────────────────────────────────────────────────┘
 ```
 
 ## 📂 Project Structure
 
 ```
 pqc-migration-agent/
-├── agents/                  # Specialized AI Agent implementations
+├── agents/                       # All 6 specialized scanning agents
 │   ├── __init__.py
-│   ├── web_api_agent.py     # API & Web Services Agent
-│   └── iot_edge_agent.py    # IoT & Edge Devices Agent
-├── core/                    # Orchestration and shared logic
+│   ├── public_key_agent.py       # 1. Public Key Algorithms (RSA, ECC, DH)
+│   ├── symmetric_agent.py        # 2. Symmetric Algorithms (AES-128 → AES-256)
+│   ├── network_protocol_agent.py # 3. Network Protocols (TLS, SSH, IKEv2)
+│   ├── web_api_agent.py          # 4. APIs & Web Services (JWT, OAuth)
+│   ├── iot_edge_agent.py         # 5. IoT & Edge Devices (Firmware, OTA)
+│   └── cloud_storage_agent.py    # 6. Cloud & Storage (Data-at-Rest)
+├── core/                         # Orchestration and shared logic
 │   ├── __init__.py
-│   ├── orchestrator.py      # Master Aggregator Agent
-│   └── base_agent.py        # Abstract base class for all agents
-├── tools/                   # LLM tools used by agents (@tool decorated)
+│   ├── orchestrator.py           # Master Aggregator Agent
+│   └── base_agent.py             # Abstract base class for all agents
+├── tools/                        # Strands @tool decorated scanner functions
 │   ├── __init__.py
-│   ├── jwt_scanner.py       # JWT token analysis
-│   ├── oauth_scanner.py     # OAuth endpoint auditing
-│   └── iot_scanner.py       # IoT firmware/device scanning
-├── output/                  # Local assessment storage (synced to S3)
+│   ├── public_key_scanner.py     # RSA/ECC/DH key analysis
+│   ├── symmetric_scanner.py      # AES/3DES strength evaluation
+│   ├── network_scanner.py        # TLS/SSH/VPN protocol analysis
+│   ├── jwt_scanner.py            # JWT token header analysis
+│   ├── oauth_scanner.py          # OAuth endpoint auditing
+│   ├── iot_scanner.py            # IoT firmware/device scanning
+│   └── cloud_scanner.py          # Cloud encryption & KMS analysis
+├── output/                       # Local assessment storage (synced to S3)
 │   └── .gitkeep
-├── .kiro/                   # Kiro IDE specifications
+├── .kiro/                        # Kiro IDE specifications
 │   └── specs/
-│       └── pqc-agents.md    # System prompts and tool specs
-├── requirements.txt         # Python dependencies
-├── main.py                  # Entry point for the platform
-├── .env.example             # Environment variable template
-├── .gitignore               # Git ignore rules
-└── README.md                # This file
+│       └── pqc-agents.md         # System prompts and tool specs
+├── requirements.txt              # Python dependencies
+├── main.py                       # Entry point for the platform
+├── .env.example                  # Environment variable template
+├── .gitignore                    # Git ignore rules
+└── README.md                     # This file
 ```
 
 ## 🔧 Tech Stack
@@ -145,13 +153,16 @@ All agents output assessments in a **standardized JSON format** to S3:
 }
 ```
 
-## 🔐 PQC Migration Mapping
+## 🔐 Infrastructure Domains & PQC Migration Mapping
 
-| Current Algorithm | Vulnerability | NIST PQC Replacement | Standard |
-|-------------------|--------------|---------------------|----------|
-| RSA / DH | Shor's Algorithm | **ML-KEM** (Kyber) | FIPS 203 |
-| ECDSA / RSA-PSS | Shor's Algorithm | **ML-DSA** (Dilithium) | FIPS 204 |
-| Firmware Signing | Long-lived keys | **LMS / XMSS** | NIST SP 800-208 |
+| # | Domain | Scans For | Unsafe (Q-Vulnerable) | Safe (PQC Replacement) | Standard |
+|---|--------|-----------|----------------------|----------------------|----------|
+| 1 | **Public Key Algorithms** | Key Exchange & Signatures | RSA-2048, ECC P-256/384, DH | ML-KEM (Kyber), ML-DSA (Dilithium) | FIPS 203/204 |
+| 2 | **Symmetric Algorithms** | Encryption Strength | AES-128 (64-bit effective) | AES-256 (128-bit effective) | Grover's mitigation |
+| 3 | **Network Protocols** | Handshake & Tunneling | TLS 1.2, IKEv2 Classic, SSH-RSA | TLS 1.3 Hybrid, PQ-VPNs | IETF PQC Drafts |
+| 4 | **APIs & Web Services** | Auth Tokens & Headers | JWT (RS256), OAuth2 Classic | ML-DSA Signed Tokens | FIPS 204 |
+| 5 | **IoT & Edge Devices** | Firmware & Identity | RSA Signatures, Hardcoded Keys | LMS, XMSS (Stateful Hash-based) | NIST SP 800-208 |
+| 6 | **Cloud & Storage** | Data-at-Rest Encryption | RSA-OAEP (2048-bit) | RSA-OAEP (4096-bit) or ML-KEM | FIPS 203 |
 
 ## 🌐 AWS Region
 
