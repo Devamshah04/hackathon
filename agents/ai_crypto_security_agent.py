@@ -13,6 +13,14 @@ from urllib.parse import urlparse
 # =========================================================
 
 def ai_analysis(prompt):
+    # Load .env credentials before attempting Bedrock
+    try:
+        from dotenv import load_dotenv
+        from pathlib import Path
+        load_dotenv(dotenv_path=Path(__file__).resolve().parent.parent / ".env")
+    except ImportError:
+        pass
+
     models_to_try = [
         "anthropic.claude-3-haiku-20240307-v1:0",   # fastest + usually enabled
         "anthropic.claude-3-sonnet-20240229-v1:0",  # stable fallback
@@ -25,7 +33,10 @@ def ai_analysis(prompt):
 
             model = BedrockModel(
                 model_id=model_id,
-                region_name=os.getenv("AWS_REGION", "us-east-1")
+                region_name=os.getenv("AWS_REGION", "us-east-1"),
+                aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
+                aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+                aws_session_token=os.getenv("AWS_SESSION_TOKEN"),
             )
 
             agent = Agent(model=model)
