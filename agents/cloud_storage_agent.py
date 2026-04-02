@@ -55,6 +55,7 @@ from tools.enhanced_scanners import (
     scan_data_at_rest,
     scan_regulatory_compliance
 )
+from tools.subdomain_discovery import discover_subdomains_for_assessment
 
 logger = logging.getLogger("pqc.cloud_storage_agent")
 
@@ -104,6 +105,9 @@ class CloudStorageAgent(BaseAgent):
         """
         if self._strands_agent is not None:
             return self._strands_agent
+
+        if hasattr(self, '_strands_agent_failed'):
+            return None
 
         try:
             from strands import Agent
@@ -172,6 +176,9 @@ Your analysis should:
         except Exception as e:
             logger.warning(f"Could not initialize Strands agent: {e}")
             logger.info("Running in local-only mode (deterministic scoring, no AI analysis)")
+            self._strands_agent_failed = True
+            return None
+
     # ── Deterministic Tool Scanning ─────────────────────────────────────────
 
     def _scan_asset_tools(self, target: dict) -> dict:
@@ -395,6 +402,8 @@ Provide:
                 "Cloud asset has reasonable quantum posture. Continue monitoring for PQC standards updates."
             )
 
+        return recommendations
+
     # ── Main Scan Method ────────────────────────────────────────────────────
 
     def scan(self, target: dict) -> dict:
@@ -570,6 +579,27 @@ def _generate_mock_cloud_target(service_name: str) -> dict:
     }
 
 
+def _domain_to_cloud_target(subdomain_target: dict) -> dict:
+    """Convert a subdomain discovery target into a cloud assessment target."""
+    domain = subdomain_target.get("asset", "unknown")
+    tls = subdomain_target.get("tls_config", {})
+    tls_version = tls.get("tls_version", "TLS 1.2")
+    return {
+        "asset": domain,
+        "description": f"Discovered domain endpoint: {domain}",
+        "data_at_rest": {"encryption_algorithm": "AES-256", "key_storage": "cloud_kms", "key_rotation_days": 90},
+        "kms_keys": {"key_spec": "RSA_2048", "key_usage": "ENCRYPT_DECRYPT", "rotation_enabled": False, "hsm_backed": False, "multi_region": False},
+        "backup_config": {"encryption_enabled": True, "retention_years": 7, "cross_region_backup": False, "backup_key_separate": False},
+        "data_transfer": {"in_transit_encryption": tls_version, "vpn_encryption": "IPSec", "api_encryption": "HTTPS"},
+        "quantum_readiness": subdomain_target.get("quantum_readiness", {"pqc_algorithms_deployed": [], "hybrid_mode_enabled": False, "crypto_agile": False, "migration_plan_exists": False, "migration_plan_timeline": "", "pqc_testing_done": False, "library_supports_pqc": False}),
+        "access_control": {"mfa_enabled": False, "rbac_enabled": False, "least_privilege": False, "access_logging": False},
+        "certificate_security": subdomain_target.get("certificate_security", {"cert_algorithm": "RSA-2048", "validity_years": 1, "chain_depth": 3, "ca_trusted": True}),
+        "compliance_auditing": {"audit_logging": False, "frameworks": [], "compliance_monitoring": False, "log_retention_years": 1},
+        "multi_cloud": {"cross_cloud_encryption": False, "unified_key_management": False, "cloud_providers": ["unknown"]},
+        "regulatory_compliance": subdomain_target.get("regulatory_compliance", {"frameworks": [], "pqc_migration_plan": False, "audit_logging": False, "crypto_documentation": False}),
+    }
+
+
 def run_interactive_cli():
     import time
 
@@ -636,8 +666,16 @@ def run_interactive_cli():
                     assessment = agent.scan(mock_targets)
                     agent.save_local()
                 else:
-                    print(f"\nScanning cloud service profile: {target_arg}...")
-                    targets = {"scan_targets": [_generate_mock_cloud_target(target_arg)]}
+                    import re
+                    is_domain = bool(re.match(r'^[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z]{2,})+$', target_arg))
+                    if is_domain:
+                        print(f"\nDiscovering subdomains for: {target_arg}...")
+                        subdomain_targets = discover_subdomains_for_assessment(target_arg)
+                        cloud_targets = [_domain_to_cloud_target(t) for t in subdomain_targets] if subdomain_targets else [_generate_mock_cloud_target(target_arg)]
+                        targets = {"scan_targets": cloud_targets}
+                    else:
+                        print(f"\nScanning cloud service profile: {target_arg}...")
+                        targets = {"scan_targets": [_generate_mock_cloud_target(target_arg)]}
                     assessment = agent.scan(targets)
                     agent.save_local()
 
