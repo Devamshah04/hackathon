@@ -1,15 +1,23 @@
 """
-Web & API Services Agent
+Web & API Services Agent - Enhanced with Regional Compliance
 
-Full implementation using Strands SDK + AWS Bedrock (Claude 3.5 Sonnet).
-Scans web APIs for quantum-vulnerable cryptography across 5 parameters,
-produces 1–10 ratings per asset, and ranks them by migration priority.
+Enhanced implementation using Strands SDK + AWS Bedrock (Claude 3.5 Sonnet).
+Scans web APIs for quantum-vulnerable cryptography across 10 parameters,
+produces 0–100 ratings per asset, and ranks them by migration priority.
+
+Enhancements:
+  - 10 parameters (expanded from 5)
+  - Regional compliance support (12 regions)
+  - 100-point scoring scale
+  - Subdomain discovery
+  - Git repository scanning
+  - Dynamic priority ranking
 
 Architecture:
-  1. Loads target data (mock or real)
-  2. Runs 5 scanner tools deterministically for raw scores
+  1. Loads target data (mock, domain, or git repo)
+  2. Runs 10 scanner tools deterministically for raw scores
   3. Feeds findings to Strands AI agent for analysis + recommendations
-  4. Scoring engine computes weighted rating (1–10)
+  4. Scoring engine computes weighted rating (0–100) with regional weights
   5. Learning store records results for RL-style improvement
   6. Outputs priority-ranked assessment
 
@@ -32,15 +40,28 @@ if str(_project_root) not in sys.path:
     sys.path.insert(0, str(_project_root))
 
 from core.base_agent import BaseAgent
-from core.scoring_engine import ScoringEngine
 from core.learning_store import LearningStore
+# Regional standards support
+from core.enhanced_region_standards import get_enhanced_region_profile
+from core.enhanced_scoring_engine import EnhancedScoringEngine
 
-# Scanner tools (used both directly and via Strands)
+# Enhanced scanner tools (10 parameters total)
 from tools.jwt_scanner import scan_jwt, ALGORITHM_SCORES
 from tools.tls_scanner import scan_tls_config
 from tools.oauth_scanner import scan_oauth_endpoint
 from tools.keymgmt_scanner import scan_key_management
 from tools.quantum_readiness_scanner import scan_quantum_readiness
+# Additional enhanced scanners
+from tools.enhanced_scanners import (
+    scan_certificate_security,
+    scan_api_encryption,
+    scan_session_management,
+    scan_data_at_rest,
+    scan_regulatory_compliance
+)
+# Advanced features
+from tools.subdomain_discovery import discover_subdomains_for_assessment
+from tools.git_repo_scanner import scan_git_repository
 
 logger = logging.getLogger("pqc.web_api_agent")
 
@@ -49,21 +70,35 @@ _DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 
 class WebApiAgent(BaseAgent):
     """
-    Specialized agent for scanning Web & API infrastructure.
+    Enhanced agent for scanning Web & API infrastructure with regional compliance.
 
-    Evaluates 5 parameters per asset:
-      1. Auth Token Crypto    (weight: 0.30)
-      2. TLS/Transport        (weight: 0.25)
-      3. OAuth/OIDC           (weight: 0.20)
-      4. Key Management       (weight: 0.15)
-      5. Quantum Readiness    (weight: 0.10)
+    Evaluates 10 parameters per asset:
+      1. Auth Token Crypto      (weight: 15%)
+      2. TLS/Transport          (weight: 12%)
+      3. OAuth/OIDC             (weight: 10%)
+      4. Key Management         (weight: 12%)
+      5. Quantum Readiness      (weight: 8%)
+      6. Certificate Security   (weight: 10%)
+      7. API Encryption         (weight: 8%)
+      8. Session Management     (weight: 8%)
+      9. Data at Rest           (weight: 9%)
+      10. Regulatory Compliance (weight: 8%)
 
-    Produces a 1–10 rating and priority-ranked migration list.
+    Produces a 0–100 rating with regional weighting and priority-ranked migration list.
+    
+    Enhanced Features:
+    - Regional compliance support (12 regions)
+    - Subdomain discovery
+    - Git repository scanning
+    - 100-point scoring scale
+    - Dynamic priority ranking
     """
 
-    def __init__(self):
+    def __init__(self, region: str = "US"):
         super().__init__(agent_name="web_api_agent")
-        self.scoring_engine = ScoringEngine(domain="web_api")
+        self.region = region.upper()
+        self.region_profile = get_enhanced_region_profile(self.region)
+        self.scoring_engine = EnhancedScoringEngine(domain="web_api", region=self.region)
         self.learning_store = LearningStore(agent_name="web_api_agent")
         self._strands_agent = None
 
@@ -95,21 +130,32 @@ class WebApiAgent(BaseAgent):
             system_prompt = f"""You are a Post-Quantum Cryptography (PQC) security analyst AI agent.
 
 Your job is to analyze Web & API infrastructure for quantum-vulnerable cryptographic
-implementations and recommend NIST-approved PQC replacements.
+implementations and recommend region-specific PQC replacements.
 
-For each asset you analyze, you will receive scan results from 5 security parameters:
+Regional Context: {self.region} ({self.region_profile['name']})
+Regulatory Body: {self.region_profile['body_full']}
+Standards: {', '.join(self.region_profile['standards'])}
+Compliance Deadline: {self.region_profile['deadline']}
+
+For each asset you analyze, you will receive scan results from 10 security parameters:
 1. Auth Token Crypto — JWT signing algorithms
 2. TLS/Transport — TLS version, key exchange, certs, ciphers
 3. OAuth/OIDC — token signing, PKCE, grant types, JWKS keys
 4. Key Management — storage, rotation, algorithms
 5. Quantum Readiness — PQC deployment, hybrid mode, crypto agility
+6. Certificate Security — certificate algorithms, validity periods
+7. API Encryption — payload encryption, field-level encryption
+8. Session Management — session tokens, timeouts, security
+9. Data at Rest — storage encryption, key protection
+10. Regulatory Compliance — {self.region_profile['body']} requirements, documentation
 
 Your analysis should:
 - Identify the most critical vulnerabilities
 - Explain WHY each finding is a quantum risk (reference Shor's/Grover's algorithm)
 - Provide specific, actionable migration recommendations
-- Reference NIST standards (FIPS 203, 204, SP 800-208) where applicable
+- Reference {self.region_profile['body']} standards and compliance deadlines
 - Consider the "harvest now, decrypt later" (HNDL) threat model
+- Provide 0-100 scoring context with regional priorities
 
 {learning_ctx}
 """
@@ -123,6 +169,11 @@ Your analysis should:
                     scan_oauth_endpoint,
                     scan_key_management,
                     scan_quantum_readiness,
+                    scan_certificate_security,
+                    scan_api_encryption,
+                    scan_session_management,
+                    scan_data_at_rest,
+                    scan_regulatory_compliance,
                 ],
             )
             logger.info("Strands AI agent initialized with Bedrock")

@@ -940,5 +940,22 @@
     "findings_summary": "6 findings, rating 4/10 (High Risk)",
     "feedback": null,
     "feedback_applied": false
+  },
+  {
+    "id": "web_api_agent_1775120299_google.com",
+    "timestamp": "2026-04-02T08:58:19.120846+00:00",
+    "run_id": "7447bd2e-9485-4bad-9103-13ba31f53810",
+    "asset": "google.com",
+    "rating": 1,
+    "parameter_scores": {
+      "auth_token_crypto": null,
+      "tls_transport": 0.075,
+      "oauth_oidc": null,
+      "key_management": null,
+      "quantum_readiness": null
+    },
+    "findings_summary": "3 findings, rating 1/10 (Critical / Insecure)",
+    "feedback": null,
+    "feedback_applied": false
   }
 ]

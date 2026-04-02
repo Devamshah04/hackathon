@@ -19,7 +19,14 @@ from __future__ import annotations
 import json
 import logging
 import os
+import sys
 from pathlib import Path
+
+# Add project root to sys.path so direct execution works
+_current_dir = Path(__file__).resolve().parent
+_project_root = _current_dir.parent
+if str(_project_root) not in sys.path:
+    sys.path.insert(0, str(_project_root))
 
 from core.base_agent import BaseAgent
 from core.scoring_engine import ScoringEngine
@@ -388,3 +395,143 @@ Provide:
 
         print(f"\n📊 Learning Store: {agent.learning_store.summary()}")
         return assessment
+
+
+# ── Interactive CLI Mode ──────────────────────────────────────────────────
+
+def _generate_mock_iot_target(device_name: str) -> dict:
+    """Generate a plausible mock IoT target for a given device name."""
+    return {
+        "asset": device_name,
+        "description": f"IoT device: {device_name}",
+        "firmware_metadata": {
+            "device_name": device_name,
+            "firmware_version": "1.0.0",
+            "signing_algorithm": "RSA-2048",
+            "manufacture_year": 2022,
+            "expected_lifespan_years": 10,
+            "ota_enabled": True,
+            "ota_signing": "ECDSA-P256",
+            "hardware_root_of_trust": False
+        },
+        "key_management": {
+            "storage_type": "flash",
+            "rotation_policy": "no_rotation",
+            "key_algorithm": "RSA-2048",
+            "key_count": 1,
+            "separation_of_duties": False,
+            "audit_logging": False,
+            "backup_exists": False
+        },
+        "quantum_readiness": {
+            "pqc_algorithms_deployed": [],
+            "hybrid_mode_enabled": False,
+            "crypto_agile": False,
+            "migration_plan_exists": False,
+            "migration_plan_timeline": "",
+            "pqc_testing_done": False,
+            "library_supports_pqc": False
+        }
+    }
+
+
+def run_interactive_cli():
+    import time
+
+    BANNER = """
+  ╔═════════════════════════════════════════════════════════════════════╗
+  ║    PQC IoT & EDGE AGENT  v1.0  -  Strands SDK + Amazon Bedrock      ║
+  ║    Post-Quantum Cryptography Migration Scanner — IoT & Edge         ║
+  ╠═════════════════════════════════════════════════════════════════════╣
+  ║ Standards:  NIST SP 800-208  ·  FIPS 203/204/205  ·  CNSA 2.0       ║
+  ║             Stateful Hash-Based Signatures (LMS / XMSS)             ║
+  ╠═════════════════════════════════════════════════════════════════════╣
+  ║ Commands:                                                           ║
+  ║   scan        - Full scan + report for a device or mock dataset     ║
+  ║   list        - List available mock datasets                        ║
+  ║   help        - Show command reference                              ║
+  ║   exit        - Quit the agent                                      ║
+  ╚═════════════════════════════════════════════════════════════════════╝
+"""
+    MOCK_DATASETS = ['AcmeCorp-IoT']
+
+    print(BANNER)
+    print("⚙ Initialising Strands agent with Amazon Bedrock...\n")
+    time.sleep(1)
+
+    print("🤖 PQC IoT & Edge Agent - Interactive Mode")
+    print(f"Available mock datasets: {MOCK_DATASETS}")
+    print("Type 'help' for suggested queries, 'exit' to quit.\n")
+
+    while True:
+        try:
+            cmd_line = input("You: ").strip()
+            if not cmd_line:
+                continue
+
+            parts = cmd_line.split()
+            cmd = parts[0].lower()
+            args = parts[1:]
+
+            if cmd in ("exit", "quit"):
+                print("Exiting PQC IoT Agent...")
+                break
+            elif cmd == "help":
+                print("Commands:")
+                print("  scan mock              - Full scan on predefined AcmeCorp IoT mock dataset")
+                print("  scan [device-name]     - Scan a custom device with a default insecure profile")
+                print("  list                   - List available mock datasets")
+            elif cmd == "list":
+                print(f"Available mock datasets: {MOCK_DATASETS}")
+            elif cmd == "scan":
+                agent = IoTEdgeAgent()
+                target_arg = args[0] if args else "mock"
+                assessment = None
+
+                if target_arg == "mock" or target_arg in MOCK_DATASETS:
+                    print("\nRunning scan on AcmeCorp IoT mock data...")
+                    assessment = IoTEdgeAgent.scan_mock_data()
+                else:
+                    print(f"\nScanning IoT device profile: {target_arg}...")
+                    targets = {"scan_targets": [_generate_mock_iot_target(target_arg)]}
+                    assessment = agent.scan(targets)
+                    agent.save_local()
+
+                if assessment:
+                    print("\nRESULTS:")
+                    for item in assessment.get("rated_assets", []):
+                        print(f"\n{'─' * 60}")
+                        print(f"  #{item['priority_rank']} │ {item['asset']}")
+                        print(f"     Rating:  {item['rating']}/10 — {item['verdict']}")
+                        print(f"     Action:  {item['action']}")
+                        print(f"     Score:   {item['weighted_score']:.4f}")
+                        print(f"     Params:")
+                        for param, data in item.get("parameter_scores", {}).items():
+                            if data["score"] is None:
+                                bar = "░" * 20
+                                print(f"       {param:25s} {bar} N/A (Not Assessed)")
+                            else:
+                                bar = "█" * int(data["score"] * 20) + "░" * (20 - int(data["score"] * 20))
+                                print(f"       {param:25s} {bar} {data['score']:.2f}")
+
+                    # Automatically export PDF report
+                    try:
+                        from core.pdf_report_generator import PdfReportGenerator
+                        generator = PdfReportGenerator()
+                        pdf_path = generator.generate_report(assessment, domain_name=f"IoT_{target_arg}")
+                        print(f"\n📄 Complete Risk Assessment PDF exported to: {pdf_path}")
+                    except Exception as e:
+                        print(f"\n[!] Failed to generate PDF Report: {e}")
+
+            else:
+                print(f"Unrecognized command: {cmd}. Type 'help' for options.")
+
+        except KeyboardInterrupt:
+            print("\nExiting...")
+            break
+        except Exception as e:
+            print(f"Error: {e}")
+
+
+if __name__ == "__main__":
+    run_interactive_cli()

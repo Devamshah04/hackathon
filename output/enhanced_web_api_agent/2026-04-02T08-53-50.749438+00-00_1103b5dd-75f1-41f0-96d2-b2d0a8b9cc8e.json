@@ -1,0 +1,442 @@
+{
+  "schema_version": "1.0",
+  "agent_name": "enhanced_web_api_agent",
+  "timestamp": "2026-04-02T08:53:50.749438+00:00",
+  "run_id": "1103b5dd-75f1-41f0-96d2-b2d0a8b9cc8e",
+  "findings": [
+    {
+      "parameter": "auth_token_crypto",
+      "asset": "api.demo-company.com",
+      "algorithm": "RS256",
+      "score": 0.1,
+      "quantum_vulnerable": true,
+      "risk_level": "CRITICAL",
+      "reason": "Algorithm 'RS256' is vulnerable to quantum attack",
+      "migration_target": {
+        "algorithm": "ML-DSA-65",
+        "standard": "FIPS 204"
+      }
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "api.demo-company.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.2",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "api.demo-company.com",
+      "component": "key_exchange",
+      "value": "ECDHE-RSA",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "api.demo-company.com",
+      "component": "certificate",
+      "value": "RSA-2048",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "oauth_oidc",
+      "asset": "api.demo-company.com",
+      "component": "signing_algorithm",
+      "algorithm": "RS256",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-DSA (FIPS 204)"
+    },
+    {
+      "parameter": "oauth_oidc",
+      "asset": "api.demo-company.com",
+      "component": "signing_algorithm",
+      "algorithm": "ES256",
+      "risk": "HIGH",
+      "recommendation": "Migrate to ML-DSA (FIPS 204)"
+    },
+    {
+      "parameter": "key_management",
+      "asset": "api.demo-company.com",
+      "component": "key_storage",
+      "value": "file",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+    },
+    {
+      "parameter": "key_management",
+      "asset": "api.demo-company.com",
+      "component": "rotation_policy",
+      "value": "manual",
+      "risk": "HIGH",
+      "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+    },
+    {
+      "parameter": "key_management",
+      "asset": "api.demo-company.com",
+      "component": "key_algorithm",
+      "value": "RSA-2048",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "api.demo-company.com",
+      "issue": "RSA key size vulnerable to quantum attack",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to ML-DSA (FIPS 204) or increase to RSA-4096 as interim"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "api.demo-company.com",
+      "issue": "Certificate expires after quantum threat timeline",
+      "details": "Certificate valid until 2031-12-31T23:59:59Z, past Q-Day (2030)",
+      "recommendation": "Renew with PQC algorithms before 2030"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "api.demo-company.com",
+      "issue": "AES-128 provides reduced quantum security",
+      "details": "AES-128 offers ~64-bit security against quantum attacks",
+      "recommendation": "Upgrade to AES-256 for 128-bit quantum security"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "api.demo-company.com",
+      "issue": "No field-level encryption for sensitive data",
+      "details": "Sensitive fields not individually encrypted",
+      "recommendation": "Implement field-level encryption for PII/PHI"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "api.demo-company.com",
+      "issue": "Weak key derivation parameters",
+      "details": "PBKDF2 with 50000 iterations insufficient",
+      "recommendation": "Use PBKDF2 with 600,000+ iterations or migrate to Argon2"
+    },
+    {
+      "parameter": "session_management",
+      "asset": "api.demo-company.com",
+      "issue": "Session cookies missing SameSite protection",
+      "details": "Cookies vulnerable to CSRF attacks",
+      "recommendation": "Enable SameSite=Strict on session cookies"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "api.demo-company.com",
+      "issue": "AES-128 provides reduced quantum security",
+      "details": "AES-128 offers ~64-bit security against quantum attacks",
+      "recommendation": "Upgrade to AES-256 for 128-bit quantum security"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "api.demo-company.com",
+      "issue": "File-based key storage",
+      "details": "Keys stored in files without proper protection",
+      "recommendation": "Migrate to HSM or cloud KMS"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "api.demo-company.com",
+      "issue": "No PQC migration plan documented",
+      "details": "Organization lacks formal PQC transition strategy",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "api.demo-company.com",
+      "issue": "No quantum risk assessment performed",
+      "details": "Quantum threat impact not formally assessed",
+      "recommendation": "Conduct quantum cryptanalysis risk assessment"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "api.demo-company.com",
+      "issue": "FIPS 140-2 compliance not verified",
+      "details": "Cryptographic modules not FIPS validated",
+      "recommendation": "Use FIPS 140-2 Level 3+ validated crypto modules"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "api.demo-company.com",
+      "issue": "Cryptographic operations not audited",
+      "details": "No audit trail for key usage and crypto operations",
+      "recommendation": "Enable comprehensive crypto audit logging"
+    }
+  ],
+  "summary": {
+    "total_findings": 21,
+    "critical": 6,
+    "high": 3,
+    "medium": 0,
+    "low": 0
+  },
+  "rated_assets": [
+    {
+      "asset": "api.demo-company.com",
+      "domain": "web_api",
+      "region": "US",
+      "score_100": 26,
+      "verdict": "Insecure",
+      "action": "\ud83d\udc80 Emergency migration required",
+      "priority_level": "CRITICAL",
+      "weighted_score": 0.2572,
+      "parameter_scores": {
+        "auth_token_crypto": {
+          "score": 0.1,
+          "base_weight": 0.15,
+          "region_modifier": 1.2,
+          "effective_weight": 0.18,
+          "weighted_score": 0.018,
+          "details": "RS256 signing"
+        },
+        "tls_transport": {
+          "score": 0.1,
+          "base_weight": 0.12,
+          "region_modifier": 1.1,
+          "effective_weight": 0.132,
+          "weighted_score": 0.0132,
+          "details": "TLS TLSv1.2"
+        },
+        "oauth_oidc": {
+          "score": 0.56,
+          "base_weight": 0.1,
+          "region_modifier": 1.2,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0672,
+          "details": "OAuth at https://api.demo-company.com/.well-known/openid-configuration"
+        },
+        "key_management": {
+          "score": 0.125,
+          "base_weight": 0.12,
+          "region_modifier": 1.3,
+          "effective_weight": 0.156,
+          "weighted_score": 0.0195,
+          "details": "file storage"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.3,
+          "effective_weight": 0.104,
+          "weighted_score": 0.0,
+          "details": "No quantum readiness data"
+        },
+        "certificate_security": {
+          "score": 0.1,
+          "base_weight": 0.1,
+          "region_modifier": 1.2,
+          "effective_weight": 0.12,
+          "weighted_score": 0.012,
+          "details": "RSA certificate"
+        },
+        "api_encryption": {
+          "score": 0.3,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0264,
+          "details": "AES-128-GCM encryption"
+        },
+        "session_management": {
+          "score": 0.7,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0616,
+          "details": "HMAC-SHA256 sessions"
+        },
+        "data_at_rest": {
+          "score": 0.3,
+          "base_weight": 0.09,
+          "region_modifier": 1.2,
+          "effective_weight": 0.108,
+          "weighted_score": 0.0324,
+          "details": "AES-128-CBC storage"
+        },
+        "regulatory_compliance": {
+          "score": 0.3,
+          "base_weight": 0.08,
+          "region_modifier": 1.4,
+          "effective_weight": 0.112,
+          "weighted_score": 0.0336,
+          "details": "US compliance"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "auth_token_crypto",
+          "asset": "api.demo-company.com",
+          "algorithm": "RS256",
+          "score": 0.1,
+          "quantum_vulnerable": true,
+          "risk_level": "CRITICAL",
+          "reason": "Algorithm 'RS256' is vulnerable to quantum attack",
+          "migration_target": {
+            "algorithm": "ML-DSA-65",
+            "standard": "FIPS 204"
+          }
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "api.demo-company.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.2",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "api.demo-company.com",
+          "component": "key_exchange",
+          "value": "ECDHE-RSA",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "api.demo-company.com",
+          "component": "certificate",
+          "value": "RSA-2048",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "oauth_oidc",
+          "asset": "api.demo-company.com",
+          "component": "signing_algorithm",
+          "algorithm": "RS256",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-DSA (FIPS 204)"
+        },
+        {
+          "parameter": "oauth_oidc",
+          "asset": "api.demo-company.com",
+          "component": "signing_algorithm",
+          "algorithm": "ES256",
+          "risk": "HIGH",
+          "recommendation": "Migrate to ML-DSA (FIPS 204)"
+        },
+        {
+          "parameter": "key_management",
+          "asset": "api.demo-company.com",
+          "component": "key_storage",
+          "value": "file",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+        },
+        {
+          "parameter": "key_management",
+          "asset": "api.demo-company.com",
+          "component": "rotation_policy",
+          "value": "manual",
+          "risk": "HIGH",
+          "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+        },
+        {
+          "parameter": "key_management",
+          "asset": "api.demo-company.com",
+          "component": "key_algorithm",
+          "value": "RSA-2048",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "api.demo-company.com",
+          "issue": "RSA key size vulnerable to quantum attack",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to ML-DSA (FIPS 204) or increase to RSA-4096 as interim"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "api.demo-company.com",
+          "issue": "Certificate expires after quantum threat timeline",
+          "details": "Certificate valid until 2031-12-31T23:59:59Z, past Q-Day (2030)",
+          "recommendation": "Renew with PQC algorithms before 2030"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "api.demo-company.com",
+          "issue": "AES-128 provides reduced quantum security",
+          "details": "AES-128 offers ~64-bit security against quantum attacks",
+          "recommendation": "Upgrade to AES-256 for 128-bit quantum security"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "api.demo-company.com",
+          "issue": "No field-level encryption for sensitive data",
+          "details": "Sensitive fields not individually encrypted",
+          "recommendation": "Implement field-level encryption for PII/PHI"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "api.demo-company.com",
+          "issue": "Weak key derivation parameters",
+          "details": "PBKDF2 with 50000 iterations insufficient",
+          "recommendation": "Use PBKDF2 with 600,000+ iterations or migrate to Argon2"
+        },
+        {
+          "parameter": "session_management",
+          "asset": "api.demo-company.com",
+          "issue": "Session cookies missing SameSite protection",
+          "details": "Cookies vulnerable to CSRF attacks",
+          "recommendation": "Enable SameSite=Strict on session cookies"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "api.demo-company.com",
+          "issue": "AES-128 provides reduced quantum security",
+          "details": "AES-128 offers ~64-bit security against quantum attacks",
+          "recommendation": "Upgrade to AES-256 for 128-bit quantum security"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "api.demo-company.com",
+          "issue": "File-based key storage",
+          "details": "Keys stored in files without proper protection",
+          "recommendation": "Migrate to HSM or cloud KMS"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "api.demo-company.com",
+          "issue": "No PQC migration plan documented",
+          "details": "Organization lacks formal PQC transition strategy",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "api.demo-company.com",
+          "issue": "No quantum risk assessment performed",
+          "details": "Quantum threat impact not formally assessed",
+          "recommendation": "Conduct quantum cryptanalysis risk assessment"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "api.demo-company.com",
+          "issue": "FIPS 140-2 compliance not verified",
+          "details": "Cryptographic modules not FIPS validated",
+          "recommendation": "Use FIPS 140-2 Level 3+ validated crypto modules"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "api.demo-company.com",
+          "issue": "Cryptographic operations not audited",
+          "details": "No audit trail for key usage and crypto operations",
+          "recommendation": "Enable comprehensive crypto audit logging"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Migrate JWT signing to ML-DSA (FIPS 204) per NIST standards. Deadline: 2035 (full transition)",
+        "MEDIUM: Improve oauth_oidc (OAuth at https://api.demo-company.com/.well-known/openid-configuration). Score indicates partial quantum exposure in US context.",
+        "CRITICAL: Replace quantum-vulnerable certificates with PQC algorithms. Current certificates expire past quantum threat timeline.",
+        "MEDIUM: Improve api_encryption (AES-128-GCM encryption). Score indicates partial quantum exposure in US context.",
+        "MEDIUM: Improve data_at_rest (AES-128-CBC storage). Score indicates partial quantum exposure in US context.",
+        "MEDIUM: Improve regulatory_compliance (US compliance). Score indicates partial quantum exposure in US context."
+      ],
+      "priority_rank": 1
+    }
+  ]
+}

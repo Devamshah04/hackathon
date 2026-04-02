@@ -66,5 +66,396 @@
     "findings_summary": "1 findings, rating 8/10 (Secure \u2014 needs PQC transition)",
     "feedback": null,
     "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775115774_fleet-tracker-gps.acmecorp.com",
+    "timestamp": "2026-04-02T07:42:54.674031+00:00",
+    "run_id": "4aae2f43-e6cb-4b55-a9ba-cc2dd83220df",
+    "asset": "fleet-tracker-gps.acmecorp.com",
+    "rating": 2,
+    "parameter_scores": {
+      "firmware_signing": 0.1,
+      "device_longevity": 0.4,
+      "ota_security": 0.0,
+      "key_management": 0.038,
+      "quantum_readiness": null
+    },
+    "findings_summary": "7 findings, rating 2/10 (Critical / Insecure)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775115774_smart-thermostat.acmecorp.com",
+    "timestamp": "2026-04-02T07:42:54.676787+00:00",
+    "run_id": "4aae2f43-e6cb-4b55-a9ba-cc2dd83220df",
+    "asset": "smart-thermostat.acmecorp.com",
+    "rating": 6,
+    "parameter_scores": {
+      "firmware_signing": 0.3,
+      "device_longevity": 1.0,
+      "ota_security": 0.2,
+      "key_management": 0.66,
+      "quantum_readiness": 0.4
+    },
+    "findings_summary": "5 findings, rating 6/10 (Moderate Risk)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775115774_industrial-plc.acmecorp.com",
+    "timestamp": "2026-04-02T07:42:54.679906+00:00",
+    "run_id": "4aae2f43-e6cb-4b55-a9ba-cc2dd83220df",
+    "asset": "industrial-plc.acmecorp.com",
+    "rating": 3,
+    "parameter_scores": {
+      "firmware_signing": 0.3,
+      "device_longevity": 0.0,
+      "ota_security": 0.15,
+      "key_management": 0.675,
+      "quantum_readiness": null
+    },
+    "findings_summary": "4 findings, rating 3/10 (High Risk)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775115774_nextgen-medical-monitor.acmecorp.com",
+    "timestamp": "2026-04-02T07:42:54.683375+00:00",
+    "run_id": "4aae2f43-e6cb-4b55-a9ba-cc2dd83220df",
+    "asset": "nextgen-medical-monitor.acmecorp.com",
+    "rating": 8,
+    "parameter_scores": {
+      "firmware_signing": 1.0,
+      "device_longevity": 0.0,
+      "ota_security": 1.0,
+      "key_management": 1.0,
+      "quantum_readiness": 0.98
+    },
+    "findings_summary": "1 findings, rating 8/10 (Secure \u2014 needs PQC transition)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775115974_SmartLock-v2",
+    "timestamp": "2026-04-02T07:46:14.949210+00:00",
+    "run_id": "9c77ee4a-9255-4c28-b650-86004eb8bb23",
+    "asset": "SmartLock-v2",
+    "rating": 3,
+    "parameter_scores": {
+      "firmware_signing": 0.1,
+      "device_longevity": 0.6,
+      "ota_security": 0.2,
+      "key_management": 0.038,
+      "quantum_readiness": null
+    },
+    "findings_summary": "6 findings, rating 3/10 (High Risk)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775116007_fleet-tracker-gps.acmecorp.com",
+    "timestamp": "2026-04-02T07:46:47.894316+00:00",
+    "run_id": "26f2d2d3-f79c-4540-9f39-f5625554797f",
+    "asset": "fleet-tracker-gps.acmecorp.com",
+    "rating": 2,
+    "parameter_scores": {
+      "firmware_signing": 0.1,
+      "device_longevity": 0.4,
+      "ota_security": 0.0,
+      "key_management": 0.038,
+      "quantum_readiness": null
+    },
+    "findings_summary": "7 findings, rating 2/10 (Critical / Insecure)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775116007_smart-thermostat.acmecorp.com",
+    "timestamp": "2026-04-02T07:46:47.898116+00:00",
+    "run_id": "26f2d2d3-f79c-4540-9f39-f5625554797f",
+    "asset": "smart-thermostat.acmecorp.com",
+    "rating": 6,
+    "parameter_scores": {
+      "firmware_signing": 0.3,
+      "device_longevity": 1.0,
+      "ota_security": 0.2,
+      "key_management": 0.66,
+      "quantum_readiness": 0.4
+    },
+    "findings_summary": "5 findings, rating 6/10 (Moderate Risk)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775116007_industrial-plc.acmecorp.com",
+    "timestamp": "2026-04-02T07:46:47.901260+00:00",
+    "run_id": "26f2d2d3-f79c-4540-9f39-f5625554797f",
+    "asset": "industrial-plc.acmecorp.com",
+    "rating": 3,
+    "parameter_scores": {
+      "firmware_signing": 0.3,
+      "device_longevity": 0.0,
+      "ota_security": 0.15,
+      "key_management": 0.675,
+      "quantum_readiness": null
+    },
+    "findings_summary": "4 findings, rating 3/10 (High Risk)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775116007_nextgen-medical-monitor.acmecorp.com",
+    "timestamp": "2026-04-02T07:46:47.904527+00:00",
+    "run_id": "26f2d2d3-f79c-4540-9f39-f5625554797f",
+    "asset": "nextgen-medical-monitor.acmecorp.com",
+    "rating": 8,
+    "parameter_scores": {
+      "firmware_signing": 1.0,
+      "device_longevity": 0.0,
+      "ota_security": 1.0,
+      "key_management": 1.0,
+      "quantum_readiness": 0.98
+    },
+    "findings_summary": "1 findings, rating 8/10 (Secure \u2014 needs PQC transition)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775116032_fleet-tracker-gps.acmecorp.com",
+    "timestamp": "2026-04-02T07:47:12.070656+00:00",
+    "run_id": "824367a2-d62a-45e2-b25e-0a2fc177d585",
+    "asset": "fleet-tracker-gps.acmecorp.com",
+    "rating": 2,
+    "parameter_scores": {
+      "firmware_signing": 0.1,
+      "device_longevity": 0.4,
+      "ota_security": 0.0,
+      "key_management": 0.038,
+      "quantum_readiness": null
+    },
+    "findings_summary": "7 findings, rating 2/10 (Critical / Insecure)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775116032_smart-thermostat.acmecorp.com",
+    "timestamp": "2026-04-02T07:47:12.073914+00:00",
+    "run_id": "824367a2-d62a-45e2-b25e-0a2fc177d585",
+    "asset": "smart-thermostat.acmecorp.com",
+    "rating": 6,
+    "parameter_scores": {
+      "firmware_signing": 0.3,
+      "device_longevity": 1.0,
+      "ota_security": 0.2,
+      "key_management": 0.66,
+      "quantum_readiness": 0.4
+    },
+    "findings_summary": "5 findings, rating 6/10 (Moderate Risk)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775116032_industrial-plc.acmecorp.com",
+    "timestamp": "2026-04-02T07:47:12.076751+00:00",
+    "run_id": "824367a2-d62a-45e2-b25e-0a2fc177d585",
+    "asset": "industrial-plc.acmecorp.com",
+    "rating": 3,
+    "parameter_scores": {
+      "firmware_signing": 0.3,
+      "device_longevity": 0.0,
+      "ota_security": 0.15,
+      "key_management": 0.675,
+      "quantum_readiness": null
+    },
+    "findings_summary": "4 findings, rating 3/10 (High Risk)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775116032_nextgen-medical-monitor.acmecorp.com",
+    "timestamp": "2026-04-02T07:47:12.078403+00:00",
+    "run_id": "824367a2-d62a-45e2-b25e-0a2fc177d585",
+    "asset": "nextgen-medical-monitor.acmecorp.com",
+    "rating": 8,
+    "parameter_scores": {
+      "firmware_signing": 1.0,
+      "device_longevity": 0.0,
+      "ota_security": 1.0,
+      "key_management": 1.0,
+      "quantum_readiness": 0.98
+    },
+    "findings_summary": "1 findings, rating 8/10 (Secure \u2014 needs PQC transition)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775116098_fleet-tracker-gps.acmecorp.com",
+    "timestamp": "2026-04-02T07:48:18.909138+00:00",
+    "run_id": "1f0826ce-6743-4d81-8e1c-b1e8aaeae4d9",
+    "asset": "fleet-tracker-gps.acmecorp.com",
+    "rating": 2,
+    "parameter_scores": {
+      "firmware_signing": 0.1,
+      "device_longevity": 0.4,
+      "ota_security": 0.0,
+      "key_management": 0.038,
+      "quantum_readiness": null
+    },
+    "findings_summary": "7 findings, rating 2/10 (Critical / Insecure)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775116098_smart-thermostat.acmecorp.com",
+    "timestamp": "2026-04-02T07:48:18.916750+00:00",
+    "run_id": "1f0826ce-6743-4d81-8e1c-b1e8aaeae4d9",
+    "asset": "smart-thermostat.acmecorp.com",
+    "rating": 6,
+    "parameter_scores": {
+      "firmware_signing": 0.3,
+      "device_longevity": 1.0,
+      "ota_security": 0.2,
+      "key_management": 0.66,
+      "quantum_readiness": 0.4
+    },
+    "findings_summary": "5 findings, rating 6/10 (Moderate Risk)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775116098_industrial-plc.acmecorp.com",
+    "timestamp": "2026-04-02T07:48:18.920229+00:00",
+    "run_id": "1f0826ce-6743-4d81-8e1c-b1e8aaeae4d9",
+    "asset": "industrial-plc.acmecorp.com",
+    "rating": 3,
+    "parameter_scores": {
+      "firmware_signing": 0.3,
+      "device_longevity": 0.0,
+      "ota_security": 0.15,
+      "key_management": 0.675,
+      "quantum_readiness": null
+    },
+    "findings_summary": "4 findings, rating 3/10 (High Risk)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775116098_nextgen-medical-monitor.acmecorp.com",
+    "timestamp": "2026-04-02T07:48:18.922257+00:00",
+    "run_id": "1f0826ce-6743-4d81-8e1c-b1e8aaeae4d9",
+    "asset": "nextgen-medical-monitor.acmecorp.com",
+    "rating": 8,
+    "parameter_scores": {
+      "firmware_signing": 1.0,
+      "device_longevity": 0.0,
+      "ota_security": 1.0,
+      "key_management": 1.0,
+      "quantum_readiness": 0.98
+    },
+    "findings_summary": "1 findings, rating 8/10 (Secure \u2014 needs PQC transition)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775116123_google.com",
+    "timestamp": "2026-04-02T07:48:43.715846+00:00",
+    "run_id": "8f32b48c-8844-4263-9ae5-a345eaa71d3f",
+    "asset": "google.com",
+    "rating": 3,
+    "parameter_scores": {
+      "firmware_signing": 0.1,
+      "device_longevity": 0.6,
+      "ota_security": 0.2,
+      "key_management": 0.038,
+      "quantum_readiness": null
+    },
+    "findings_summary": "6 findings, rating 3/10 (High Risk)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775120496_fleet-tracker-gps.acmecorp.com",
+    "timestamp": "2026-04-02T09:01:36.866685+00:00",
+    "run_id": "5b578fc2-389a-4d30-a37b-944de5ce2049",
+    "asset": "fleet-tracker-gps.acmecorp.com",
+    "rating": 2,
+    "parameter_scores": {
+      "firmware_signing": 0.1,
+      "device_longevity": 0.4,
+      "ota_security": 0.0,
+      "key_management": 0.038,
+      "quantum_readiness": null
+    },
+    "findings_summary": "7 findings, rating 2/10 (Critical / Insecure)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775120496_smart-thermostat.acmecorp.com",
+    "timestamp": "2026-04-02T09:01:36.870152+00:00",
+    "run_id": "5b578fc2-389a-4d30-a37b-944de5ce2049",
+    "asset": "smart-thermostat.acmecorp.com",
+    "rating": 6,
+    "parameter_scores": {
+      "firmware_signing": 0.3,
+      "device_longevity": 1.0,
+      "ota_security": 0.2,
+      "key_management": 0.66,
+      "quantum_readiness": 0.4
+    },
+    "findings_summary": "5 findings, rating 6/10 (Moderate Risk)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775120496_industrial-plc.acmecorp.com",
+    "timestamp": "2026-04-02T09:01:36.874084+00:00",
+    "run_id": "5b578fc2-389a-4d30-a37b-944de5ce2049",
+    "asset": "industrial-plc.acmecorp.com",
+    "rating": 3,
+    "parameter_scores": {
+      "firmware_signing": 0.3,
+      "device_longevity": 0.0,
+      "ota_security": 0.15,
+      "key_management": 0.675,
+      "quantum_readiness": null
+    },
+    "findings_summary": "4 findings, rating 3/10 (High Risk)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775120496_nextgen-medical-monitor.acmecorp.com",
+    "timestamp": "2026-04-02T09:01:36.875593+00:00",
+    "run_id": "5b578fc2-389a-4d30-a37b-944de5ce2049",
+    "asset": "nextgen-medical-monitor.acmecorp.com",
+    "rating": 8,
+    "parameter_scores": {
+      "firmware_signing": 1.0,
+      "device_longevity": 0.0,
+      "ota_security": 1.0,
+      "key_management": 1.0,
+      "quantum_readiness": 0.98
+    },
+    "findings_summary": "1 findings, rating 8/10 (Secure \u2014 needs PQC transition)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775120512_google.com",
+    "timestamp": "2026-04-02T09:01:52.726175+00:00",
+    "run_id": "e54dd0db-f9db-4062-932a-6b96d06aeb2b",
+    "asset": "google.com",
+    "rating": 3,
+    "parameter_scores": {
+      "firmware_signing": 0.1,
+      "device_longevity": 0.6,
+      "ota_security": 0.2,
+      "key_management": 0.038,
+      "quantum_readiness": null
+    },
+    "findings_summary": "6 findings, rating 3/10 (High Risk)",
+    "feedback": null,
+    "feedback_applied": false
   }
 ]

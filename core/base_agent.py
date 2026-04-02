@@ -143,7 +143,7 @@ class BaseAgent(ABC):
         with open(filepath, "w") as f:
             json.dump(self.build_assessment(), f, indent=2)
 
-        print(f"[{self.agent_name}] Assessment saved locally → {filepath}")
+        print(f"[{self.agent_name}] Assessment saved locally -> {filepath}")
         return filepath
 
     def save_to_s3(self) -> str:

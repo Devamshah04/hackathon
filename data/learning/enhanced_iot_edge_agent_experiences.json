@@ -1,0 +1,46 @@
+[
+  {
+    "id": "enhanced_iot_edge_agent_1775120011_TestDevice-v1.0",
+    "timestamp": "2026-04-02T08:53:31.948058+00:00",
+    "run_id": "e6ad7f7b-8c69-491a-873f-df0a6e02e293",
+    "asset": "TestDevice-v1.0",
+    "rating": 22,
+    "parameter_scores": {
+      "firmware_signing": 0.1,
+      "device_longevity": 0.4,
+      "ota_security": 0.1,
+      "key_management": 0.025,
+      "quantum_readiness": null,
+      "hardware_security": 0.3,
+      "communication_protocol": 0.5,
+      "certificate_security": null,
+      "data_at_rest": null,
+      "regulatory_compliance": 0.3
+    },
+    "findings_summary": "15 findings, score 22/100 (Insecure)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "enhanced_iot_edge_agent_1775120212_comprehensive-iot-device",
+    "timestamp": "2026-04-02T08:56:52.012653+00:00",
+    "run_id": "77e71229-9cc5-4ae2-8073-39226d4fb2d3",
+    "asset": "comprehensive-iot-device",
+    "rating": 22,
+    "parameter_scores": {
+      "firmware_signing": 0.1,
+      "device_longevity": 0.4,
+      "ota_security": 0.1,
+      "key_management": 0.0,
+      "quantum_readiness": null,
+      "hardware_security": 0.3,
+      "communication_protocol": 0.5,
+      "certificate_security": 0.1,
+      "data_at_rest": 0.4,
+      "regulatory_compliance": 0.3
+    },
+    "findings_summary": "18 findings, score 22/100 (Insecure)",
+    "feedback": null,
+    "feedback_applied": false
+  }
+]

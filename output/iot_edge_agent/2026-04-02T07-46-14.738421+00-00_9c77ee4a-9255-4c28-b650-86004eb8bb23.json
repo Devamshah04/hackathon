@@ -1,0 +1,159 @@
+{
+  "schema_version": "1.0",
+  "agent_name": "iot_edge_agent",
+  "timestamp": "2026-04-02T07:46:14.738421+00:00",
+  "run_id": "9c77ee4a-9255-4c28-b650-86004eb8bb23",
+  "findings": [
+    {
+      "parameter": "firmware_signing",
+      "asset": "SmartLock-v2",
+      "component": "firmware_signing",
+      "algorithm": "RSA-2048",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to LMS or XMSS per NIST SP 800-208 for long-lived firmware signatures"
+    },
+    {
+      "parameter": "ota_security",
+      "asset": "SmartLock-v2",
+      "component": "ota_security",
+      "algorithm": "ECDSA-P256",
+      "risk": "CRITICAL",
+      "recommendation": "OTA updates are quantum-vulnerable. Migrate to ML-DSA (FIPS 204) to prevent malicious firmware flashes."
+    },
+    {
+      "parameter": "key_management",
+      "asset": "SmartLock-v2",
+      "component": "key_storage",
+      "value": "flash",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+    },
+    {
+      "parameter": "key_management",
+      "asset": "SmartLock-v2",
+      "component": "rotation_policy",
+      "value": "no_rotation",
+      "risk": "HIGH",
+      "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+    },
+    {
+      "parameter": "key_management",
+      "asset": "SmartLock-v2",
+      "component": "key_algorithm",
+      "value": "RSA-2048",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+    },
+    {
+      "parameter": "key_management",
+      "asset": "SmartLock-v2",
+      "component": "audit_logging",
+      "risk": "MEDIUM",
+      "recommendation": "Enable key usage audit logging"
+    }
+  ],
+  "summary": {
+    "total_findings": 6,
+    "critical": 4,
+    "high": 1,
+    "medium": 1,
+    "low": 0
+  },
+  "rated_assets": [
+    {
+      "asset": "SmartLock-v2",
+      "domain": "iot_edge",
+      "rating": 3,
+      "verdict": "High Risk",
+      "action": "\ud83d\udd34 Urgent migration required",
+      "weighted_score": 0.2508,
+      "parameter_scores": {
+        "firmware_signing": {
+          "score": 0.1,
+          "weight": 0.3,
+          "weighted_score": 0.03,
+          "details": "Signed with RSA-2048"
+        },
+        "device_longevity": {
+          "score": 0.6,
+          "weight": 0.25,
+          "weighted_score": 0.15,
+          "details": "Lifespan ends 2032"
+        },
+        "ota_security": {
+          "score": 0.2,
+          "weight": 0.2,
+          "weighted_score": 0.04,
+          "details": "OTA algorithm: ECDSA-P256"
+        },
+        "key_management": {
+          "score": 0.038,
+          "weight": 0.15,
+          "weighted_score": 0.0057,
+          "details": "flash storage, no_rotation"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "weight": 0.1,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data provided"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "firmware_signing",
+          "asset": "SmartLock-v2",
+          "component": "firmware_signing",
+          "algorithm": "RSA-2048",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to LMS or XMSS per NIST SP 800-208 for long-lived firmware signatures"
+        },
+        {
+          "parameter": "ota_security",
+          "asset": "SmartLock-v2",
+          "component": "ota_security",
+          "algorithm": "ECDSA-P256",
+          "risk": "CRITICAL",
+          "recommendation": "OTA updates are quantum-vulnerable. Migrate to ML-DSA (FIPS 204) to prevent malicious firmware flashes."
+        },
+        {
+          "parameter": "key_management",
+          "asset": "SmartLock-v2",
+          "component": "key_storage",
+          "value": "flash",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+        },
+        {
+          "parameter": "key_management",
+          "asset": "SmartLock-v2",
+          "component": "rotation_policy",
+          "value": "no_rotation",
+          "risk": "HIGH",
+          "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+        },
+        {
+          "parameter": "key_management",
+          "asset": "SmartLock-v2",
+          "component": "key_algorithm",
+          "value": "RSA-2048",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+        },
+        {
+          "parameter": "key_management",
+          "asset": "SmartLock-v2",
+          "component": "audit_logging",
+          "risk": "MEDIUM",
+          "recommendation": "Enable key usage audit logging"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Migrate firmware signing from RSA/ECDSA to stateful hash-based signatures (LMS/XMSS) per NIST SP 800-208.",
+        "HIGH: Upgrade OTA update authentication to use ML-DSA to secure the supply chain.",
+        "CRITICAL: Move embedded keys to a Hardware Root of Trust or secure enclave."
+      ],
+      "priority_rank": 1
+    }
+  ]
+}
