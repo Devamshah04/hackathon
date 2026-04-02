@@ -434,24 +434,60 @@ def _generate_mock_iot_target(device_name: str) -> dict:
         }
     }
 
+def _is_domain_name(target: str) -> bool:
+    """Check if target looks like a domain name."""
+    import re
+    domain_pattern = r'^[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.[a-zA-Z]{2,}$'
+    return bool(re.match(domain_pattern, target))
+
+def _discover_domain_targets(domain: str) -> list[dict]:
+    """Discover subdomains and create assessment targets."""
+    from tools.subdomain_discovery import discover_subdomains_for_assessment
+    
+    logger.info(f"Discovering subdomains for {domain}...")
+    targets = discover_subdomains_for_assessment(domain, max_subdomains=5)
+    
+    # Convert web targets to IoT-style targets for assessment
+    iot_targets = []
+    for target in targets:
+        iot_target = {
+            "asset": target["asset"],
+            "description": f"Domain endpoint: {target['asset']}",
+            "firmware_metadata": {
+                "device_name": target["asset"],
+                "firmware_version": "web-service",
+                "signing_algorithm": target.get("tls_config", {}).get("key_exchange", "RSA-2048"),
+                "manufacture_year": 2020,
+                "expected_lifespan_years": 15,  # Web services often run longer
+                "ota_enabled": True,
+                "ota_signing": "RSA-2048",
+                "hardware_root_of_trust": False
+            },
+            "key_management": target.get("key_management", {}),
+            "quantum_readiness": target.get("quantum_readiness", {})
+        }
+        iot_targets.append(iot_target)
+    
+    return iot_targets
+
 
 def run_interactive_cli():
     import time
 
     BANNER = """
-  ╔═════════════════════════════════════════════════════════════════════╗
-  ║    PQC IoT & EDGE AGENT  v1.0  -  Strands SDK + Amazon Bedrock      ║
-  ║    Post-Quantum Cryptography Migration Scanner — IoT & Edge         ║
-  ╠═════════════════════════════════════════════════════════════════════╣
-  ║ Standards:  NIST SP 800-208  ·  FIPS 203/204/205  ·  CNSA 2.0       ║
-  ║             Stateful Hash-Based Signatures (LMS / XMSS)             ║
-  ╠═════════════════════════════════════════════════════════════════════╣
-  ║ Commands:                                                           ║
-  ║   scan        - Full scan + report for a device or mock dataset     ║
-  ║   list        - List available mock datasets                        ║
-  ║   help        - Show command reference                              ║
-  ║   exit        - Quit the agent                                      ║
-  ╚═════════════════════════════════════════════════════════════════════╝
+  =====================================================================
+      PQC IoT & EDGE AGENT  v1.0  -  Strands SDK + Amazon Bedrock      
+      Post-Quantum Cryptography Migration Scanner — IoT & Edge         
+  =====================================================================
+   Standards:  NIST SP 800-208  ·  FIPS 203/204/205  ·  CNSA 2.0       
+               Stateful Hash-Based Signatures (LMS / XMSS)             
+  =====================================================================
+   Commands:                                                           
+     scan        - Full scan + report for a device or mock dataset     
+     list        - List available mock datasets                        
+     help        - Show command reference                              
+     exit        - Quit the agent                                      
+  =====================================================================
 """
     MOCK_DATASETS = ['AcmeCorp-IoT']
 
@@ -479,6 +515,7 @@ def run_interactive_cli():
             elif cmd == "help":
                 print("Commands:")
                 print("  scan mock              - Full scan on predefined AcmeCorp IoT mock dataset")
+                print("  scan [domain.com]      - Scan a domain and its subdomains for PQC vulnerabilities")
                 print("  scan [device-name]     - Scan a custom device with a default insecure profile")
                 print("  list                   - List available mock datasets")
             elif cmd == "list":
@@ -492,15 +529,21 @@ def run_interactive_cli():
                     print("\nRunning scan on AcmeCorp IoT mock data...")
                     assessment = IoTEdgeAgent.scan_mock_data()
                 else:
-                    print(f"\nScanning IoT device profile: {target_arg}...")
-                    targets = {"scan_targets": [_generate_mock_iot_target(target_arg)]}
+                    if _is_domain_name(target_arg):
+                        print(f"\nScanning domain and subdomains: {target_arg}...")
+                        domain_targets = _discover_domain_targets(target_arg)
+                        targets = {"scan_targets": domain_targets}
+                    else:
+                        print(f"\nScanning IoT device profile: {target_arg}...")
+                        targets = {"scan_targets": [_generate_mock_iot_target(target_arg)]}
+                    
                     assessment = agent.scan(targets)
                     agent.save_local()
 
                 if assessment:
                     print("\nRESULTS:")
                     for item in assessment.get("rated_assets", []):
-                        print(f"\n{'─' * 60}")
+                        print(f"\n{'-' * 60}")
                         print(f"  #{item['priority_rank']} │ {item['asset']}")
                         print(f"     Rating:  {item['rating']}/10 — {item['verdict']}")
                         print(f"     Action:  {item['action']}")
