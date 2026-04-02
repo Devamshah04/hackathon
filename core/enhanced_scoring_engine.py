@@ -37,6 +37,18 @@ ENHANCED_WEIGHT_PROFILES: dict[str, dict[str, float]] = {
         "data_at_rest": 0.09,
         "regulatory_compliance": 0.08,
     },
+    "cloud_storage": {
+        "data_at_rest_encryption": 0.15,
+        "key_management_service": 0.12,
+        "backup_archive": 0.10,
+        "data_transfer_encryption": 0.12,
+        "quantum_readiness": 0.08,
+        "access_control_iam": 0.10,
+        "certificate_security": 0.08,
+        "compliance_auditing": 0.08,
+        "multi_cloud_security": 0.09,
+        "regulatory_compliance": 0.08,
+    },
 }
 
 # Enhanced Decision Criteria (100-point scale)
