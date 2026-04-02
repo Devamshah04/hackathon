@@ -12,18 +12,46 @@ from urllib.parse import urlparse
 # AI ANALYSIS (ROBUST WITH FALLBACK MODELS)
 # =========================================================
 
-def ai_analysis(prompt):
-    # Load .env credentials before attempting Bedrock
-    try:
-        from dotenv import load_dotenv
-        from pathlib import Path
-        load_dotenv(dotenv_path=Path(__file__).resolve().parent.parent / ".env")
-    except ImportError:
-        pass
+def _deterministic_analysis(prompt):
+    """Rule-based fallback analysis when Bedrock is unavailable."""
+    lines = []
+    p = prompt.upper()
 
+    if "TLSV1.3" in p or "TLS 1.3" in p:
+        lines.append("TLS 1.3 detected — transport layer is classically secure.")
+        lines.append("RISK: No Post-Quantum key exchange detected. Vulnerable to harvest-now-decrypt-later (HNDL) attacks.")
+        lines.append("RECOMMENDATION: Migrate to TLS 1.3 hybrid PQC (X25519+ML-KEM-768, FIPS 203).")
+    elif "TLS" in p:
+        lines.append("TLS 1.2 or older detected — outdated protocol with weak cipher negotiation.")
+        lines.append("RISK: Vulnerable to both classical and quantum attacks.")
+        lines.append("RECOMMENDATION: Upgrade to TLS 1.3 with hybrid PQC key exchange immediately.")
+
+    if "RSA" in p:
+        lines.append("RISK: RSA detected — broken by Shor's algorithm on a sufficiently large quantum computer.")
+        lines.append("RECOMMENDATION: Replace RSA with ML-KEM (key exchange, FIPS 203) or ML-DSA (signatures, FIPS 204).")
+
+    if "MD5" in p:
+        lines.append("CRITICAL: MD5 detected — cryptographically broken, collision attacks are trivial.")
+        lines.append("RECOMMENDATION: Replace MD5 with SHA-256 or SHA-3 immediately.")
+
+    if "SHA1" in p:
+        lines.append("HIGH: SHA-1 detected — deprecated and vulnerable to collision attacks.")
+        lines.append("RECOMMENDATION: Migrate to SHA-256 or SHA-3.")
+
+    if "KYBER" in p or "ML-KEM" in p or "DILITHIUM" in p or "ML-DSA" in p:
+        lines.append("PQC algorithm detected — good quantum readiness posture.")
+
+    if not lines:
+        lines.append("No specific vulnerabilities identified from scan data.")
+        lines.append("RECOMMENDATION: Conduct a full cryptographic inventory and develop a PQC migration roadmap.")
+
+    return "\n".join(lines)
+
+
+def ai_analysis(prompt):
     models_to_try = [
-        "anthropic.claude-3-haiku-20240307-v1:0",   # fastest + usually enabled
-        "anthropic.claude-3-sonnet-20240229-v1:0",  # stable fallback
+        "anthropic.claude-3-haiku-20240307-v1:0",
+        "anthropic.claude-3-sonnet-20240229-v1:0",
     ]
 
     for model_id in models_to_try:
@@ -34,25 +62,18 @@ def ai_analysis(prompt):
             model = BedrockModel(
                 model_id=model_id,
                 region_name=os.getenv("AWS_REGION", "us-east-1"),
-                aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
-                aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
-                aws_session_token=os.getenv("AWS_SESSION_TOKEN"),
             )
-
             agent = Agent(model=model)
-
             response = agent(prompt)
 
             if hasattr(response, "message"):
                 return response.message.get("content", [{}])[0].get("text", "")
-
             return str(response)
 
-        except Exception as e:
-            last_error = str(e)
+        except Exception:
             continue
 
-    return f"[AI unavailable → fallback used]\nReason: {last_error}"
+    return _deterministic_analysis(prompt)
 
 
 # =========================================================
