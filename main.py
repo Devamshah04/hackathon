@@ -106,5 +106,41 @@ def main():
     logger.info("=" * 60)
 
 
+import subprocess
+import os
+
+def run_script(script_name):
+    """Checks if the file exists and executes it."""
+    if os.path.exists(script_name):
+        print(f"\n--- Launching {script_name} ---")
+        subprocess.run(["python", script_name])
+    else:
+        print(f"\n[Error] {script_name} not found. Please ensure the file is in this directory.")
+
+def main():
+    menu_options = {
+        "1": ("API and Web services", "agents/web_api_agent.py"),
+        "2": ("Cloud and storage", "agents/cloud_storage_agent.py"),
+        "3": ("Algorithms and Network protocols", "agents/ai_crypto_security_agent.py"),
+        "4": ("IoT and edge devices", "agents/iot_edge_agent.py")
+    }
+
+    while True:
+        print("\n--- Technical Domain Selector ---")
+        for key, value in menu_options.items():
+            print(f"{key}. {value[0]}")
+        print("5. Exit")
+
+        choice = input("\nEnter your choice (1-5): ").strip()
+
+        if choice == "5":
+            print("Exiting program. Goodbye!")
+            break
+        elif choice in menu_options:
+            run_script(menu_options[choice][1])
+        else:
+            print("Invalid selection. Please try again.")
+
+
 if __name__ == "__main__":
     main()
