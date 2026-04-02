@@ -1,216 +1,256 @@
-# ai_crypto_security_agent.py
+# pqc_ai_agent_final.py
 
+import os
+import re
 import ssl
 import socket
-from datetime import datetime
+import subprocess
+import tempfile
+from urllib.parse import urlparse
 
 # =========================================================
-# 1. DATA COLLECTION (TLS + CERTIFICATE)
+# AI ANALYSIS (ROBUST WITH FALLBACK MODELS)
 # =========================================================
 
-def get_tls_info(host, port=443):
+def ai_analysis(prompt):
+    models_to_try = [
+        "anthropic.claude-3-haiku-20240307-v1:0",   # fastest + usually enabled
+        "anthropic.claude-3-sonnet-20240229-v1:0",  # stable fallback
+    ]
+
+    for model_id in models_to_try:
+        try:
+            from strands import Agent
+            from strands.models.bedrock import BedrockModel
+
+            model = BedrockModel(
+                model_id=model_id,
+                region_name=os.getenv("AWS_REGION", "us-east-1")
+            )
+
+            agent = Agent(model=model)
+
+            response = agent(prompt)
+
+            if hasattr(response, "message"):
+                return response.message.get("content", [{}])[0].get("text", "")
+
+            return str(response)
+
+        except Exception as e:
+            last_error = str(e)
+            continue
+
+    return f"[AI unavailable → fallback used]\nReason: {last_error}"
+
+
+# =========================================================
+# MEMORY
+# =========================================================
+memory = {"results": []}
+
+# =========================================================
+# CRYPTO PATTERNS
+# =========================================================
+CRYPTO_PATTERNS = {
+    "AES": r"AES",
+    "RSA": r"RSA",
+    "MD5": r"MD5",
+    "SHA1": r"SHA1",
+    "SHA256": r"SHA256",
+    "KYBER": r"KYBER",
+    "DILITHIUM": r"DILITHIUM",
+}
+
+SUPPORTED_EXT = (".py", ".c", ".cpp", ".h", ".java", ".js", ".go", ".rs")
+
+# =========================================================
+# GITHUB SCAN
+# =========================================================
+def clone_repo(url):
+    temp = tempfile.mkdtemp()
+    subprocess.run(["git", "clone", url, temp],
+                   stdout=subprocess.DEVNULL,
+                   stderr=subprocess.DEVNULL)
+    return temp
+
+def scan_repo(path):
+    algos = set()
+
+    for root, _, files in os.walk(path):
+        for f in files:
+            if f.endswith(SUPPORTED_EXT):
+                try:
+                    content = open(os.path.join(root, f), errors="ignore").read()
+                    for k, v in CRYPTO_PATTERNS.items():
+                        if re.search(v, content):
+                            algos.add(k)
+                except:
+                    pass
+
+    return list(algos)
+
+# =========================================================
+# WEB SCAN
+# =========================================================
+def scan_web(url):
+    host = urlparse(url).hostname if "://" in url else url
     context = ssl.create_default_context()
 
-    with socket.create_connection((host, port)) as sock:
+    with socket.create_connection((host, 443), timeout=5) as sock:
         with context.wrap_socket(sock, server_hostname=host) as ssock:
-            cert = ssock.getpeercert()
-            cipher = ssock.cipher()
-            tls_version = ssock.version()
-
-    return {
-        "tls_version": tls_version,
-        "cipher": cipher[0],
-        "public_key_algo": cert.get("subjectPublicKeyInfo", "Unknown"),
-        "cert": cert
-    }
-
+            return {
+                "tls": ssock.version(),
+                "cipher": ssock.cipher()[0]
+            }
 
 # =========================================================
-# 2. FEATURE EXTRACTION
+# SCORING
 # =========================================================
+def score_github(algos):
+    score = 100
+    reasons = []
 
-def extract_features(tls_data):
-    cipher = tls_data["cipher"]
+    if "MD5" in algos:
+        score -= 40; reasons.append("MD5 → broken")
+    if "SHA1" in algos:
+        score -= 30; reasons.append("SHA1 → weak")
+    if "RSA" in algos:
+        score -= 10; reasons.append("RSA → quantum risk")
+    if "KYBER" in algos:
+        score += 10; reasons.append("PQC detected")
 
-    # Basic parsing
-    if "AES256" in cipher:
-        symmetric = "AES-256"
-    elif "AES128" in cipher:
-        symmetric = "AES-128"
-    elif "CHACHA20" in cipher:
-        symmetric = "CHACHA20"
-    else:
-        symmetric = "UNKNOWN"
-
-    if "ECDHE" in cipher:
-        key_exchange = "ECDHE"
-    elif "RSA" in cipher:
-        key_exchange = "RSA"
-    else:
-        key_exchange = "UNKNOWN"
-
-    return {
-        "tls_version": tls_data["tls_version"],
-        "symmetric": symmetric,
-        "key_exchange": key_exchange,
-        "public_key": "RSA-2048",  # Placeholder (extend with real parsing)
-        "hash": "SHA-256",         # Placeholder
-        "pqc": False
-    }
+    return max(score, 0), reasons
 
 
-# =========================================================
-# 3. SCORING FUNCTIONS
-# =========================================================
-
-def score_crypto(features):
+def score_web(data):
     score = 0
+    reasons = []
 
-    # Public Key
-    if features["public_key"] == "RSA-2048":
-        score += 60
-    elif features["public_key"] == "KYBER":
-        score += 100
-
-    # Symmetric
-    if features["symmetric"] == "AES-256":
-        score += 100
-    elif features["symmetric"] == "AES-128":
-        score += 70
-    elif features["symmetric"] == "CHACHA20":
-        score += 95
-
-    # Hash
-    if features["hash"] == "SHA-256":
-        score += 100
-
-    return score / 3
-
-
-def score_protocol(features):
-    score = 0
-
-    # TLS Version
-    if features["tls_version"] == "TLSv1.3":
-        score += 100
-    elif features["tls_version"] == "TLSv1.2":
-        score += 70
+    if data["tls"] == "TLSv1.3":
+        score += 100; reasons.append("TLS 1.3 secure")
     else:
-        score += 30
+        score += 70; reasons.append("TLS 1.2 outdated")
 
-    # Cipher quality
-    if features["symmetric"] in ["AES-256", "CHACHA20"]:
-        score += 100
-    else:
-        score += 60
+    reasons.append("No PQC → quantum vulnerable")
 
-    # Key exchange
-    if features["key_exchange"] == "ECDHE":
-        score += 100
-    else:
-        score += 50
-
-    return score / 3
-
-
-def score_quantum(features):
-    if features["pqc"]:
-        return 100
-    else:
-        return 30
-
-
-def score_implementation():
-    return 70  # Placeholder (extend later)
-
-
-def score_key_management():
-    return 60  # Placeholder
-
-
-def score_compliance():
-    return 50  # Placeholder
-
+    final = score * 0.6 + 40 * 0.4
+    return final, reasons
 
 # =========================================================
-# 4. FINAL SCORING ENGINE
+# ANALYSIS
 # =========================================================
-
-def calculate_final_score(features):
-    crypto = score_crypto(features)
-    protocol = score_protocol(features)
-    implementation = score_implementation()
-    key_mgmt = score_key_management()
-    compliance = score_compliance()
-    quantum = score_quantum(features)
-
-    final_score = (
-        crypto * 0.3 +
-        protocol * 0.2 +
-        implementation * 0.2 +
-        key_mgmt * 0.1 +
-        compliance * 0.1 +
-        quantum * 0.1
-    )
-
-    return {
-        "crypto": crypto,
-        "protocol": protocol,
-        "implementation": implementation,
-        "key_management": key_mgmt,
-        "compliance": compliance,
-        "quantum": quantum,
-        "final_score": round(final_score, 2)
-    }
-
-
-# =========================================================
-# 5. DECISION ENGINE
-# =========================================================
-
-def get_verdict(score):
-    if score >= 90:
-        return "✅ Highly Secure (Quantum Ready)"
-    elif score >= 70:
-        return "⚠️ Secure but Not Quantum Safe"
-    elif score >= 50:
-        return "❗ Moderate Risk"
-    else:
-        return "❌ Insecure"
-
-
-# =========================================================
-# 6. MAIN AI AGENT FUNCTION
-# =========================================================
-
-def analyze_system(host):
-    print(f"\n🔍 Analyzing {host}...\n")
-
+def analyze_target(target):
     try:
-        tls_data = get_tls_info(host)
-        features = extract_features(tls_data)
-        scores = calculate_final_score(features)
-        verdict = get_verdict(scores["final_score"])
+        if "github.com" in target:
+            print("📦 Cloning repository...")
+            path = clone_repo(target)
+            algos = scan_repo(path)
 
-        print("=== FEATURES ===")
-        for k, v in features.items():
-            print(f"{k}: {v}")
+            score, reasons = score_github(algos)
 
-        print("\n=== SCORES ===")
-        for k, v in scores.items():
-            print(f"{k}: {v}")
+            prompt = f"""
+Analyze PQC risks:
 
-        print("\n=== FINAL VERDICT ===")
-        print(verdict)
+Algorithms: {algos}
+Score: {score}
+
+Explain risks and migration steps.
+"""
+            ai_text = ai_analysis(prompt)
+
+            return {
+                "asset": target,
+                "type": "github",
+                "algorithms": algos,
+                "score": score,
+                "reasons": reasons,
+                "ai": ai_text
+            }
+
+        else:
+            print("🌐 Scanning web domain...")
+            data = scan_web(target)
+
+            score, reasons = score_web(data)
+
+            prompt = f"""
+TLS: {data['tls']}
+Cipher: {data['cipher']}
+Score: {score}
+
+Explain risks and PQC readiness.
+"""
+            ai_text = ai_analysis(prompt)
+
+            return {
+                "asset": target,
+                "type": "web",
+                "score": score,
+                "reasons": reasons,
+                "ai": ai_text
+            }
 
     except Exception as e:
-        print(f"Error analyzing system: {e}")
-
+        return {
+            "asset": target,
+            "score": 0,
+            "reasons": [str(e)],
+            "ai": ""
+        }
 
 # =========================================================
-# 7. RUN
+# RANKING
 # =========================================================
+def rank_assets(results):
+    return sorted(results, key=lambda x: x["score"])
 
+# =========================================================
+# CLI
+# =========================================================
+def run_agent():
+    print("""
+╔══════════════════════════════════════╗
+║   PQC AI AGENT (AUTO MODEL SWITCH)   ║
+╚══════════════════════════════════════╝
+
+Commands:
+ scan <targets>
+ report
+ exit
+""")
+
+    while True:
+        cmd = input("\nYou: ").strip()
+
+        if cmd == "exit":
+            break
+
+        elif cmd.startswith("scan"):
+            targets = cmd.split()[1:]
+
+            for t in targets:
+                print(f"\n🔍 Scanning: {t}")
+                res = analyze_target(t)
+                memory["results"].append(res)
+
+                print("Score:", round(res["score"], 2))
+                print("Reasons:", res["reasons"])
+
+                print("\n🤖 AI Analysis:\n", res["ai"][:400])
+
+        elif cmd == "report":
+            ranked = rank_assets(memory["results"])
+
+            print("\n=== RANKING ===")
+            for i, r in enumerate(ranked, 1):
+                print(f"{i}. {r['asset']} → {round(r['score'],2)}")
+
+        else:
+            print("Unknown command")
+
+# =========================================================
+# RUN
+# =========================================================
 if __name__ == "__main__":
-    target = input("Enter domain (e.g., google.com): ")
-    analyze_system(target)
+    run_agent()
