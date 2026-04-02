@@ -111,6 +111,9 @@ class WebApiAgent(BaseAgent):
         if self._strands_agent is not None:
             return self._strands_agent
 
+        if hasattr(self, '_strands_agent_failed'):
+            return None
+
         try:
             from strands import Agent
             from strands.models.bedrock import BedrockModel
@@ -181,6 +184,7 @@ Your analysis should:
         except Exception as e:
             logger.warning(f"Could not initialize Strands agent: {e}")
             logger.info("Running in local-only mode (deterministic scoring, no AI analysis)")
+            self._strands_agent_failed = True
             return None
 
     # ── Deterministic Tool Scanning ─────────────────────────────────────────
@@ -272,6 +276,81 @@ Your analysis should:
             ])
         else:
             scores["quantum_readiness"] = (None, "No verifiable quantum readiness data")
+
+        # 6. Certificate Security
+        cert_config = target.get("certificate_security", {})
+        if cert_config and cert_config.get("cert_algorithm"):
+            cert_result = json.loads(scan_certificate_security(config=json.dumps(cert_config)))
+            scores["certificate_security"] = (
+                cert_result.get("score", 0.0),
+                f"Cert: {cert_config.get('cert_algorithm', '?')}, {cert_config.get('validity_years', '?')}y validity"
+            )
+            all_findings.extend([
+                {"parameter": "certificate_security", "asset": asset, **f}
+                for f in cert_result.get("findings", [])
+            ])
+        else:
+            scores["certificate_security"] = (None, "No certificate data provided")
+
+        # 7. API Encryption
+        api_enc_config = target.get("api_encryption", {})
+        if api_enc_config and api_enc_config.get("payload_encryption"):
+            api_result = json.loads(scan_api_encryption(config=json.dumps(api_enc_config)))
+            scores["api_encryption"] = (
+                api_result.get("score", 0.0),
+                f"Payload: {api_enc_config.get('payload_encryption', '?')}"
+            )
+            all_findings.extend([
+                {"parameter": "api_encryption", "asset": asset, **f}
+                for f in api_result.get("findings", [])
+            ])
+        else:
+            scores["api_encryption"] = (None, "No API encryption data provided")
+
+        # 8. Session Management
+        session_config = target.get("session_management", {})
+        if session_config and session_config.get("token_algorithm"):
+            session_result = json.loads(scan_session_management(config=json.dumps(session_config)))
+            scores["session_management"] = (
+                session_result.get("score", 0.0),
+                f"Token: {session_config.get('token_algorithm', '?')}, timeout: {session_config.get('timeout_minutes', '?')}m"
+            )
+            all_findings.extend([
+                {"parameter": "session_management", "asset": asset, **f}
+                for f in session_result.get("findings", [])
+            ])
+        else:
+            scores["session_management"] = (None, "No session management data provided")
+
+        # 9. Data at Rest
+        data_rest_config = target.get("data_at_rest", {})
+        if data_rest_config and data_rest_config.get("encryption_algorithm"):
+            data_result = json.loads(scan_data_at_rest(config=json.dumps(data_rest_config)))
+            scores["data_at_rest"] = (
+                data_result.get("score", 0.0),
+                f"Storage: {data_rest_config.get('encryption_algorithm', '?')}"
+            )
+            all_findings.extend([
+                {"parameter": "data_at_rest", "asset": asset, **f}
+                for f in data_result.get("findings", [])
+            ])
+        else:
+            scores["data_at_rest"] = (None, "No data-at-rest encryption data provided")
+
+        # 10. Regulatory Compliance
+        compliance_config = target.get("regulatory_compliance", {})
+        if compliance_config and (compliance_config.get("frameworks") or compliance_config.get("pqc_migration_plan") is not None):
+            compliance_result = json.loads(scan_regulatory_compliance(config=json.dumps(compliance_config)))
+            scores["regulatory_compliance"] = (
+                compliance_result.get("score", 0.0),
+                f"Frameworks: {len(compliance_config.get('frameworks', []))}, PQC plan: {compliance_config.get('pqc_migration_plan', False)}"
+            )
+            all_findings.extend([
+                {"parameter": "regulatory_compliance", "asset": asset, **f}
+                for f in compliance_result.get("findings", [])
+            ])
+        else:
+            scores["regulatory_compliance"] = (None, "No regulatory compliance data provided")
 
         return {
             "asset": asset,
@@ -512,6 +591,34 @@ def _fetch_public_domain_data(domain: str) -> dict:
             "migration_plan_timeline": "",
             "pqc_testing_done": False,
             "library_supports_pqc": False
+        },
+        "certificate_security": {
+            "cert_algorithm": "RSA-2048",
+            "validity_years": 1,
+            "chain_depth": 3,
+            "ca_trusted": True
+        },
+        "api_encryption": {
+            "payload_encryption": "none",
+            "field_level_encryption": False,
+            "key_derivation": "PBKDF2"
+        },
+        "session_management": {
+            "token_algorithm": "HMAC-SHA256",
+            "timeout_minutes": 30,
+            "secure_cookies": False,
+            "regenerate_on_auth": False
+        },
+        "data_at_rest": {
+            "encryption_algorithm": "AES-128",
+            "key_storage": "filesystem",
+            "key_rotation_days": 0
+        },
+        "regulatory_compliance": {
+            "frameworks": [],
+            "pqc_migration_plan": False,
+            "audit_logging": False,
+            "crypto_documentation": False
         }
     }
 

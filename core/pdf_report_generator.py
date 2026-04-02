@@ -58,14 +58,14 @@ class PdfReportGenerator:
         # 2. Priority Ranking Matrix
         elements.append(Paragraph("Infrastructure Priority Matrix (1-10)", heading_style))
         
-        table_data = [["Rank", "Asset", "Rating", "Verdict"]]
+        table_data = [["Rank", "Asset", "Score", "Verdict"]]
         rated_assets = assessment_data.get("rated_assets", [])
         
         for item in rated_assets:
             table_data.append([
                 str(item.get("priority_rank", "-")),
                 item.get("asset", "Unknown"),
-                f"{item.get('rating', '?')}/10",
+                f"{item.get('score_100', '?')}/100",
                 item.get("verdict", "Unknown")
             ])
             
@@ -87,12 +87,40 @@ class PdfReportGenerator:
         
         for idx, item in enumerate(rated_assets, 1):
             asset_name = item.get("asset", "Unknown")
-            rating = item.get("rating", "?")
+            score_100 = item.get("score_100", "?")
             action = item.get("action", "Unknown")
-            
+            priority = item.get("priority_level", "?")
+
             elements.append(Paragraph(f"Asset #{idx}: {asset_name}", styles['Heading3']))
-            elements.append(Paragraph(f"Risk Rating: {rating}/10 — {action}", normal_style))
+            elements.append(Paragraph(f"Risk Score: {score_100}/100 — Priority: {priority} — {action}", normal_style))
             elements.append(Spacer(1, 10))
+
+            # 10-Parameter Scores Table
+            param_scores = item.get("parameter_scores", {})
+            if param_scores:
+                elements.append(Paragraph("Parameter Analysis (10 Dimensions):", normal_style))
+                param_table_data = [["Parameter", "Score", "Weight", "Details"]]
+                for param_name, param_data in param_scores.items():
+                    score_val = param_data.get("score")
+                    score_str = f"{score_val:.2f}" if score_val is not None else "N/A"
+                    weight_str = f"{param_data.get('effective_weight', 0):.2f}"
+                    details = param_data.get("details", "")[:60]
+                    param_table_data.append([param_name.replace("_", " ").title(), score_str, weight_str, details])
+
+                pt = Table(param_table_data, colWidths=[140, 45, 45, 270])
+                pt.setStyle(TableStyle([
+                    ('BACKGROUND', (0,0), (-1,0), colors.darkblue),
+                    ('TEXTCOLOR', (0,0), (-1,0), colors.whitesmoke),
+                    ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
+                    ('FONTSIZE', (0,0), (-1,-1), 8),
+                    ('ALIGN', (1,0), (2,-1), 'CENTER'),
+                    ('BACKGROUND', (0,1), (-1,-1), colors.lightblue),
+                    ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.whitesmoke, colors.lightblue]),
+                    ('GRID', (0,0), (-1,-1), 0.5, colors.grey),
+                    ('BOTTOMPADDING', (0,0), (-1,-1), 6),
+                ]))
+                elements.append(pt)
+                elements.append(Spacer(1, 10))
 
             # Recommendations
             recs = item.get("migration_recommendations", [])
@@ -102,7 +130,7 @@ class PdfReportGenerator:
                     elements.append(Paragraph(f"• {rec}", bullet_style))
             else:
                 elements.append(Paragraph("• No immediate cryptographic migrations mapped currently.", bullet_style))
-                
+
             elements.append(Spacer(1, 20))
 
         # Build Document

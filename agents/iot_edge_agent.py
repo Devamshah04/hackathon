@@ -87,6 +87,9 @@ class IoTEdgeAgent(BaseAgent):
         if self._strands_agent is not None:
             return self._strands_agent
 
+        if hasattr(self, '_strands_agent_failed'):
+            return None
+
         try:
             from strands import Agent
             from strands.models.bedrock import BedrockModel
@@ -150,6 +153,7 @@ Your analysis should:
         except Exception as e:
             logger.warning(f"Could not initialize Strands agent: {e}")
             logger.info("Running in local-only mode (deterministic scoring, no AI analysis)")
+            self._strands_agent_failed = True
             return None
 
     # ── Deterministic Tool Scanning ─────────────────────────────────────────
