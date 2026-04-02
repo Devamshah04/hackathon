@@ -30,13 +30,6 @@ The platform uses specialized AI agents powered by **AWS Bedrock (Claude 3.5 Son
     └──────────────────────────────────────────┘
 ```
 
-## 👥 Team Responsibilities
-
-| Member | Responsibility |
-|--------|---------------|
-| **Your Name** | Web/API Agent + IoT/Edge Agent (specialized scanning agents) |
-| **Teammates** | Master Orchestrator Agent (aggregation + final PQC Readiness Report) |
-
 ## 📂 Project Structure
 
 ```
