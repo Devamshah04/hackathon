@@ -1,0 +1,199 @@
+{
+  "scan_targets": [
+    {
+      "asset": "payment-api.acmecorp.com",
+      "description": "Payment processing API — handles credit card tokenization and PCI transactions",
+      "jwt_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBheW1lbnQgU2VydmljZSIsImlhdCI6MTUxNjIzOTAyMn0.fakesignature",
+      "tls_config": {
+        "tls_version": "1.2",
+        "key_exchange": "RSA",
+        "cert_key_type": "RSA_2048",
+        "cipher_suite": "AES_128_CBC",
+        "hsts_enabled": false,
+        "cert_pinning": false
+      },
+      "oauth_config": {
+        "endpoint_url": "https://auth.acmecorp.com/.well-known/openid-configuration",
+        "signing_algorithms": ["RS256"],
+        "grant_types_supported": ["authorization_code", "client_credentials"],
+        "pkce_supported": false,
+        "jwks_key_types": ["RSA"],
+        "token_endpoint_auth_methods": ["client_secret_post"]
+      },
+      "key_management": {
+        "storage_type": "environment_variable",
+        "rotation_policy": "no_rotation",
+        "key_algorithm": "RSA-2048",
+        "key_count": 2,
+        "separation_of_duties": false,
+        "audit_logging": false,
+        "backup_exists": false
+      },
+      "quantum_readiness": {
+        "pqc_algorithms_deployed": [],
+        "hybrid_mode_enabled": false,
+        "crypto_agile": false,
+        "migration_plan_exists": false,
+        "migration_plan_timeline": "",
+        "pqc_testing_done": false,
+        "library_supports_pqc": false
+      }
+    },
+    {
+      "asset": "user-auth.acmecorp.com",
+      "description": "User authentication service — SSO, MFA, session management",
+      "jwt_token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyLTQ1NiIsInNjb3BlIjoicmVhZCIsImlhdCI6MTcwMDAwMDAwMH0.fakesignature",
+      "tls_config": {
+        "tls_version": "1.3",
+        "key_exchange": "ECDHE_P256",
+        "cert_key_type": "ECDSA_P256",
+        "cipher_suite": "AES_256_GCM",
+        "hsts_enabled": true,
+        "cert_pinning": false
+      },
+      "oauth_config": {
+        "endpoint_url": "https://sso.acmecorp.com/.well-known/openid-configuration",
+        "signing_algorithms": ["ES256"],
+        "grant_types_supported": ["authorization_code"],
+        "pkce_supported": true,
+        "jwks_key_types": ["EC"],
+        "token_endpoint_auth_methods": ["private_key_jwt"]
+      },
+      "key_management": {
+        "storage_type": "cloud_kms",
+        "rotation_policy": "automatic_365days",
+        "key_algorithm": "ECC-P256",
+        "key_count": 4,
+        "separation_of_duties": true,
+        "audit_logging": true,
+        "backup_exists": true
+      },
+      "quantum_readiness": {
+        "pqc_algorithms_deployed": [],
+        "hybrid_mode_enabled": false,
+        "crypto_agile": true,
+        "migration_plan_exists": true,
+        "migration_plan_timeline": "Q4 2026",
+        "pqc_testing_done": false,
+        "library_supports_pqc": true
+      }
+    },
+    {
+      "asset": "data-analytics-api.acmecorp.com",
+      "description": "Internal analytics API — aggregates business metrics, non-PII data",
+      "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmFseXRpY3Mtc3ZjIiwiaWF0IjoxNzAwMDAwMDAwfQ.fakesignature",
+      "tls_config": {
+        "tls_version": "1.3",
+        "key_exchange": "X25519",
+        "cert_key_type": "ECDSA_P384",
+        "cipher_suite": "CHACHA20_POLY1305",
+        "hsts_enabled": true,
+        "cert_pinning": true
+      },
+      "oauth_config": {
+        "endpoint_url": "https://internal-auth.acmecorp.com/oauth/config",
+        "signing_algorithms": ["HS256"],
+        "grant_types_supported": ["client_credentials"],
+        "pkce_supported": false,
+        "jwks_key_types": [],
+        "token_endpoint_auth_methods": ["client_secret_basic"]
+      },
+      "key_management": {
+        "storage_type": "vault",
+        "rotation_policy": "automatic_180days",
+        "key_algorithm": "AES-256",
+        "key_count": 3,
+        "separation_of_duties": true,
+        "audit_logging": true,
+        "backup_exists": true
+      },
+      "quantum_readiness": {
+        "pqc_algorithms_deployed": [],
+        "hybrid_mode_enabled": false,
+        "crypto_agile": true,
+        "migration_plan_exists": false,
+        "migration_plan_timeline": "",
+        "pqc_testing_done": false,
+        "library_supports_pqc": true
+      }
+    },
+    {
+      "asset": "partner-integration.acmecorp.com",
+      "description": "B2B partner API — mTLS-secured, handles supply chain data exchange",
+      "jwt_token": "eyJhbGciOiJQUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwYXJ0bmVyLTc4OSIsInNjb3BlIjoiYjJiIiwiaWF0IjoxNzAwMDAwMDAwfQ.fakesignature",
+      "tls_config": {
+        "tls_version": "1.2",
+        "key_exchange": "DHE_2048",
+        "cert_key_type": "RSA_4096",
+        "cipher_suite": "AES_256_GCM",
+        "hsts_enabled": true,
+        "cert_pinning": true
+      },
+      "oauth_config": {
+        "endpoint_url": "https://b2b-auth.acmecorp.com/oauth2/config",
+        "signing_algorithms": ["PS256", "RS256"],
+        "grant_types_supported": ["client_credentials"],
+        "pkce_supported": false,
+        "jwks_key_types": ["RSA"],
+        "token_endpoint_auth_methods": ["tls_client_auth"]
+      },
+      "key_management": {
+        "storage_type": "hsm",
+        "rotation_policy": "manual_regular",
+        "key_algorithm": "RSA-4096",
+        "key_count": 6,
+        "separation_of_duties": true,
+        "audit_logging": true,
+        "backup_exists": true
+      },
+      "quantum_readiness": {
+        "pqc_algorithms_deployed": [],
+        "hybrid_mode_enabled": false,
+        "crypto_agile": false,
+        "migration_plan_exists": true,
+        "migration_plan_timeline": "",
+        "pqc_testing_done": false,
+        "library_supports_pqc": false
+      }
+    },
+    {
+      "asset": "mobile-bff.acmecorp.com",
+      "description": "Mobile app Backend-for-Frontend — serves iOS/Android apps, handles push notifications",
+      "jwt_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Im1vYmlsZS1rZXktMSJ9.eyJzdWIiOiJtb2JpbGUtdXNlci0xMjMiLCJzY29wZSI6Im1vYmlsZSIsImlhdCI6MTcwMDAwMDAwMH0.fakesig",
+      "tls_config": {
+        "tls_version": "1.3",
+        "key_exchange": "ECDHE_P256",
+        "cert_key_type": "RSA_2048",
+        "cipher_suite": "AES_256_GCM",
+        "hsts_enabled": true,
+        "cert_pinning": true
+      },
+      "oauth_config": {
+        "endpoint_url": "https://mobile-auth.acmecorp.com/.well-known/openid-configuration",
+        "signing_algorithms": ["RS256"],
+        "grant_types_supported": ["authorization_code", "device_code"],
+        "pkce_supported": true,
+        "jwks_key_types": ["RSA"],
+        "token_endpoint_auth_methods": ["none"]
+      },
+      "key_management": {
+        "storage_type": "cloud_kms",
+        "rotation_policy": "automatic_90days",
+        "key_algorithm": "RSA-2048",
+        "key_count": 3,
+        "separation_of_duties": false,
+        "audit_logging": true,
+        "backup_exists": true
+      },
+      "quantum_readiness": {
+        "pqc_algorithms_deployed": [],
+        "hybrid_mode_enabled": false,
+        "crypto_agile": false,
+        "migration_plan_exists": false,
+        "migration_plan_timeline": "",
+        "pqc_testing_done": false,
+        "library_supports_pqc": false
+      }
+    }
+  ]
+}

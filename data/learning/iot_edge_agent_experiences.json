@@ -1,0 +1,70 @@
+[
+  {
+    "id": "iot_edge_agent_1775108003_fleet-tracker-gps.acmecorp.com",
+    "timestamp": "2026-04-02T05:33:23.723379+00:00",
+    "run_id": "b3436f5f-74b6-464e-94c2-d80f11350cd5",
+    "asset": "fleet-tracker-gps.acmecorp.com",
+    "rating": 2,
+    "parameter_scores": {
+      "firmware_signing": 0.1,
+      "device_longevity": 0.4,
+      "ota_security": 0.0,
+      "key_management": 0.038,
+      "quantum_readiness": 0.045
+    },
+    "findings_summary": "11 findings, rating 2/10 (Critical / Insecure)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775108003_smart-thermostat.acmecorp.com",
+    "timestamp": "2026-04-02T05:33:23.725892+00:00",
+    "run_id": "b3436f5f-74b6-464e-94c2-d80f11350cd5",
+    "asset": "smart-thermostat.acmecorp.com",
+    "rating": 6,
+    "parameter_scores": {
+      "firmware_signing": 0.3,
+      "device_longevity": 1.0,
+      "ota_security": 0.2,
+      "key_management": 0.66,
+      "quantum_readiness": 0.4
+    },
+    "findings_summary": "5 findings, rating 6/10 (Moderate Risk)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775108003_industrial-plc.acmecorp.com",
+    "timestamp": "2026-04-02T05:33:23.725892+00:00",
+    "run_id": "b3436f5f-74b6-464e-94c2-d80f11350cd5",
+    "asset": "industrial-plc.acmecorp.com",
+    "rating": 3,
+    "parameter_scores": {
+      "firmware_signing": 0.3,
+      "device_longevity": 0.0,
+      "ota_security": 0.15,
+      "key_management": 0.675,
+      "quantum_readiness": 0.465
+    },
+    "findings_summary": "5 findings, rating 3/10 (High Risk)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775108003_nextgen-medical-monitor.acmecorp.com",
+    "timestamp": "2026-04-02T05:33:23.725892+00:00",
+    "run_id": "b3436f5f-74b6-464e-94c2-d80f11350cd5",
+    "asset": "nextgen-medical-monitor.acmecorp.com",
+    "rating": 8,
+    "parameter_scores": {
+      "firmware_signing": 1.0,
+      "device_longevity": 0.0,
+      "ota_security": 1.0,
+      "key_management": 1.0,
+      "quantum_readiness": 0.98
+    },
+    "findings_summary": "1 findings, rating 8/10 (Secure \u2014 needs PQC transition)",
+    "feedback": null,
+    "feedback_applied": false
+  }
+]

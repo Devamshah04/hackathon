@@ -1,0 +1,233 @@
+{
+  "schema_version": "1.0",
+  "agent_name": "web_api_agent",
+  "timestamp": "2026-04-02T06:07:01.417404+00:00",
+  "run_id": "7772bf64-5214-4a18-8628-0cfa70abe049",
+  "findings": [
+    {
+      "parameter": "tls_transport",
+      "asset": "google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "google.com",
+      "component": "certificate",
+      "value": "RSA/ECDSA",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "key_management",
+      "asset": "google.com",
+      "component": "key_storage",
+      "value": "unknown",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+    },
+    {
+      "parameter": "key_management",
+      "asset": "google.com",
+      "component": "rotation_policy",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+    },
+    {
+      "parameter": "key_management",
+      "asset": "google.com",
+      "component": "key_algorithm",
+      "value": "unknown",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+    },
+    {
+      "parameter": "key_management",
+      "asset": "google.com",
+      "component": "audit_logging",
+      "risk": "MEDIUM",
+      "recommendation": "Enable key usage audit logging"
+    },
+    {
+      "parameter": "quantum_readiness",
+      "asset": "google.com",
+      "component": "pqc_deployment",
+      "risk": "HIGH",
+      "recommendation": "Begin PQC algorithm testing and deployment"
+    },
+    {
+      "parameter": "quantum_readiness",
+      "asset": "google.com",
+      "component": "crypto_agility",
+      "risk": "HIGH",
+      "recommendation": "Refactor to use configurable algorithm selection (crypto agility)"
+    },
+    {
+      "parameter": "quantum_readiness",
+      "asset": "google.com",
+      "component": "migration_plan",
+      "risk": "MEDIUM",
+      "recommendation": "Create a PQC migration plan with timeline"
+    },
+    {
+      "parameter": "quantum_readiness",
+      "asset": "google.com",
+      "component": "library_support",
+      "risk": "MEDIUM",
+      "recommendation": "Upgrade crypto libraries to versions with PQC support"
+    }
+  ],
+  "summary": {
+    "total_findings": 11,
+    "critical": 4,
+    "high": 4,
+    "medium": 3,
+    "low": 0
+  },
+  "rated_assets": [
+    {
+      "asset": "google.com",
+      "domain": "web_api",
+      "rating": 1,
+      "verdict": "Critical / Insecure",
+      "action": "\ud83d\udea8 Immediate action \u2014 HNDL exposed",
+      "weighted_score": 0.0232,
+      "parameter_scores": {
+        "auth_token_crypto": {
+          "score": 0.0,
+          "weight": 0.3,
+          "weighted_score": 0.0,
+          "details": "No JWT token analyzed"
+        },
+        "tls_transport": {
+          "score": 0.075,
+          "weight": 0.25,
+          "weighted_score": 0.0187,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "oauth_oidc": {
+          "score": 0.0,
+          "weight": 0.2,
+          "weighted_score": 0.0,
+          "details": "No OAuth config provided"
+        },
+        "key_management": {
+          "score": 0.0,
+          "weight": 0.15,
+          "weighted_score": 0.0,
+          "details": "unknown storage, unknown"
+        },
+        "quantum_readiness": {
+          "score": 0.045,
+          "weight": 0.1,
+          "weighted_score": 0.0045,
+          "details": "No PQC readiness"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "google.com",
+          "component": "certificate",
+          "value": "RSA/ECDSA",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "key_management",
+          "asset": "google.com",
+          "component": "key_storage",
+          "value": "unknown",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+        },
+        {
+          "parameter": "key_management",
+          "asset": "google.com",
+          "component": "rotation_policy",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+        },
+        {
+          "parameter": "key_management",
+          "asset": "google.com",
+          "component": "key_algorithm",
+          "value": "unknown",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+        },
+        {
+          "parameter": "key_management",
+          "asset": "google.com",
+          "component": "audit_logging",
+          "risk": "MEDIUM",
+          "recommendation": "Enable key usage audit logging"
+        },
+        {
+          "parameter": "quantum_readiness",
+          "asset": "google.com",
+          "component": "pqc_deployment",
+          "risk": "HIGH",
+          "recommendation": "Begin PQC algorithm testing and deployment"
+        },
+        {
+          "parameter": "quantum_readiness",
+          "asset": "google.com",
+          "component": "crypto_agility",
+          "risk": "HIGH",
+          "recommendation": "Refactor to use configurable algorithm selection (crypto agility)"
+        },
+        {
+          "parameter": "quantum_readiness",
+          "asset": "google.com",
+          "component": "migration_plan",
+          "risk": "MEDIUM",
+          "recommendation": "Create a PQC migration plan with timeline"
+        },
+        {
+          "parameter": "quantum_readiness",
+          "asset": "google.com",
+          "component": "library_support",
+          "risk": "MEDIUM",
+          "recommendation": "Upgrade crypto libraries to versions with PQC support"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Migrate JWT signing from RSA/ECDSA to ML-DSA (FIPS 204). Current tokens are vulnerable to Shor's algorithm.",
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "HIGH: Migrate OAuth token signing to ML-DSA, enable PKCE, and audit JWKS keys for PQC readiness.",
+        "CRITICAL: Move keys to HSM/KMS with auto-rotation. Migrate key algorithms to ML-KEM/ML-DSA.",
+        "HIGH: Implement crypto agility and begin PQC testing. Create a migration plan with NIST FIPS 203/204 targets."
+      ],
+      "priority_rank": 1
+    }
+  ]
+}

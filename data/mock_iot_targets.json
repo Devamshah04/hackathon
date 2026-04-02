@@ -1,0 +1,131 @@
+{
+  "scan_targets": [
+    {
+      "asset": "fleet-tracker-gps.acmecorp.com",
+      "description": "Legacy GPS tracker on delivery fleet. Long lifespan, no OTA.",
+      "firmware_metadata": {
+        "device_name": "Acme Fleet Tracker v1",
+        "firmware_version": "1.0.4",
+        "signing_algorithm": "RSA-2048",
+        "manufacture_year": 2018,
+        "expected_lifespan_years": 15,
+        "ota_enabled": false,
+        "hardware_root_of_trust": false
+      },
+      "key_management": {
+        "storage_type": "hardcoded",
+        "rotation_policy": "no_rotation",
+        "key_algorithm": "RSA-2048",
+        "key_count": 1,
+        "separation_of_duties": false,
+        "audit_logging": false,
+        "backup_exists": false
+      },
+      "quantum_readiness": {
+        "pqc_algorithms_deployed": [],
+        "hybrid_mode_enabled": false,
+        "crypto_agile": false,
+        "migration_plan_exists": false,
+        "migration_plan_timeline": "",
+        "pqc_testing_done": false,
+        "library_supports_pqc": false
+      }
+    },
+    {
+      "asset": "smart-thermostat.acmecorp.com",
+      "description": "Consumer smart home device, short lifespan, OTA enabled.",
+      "firmware_metadata": {
+        "device_name": "EcoTemp Smart Thermostat",
+        "firmware_version": "3.2.1",
+        "signing_algorithm": "ECDSA-P256",
+        "manufacture_year": 2024,
+        "expected_lifespan_years": 5,
+        "ota_enabled": true,
+        "ota_signing": "ECDSA-P256",
+        "hardware_root_of_trust": true
+      },
+      "key_management": {
+        "storage_type": "tee",
+        "rotation_policy": "automatic_365days",
+        "key_algorithm": "ECC-P256",
+        "key_count": 3,
+        "separation_of_duties": true,
+        "audit_logging": true,
+        "backup_exists": true
+      },
+      "quantum_readiness": {
+        "pqc_algorithms_deployed": [],
+        "hybrid_mode_enabled": false,
+        "crypto_agile": true,
+        "migration_plan_exists": true,
+        "migration_plan_timeline": "Q2 2026",
+        "pqc_testing_done": false,
+        "library_supports_pqc": false
+      }
+    },
+    {
+      "asset": "industrial-plc.acmecorp.com",
+      "description": "Industrial control system, critical infrastructure, extremely long lifespan.",
+      "firmware_metadata": {
+        "device_name": "HeavyDuty PLC Controller",
+        "firmware_version": "8.0.0",
+        "signing_algorithm": "RSA-4096",
+        "manufacture_year": 2025,
+        "expected_lifespan_years": 20,
+        "ota_enabled": true,
+        "ota_signing": "RSA-3072",
+        "hardware_root_of_trust": true
+      },
+      "key_management": {
+        "storage_type": "hsm",
+        "rotation_policy": "manual_regular",
+        "key_algorithm": "RSA-4096",
+        "key_count": 5,
+        "separation_of_duties": true,
+        "audit_logging": true,
+        "backup_exists": true
+      },
+      "quantum_readiness": {
+        "pqc_algorithms_deployed": [],
+        "hybrid_mode_enabled": false,
+        "crypto_agile": false,
+        "migration_plan_exists": true,
+        "migration_plan_timeline": "Q4 2025",
+        "pqc_testing_done": true,
+        "library_supports_pqc": true
+      }
+    },
+    {
+      "asset": "nextgen-medical-monitor.acmecorp.com",
+      "description": "New medical device with initial PQC capabilities built-in.",
+      "firmware_metadata": {
+        "device_name": "VitaScan Pro",
+        "firmware_version": "1.0.0",
+        "signing_algorithm": "LMS",
+        "manufacture_year": 2026,
+        "expected_lifespan_years": 10,
+        "ota_enabled": true,
+        "ota_signing": "ML-DSA-65",
+        "hardware_root_of_trust": true
+      },
+      "key_management": {
+        "storage_type": "hsm",
+        "rotation_policy": "automatic_90days",
+        "key_algorithm": "ML-KEM",
+        "key_count": 2,
+        "separation_of_duties": true,
+        "audit_logging": true,
+        "backup_exists": true
+      },
+      "quantum_readiness": {
+        "pqc_algorithms_deployed": ["LMS", "ML-DSA-65", "ML-KEM"],
+        "hybrid_mode_enabled": true,
+        "crypto_agile": true,
+        "migration_plan_exists": true,
+        "migration_plan_timeline": "Completed",
+        "pqc_testing_done": true,
+        "library_supports_pqc": true
+      }
+    }
+  ]
+}

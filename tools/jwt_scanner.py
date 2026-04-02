@@ -2,30 +2,53 @@
 JWT Scanner Tool
 
 Strands SDK tool that decodes JWT token headers to identify quantum-vulnerable
-signing algorithms (RS256, ES256, PS256, etc.) and recommends PQC replacements.
+signing algorithms and returns a 0.0–1.0 score for the auth_token_crypto parameter.
 
 Used by: WebApiAgent
 """
 
 import json
-import re
+import base64
 from strands import tool
 
 
-# ─── Vulnerability Database ──────────────────────────────────────────────────
-VULNERABLE_ALGORITHMS = {
-    "RS256": {"risk": "CRITICAL", "reason": "RSA-2048 broken by Shor's algorithm"},
-    "RS384": {"risk": "CRITICAL", "reason": "RSA broken by Shor's algorithm"},
-    "RS512": {"risk": "CRITICAL", "reason": "RSA broken by Shor's algorithm"},
-    "ES256": {"risk": "HIGH",     "reason": "ECDSA broken by Shor's algorithm"},
-    "ES384": {"risk": "HIGH",     "reason": "ECDSA broken by Shor's algorithm"},
-    "ES512": {"risk": "HIGH",     "reason": "ECDSA broken by Shor's algorithm"},
-    "PS256": {"risk": "CRITICAL", "reason": "RSA-PSS broken by Shor's algorithm"},
-    "HS256": {"risk": "MEDIUM",   "reason": "Symmetric — safe but weak key sizes"},
-    "HS512": {"risk": "LOW",      "reason": "Symmetric — quantum-resistant if key >= 256 bits"},
+# ─── Algorithm Scoring (0.0–1.0 scale) ──────────────────────────────────────
+# Higher = more secure / quantum-resistant
+ALGORITHM_SCORES = {
+    # PQC-safe
+    "ML-DSA-44":  1.0,
+    "ML-DSA-65":  1.0,
+    "ML-DSA-87":  1.0,
+    # Symmetric (quantum-resistant via key size)
+    "HS512":      0.9,
+    "HS384":      0.85,
+    "HS256":      0.7,
+    # ECC-based (Shor's vulnerable)
+    "ES512":      0.3,
+    "ES384":      0.25,
+    "ES256":      0.2,
+    # RSA-PSS (Shor's vulnerable)
+    "PS512":      0.15,
+    "PS384":      0.15,
+    "PS256":      0.15,
+    # RSA PKCS#1 (Shor's vulnerable, most common)
+    "RS512":      0.1,
+    "RS384":      0.1,
+    "RS256":      0.1,
+    # No signing
+    "none":       0.0,
 }
 
-# ─── PQC Replacement Mapping ────────────────────────────────────────────────
+# ─── Risk Levels ─────────────────────────────────────────────────────────────
+RISK_LEVELS = {
+    "RS256": "CRITICAL", "RS384": "CRITICAL", "RS512": "CRITICAL",
+    "PS256": "CRITICAL", "PS384": "CRITICAL", "PS512": "CRITICAL",
+    "ES256": "HIGH",     "ES384": "HIGH",     "ES512": "HIGH",
+    "HS256": "MEDIUM",   "HS384": "LOW",      "HS512": "LOW",
+    "none":  "CRITICAL",
+}
+
+# ─── PQC Replacements ───────────────────────────────────────────────────────
 PQC_REPLACEMENTS = {
     "RS256": {"algorithm": "ML-DSA-65", "standard": "FIPS 204"},
     "RS384": {"algorithm": "ML-DSA-65", "standard": "FIPS 204"},
@@ -34,6 +57,8 @@ PQC_REPLACEMENTS = {
     "ES384": {"algorithm": "ML-DSA-65", "standard": "FIPS 204"},
     "ES512": {"algorithm": "ML-DSA-87", "standard": "FIPS 204"},
     "PS256": {"algorithm": "ML-DSA-65", "standard": "FIPS 204"},
+    "PS384": {"algorithm": "ML-DSA-65", "standard": "FIPS 204"},
+    "PS512": {"algorithm": "ML-DSA-87", "standard": "FIPS 204"},
 }
 
 
@@ -43,7 +68,8 @@ def scan_jwt(token: str) -> str:
     Analyze a JWT token for quantum-vulnerable signing algorithms.
 
     Decodes the JWT header (without verification) to extract the 'alg'
-    field and checks it against the known vulnerability database.
+    field, checks it against the vulnerability database, and returns
+    a 0.0–1.0 security score.
 
     Args:
         token: A JWT token string (header.payload.signature)
@@ -51,47 +77,43 @@ def scan_jwt(token: str) -> str:
     Returns:
         JSON string with analysis results including:
         - algorithm found
-        - risk level
+        - score (0.0–1.0 for auth_token_crypto parameter)
+        - risk level (CRITICAL/HIGH/MEDIUM/LOW)
         - vulnerability reason
         - recommended PQC replacement
     """
     try:
-        # Decode header without verification
         parts = token.split(".")
         if len(parts) < 2:
-            return json.dumps({"error": "Invalid JWT format — expected header.payload.signature"})
+            return json.dumps({
+                "error": "Invalid JWT format",
+                "score": 0.0,
+            })
 
-        # Pad base64 if needed
-        header_b64 = parts[0]
-        header_b64 += "=" * (4 - len(header_b64) % 4)
-
-        import base64
+        # Decode header (no verification needed)
+        header_b64 = parts[0] + "=" * (4 - len(parts[0]) % 4)
         header = json.loads(base64.urlsafe_b64decode(header_b64))
         alg = header.get("alg", "unknown")
+
+        score = ALGORITHM_SCORES.get(alg, 0.0)
+        risk_level = RISK_LEVELS.get(alg, "HIGH")
 
         result = {
             "token_header": header,
             "algorithm": alg,
-            "quantum_vulnerable": alg in VULNERABLE_ALGORITHMS,
+            "score": score,
+            "quantum_vulnerable": score < 0.7,  # symmetric HS256+ are safe
+            "risk_level": risk_level,
         }
 
-        if alg in VULNERABLE_ALGORITHMS:
-            vuln = VULNERABLE_ALGORITHMS[alg]
-            result["risk_level"] = vuln["risk"]
-            result["reason"] = vuln["reason"]
-
+        if score < 0.7:
+            result["reason"] = f"Algorithm '{alg}' is vulnerable to quantum attack"
             if alg in PQC_REPLACEMENTS:
-                replacement = PQC_REPLACEMENTS[alg]
-                result["migration_target"] = {
-                    "recommended_algorithm": replacement["algorithm"],
-                    "standard": replacement["standard"],
-                    "priority": "HIGH" if vuln["risk"] == "CRITICAL" else "MEDIUM",
-                }
+                result["migration_target"] = PQC_REPLACEMENTS[alg]
         else:
-            result["risk_level"] = "INFO"
-            result["reason"] = f"Algorithm '{alg}' not in vulnerability database"
+            result["reason"] = f"Algorithm '{alg}' is quantum-resistant"
 
         return json.dumps(result, indent=2)
 
     except Exception as e:
-        return json.dumps({"error": f"JWT analysis failed: {str(e)}"})
+        return json.dumps({"error": f"JWT analysis failed: {str(e)}", "score": 0.0})

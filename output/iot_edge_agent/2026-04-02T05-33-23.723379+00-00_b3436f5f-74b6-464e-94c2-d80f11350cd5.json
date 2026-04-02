@@ -1,0 +1,529 @@
+{
+  "schema_version": "1.0",
+  "agent_name": "iot_edge_agent",
+  "timestamp": "2026-04-02T05:33:23.723379+00:00",
+  "run_id": "b3436f5f-74b6-464e-94c2-d80f11350cd5",
+  "findings": [
+    {
+      "parameter": "device_longevity",
+      "asset": "fleet-tracker-gps.acmecorp.com",
+      "component": "device_longevity",
+      "risk": "CRITICAL",
+      "recommendation": "Device expected to operate until 2033. Immediate PQC migration required to prevent harvest-now-decrypt-later attacks."
+    },
+    {
+      "parameter": "firmware_signing",
+      "asset": "fleet-tracker-gps.acmecorp.com",
+      "component": "firmware_signing",
+      "algorithm": "RSA-2048",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to LMS or XMSS per NIST SP 800-208 for long-lived firmware signatures"
+    },
+    {
+      "parameter": "ota_security",
+      "asset": "fleet-tracker-gps.acmecorp.com",
+      "component": "ota_security",
+      "risk": "CRITICAL",
+      "recommendation": "Device operates into quantum era but lacks OTA. Impossible to patch cryptographically."
+    },
+    {
+      "parameter": "key_management",
+      "asset": "fleet-tracker-gps.acmecorp.com",
+      "component": "key_storage",
+      "value": "hardcoded",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+    },
+    {
+      "parameter": "key_management",
+      "asset": "fleet-tracker-gps.acmecorp.com",
+      "component": "rotation_policy",
+      "value": "no_rotation",
+      "risk": "HIGH",
+      "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+    },
+    {
+      "parameter": "key_management",
+      "asset": "fleet-tracker-gps.acmecorp.com",
+      "component": "key_algorithm",
+      "value": "RSA-2048",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+    },
+    {
+      "parameter": "key_management",
+      "asset": "fleet-tracker-gps.acmecorp.com",
+      "component": "audit_logging",
+      "risk": "MEDIUM",
+      "recommendation": "Enable key usage audit logging"
+    },
+    {
+      "parameter": "quantum_readiness",
+      "asset": "fleet-tracker-gps.acmecorp.com",
+      "component": "pqc_deployment",
+      "risk": "HIGH",
+      "recommendation": "Begin PQC algorithm testing and deployment"
+    },
+    {
+      "parameter": "quantum_readiness",
+      "asset": "fleet-tracker-gps.acmecorp.com",
+      "component": "crypto_agility",
+      "risk": "HIGH",
+      "recommendation": "Refactor to use configurable algorithm selection (crypto agility)"
+    },
+    {
+      "parameter": "quantum_readiness",
+      "asset": "fleet-tracker-gps.acmecorp.com",
+      "component": "migration_plan",
+      "risk": "MEDIUM",
+      "recommendation": "Create a PQC migration plan with timeline"
+    },
+    {
+      "parameter": "quantum_readiness",
+      "asset": "fleet-tracker-gps.acmecorp.com",
+      "component": "library_support",
+      "risk": "MEDIUM",
+      "recommendation": "Upgrade crypto libraries to versions with PQC support"
+    },
+    {
+      "parameter": "firmware_signing",
+      "asset": "smart-thermostat.acmecorp.com",
+      "component": "firmware_signing",
+      "algorithm": "ECDSA-P256",
+      "risk": "HIGH",
+      "recommendation": "Migrate to LMS or XMSS per NIST SP 800-208 for long-lived firmware signatures"
+    },
+    {
+      "parameter": "ota_security",
+      "asset": "smart-thermostat.acmecorp.com",
+      "component": "ota_security",
+      "algorithm": "ECDSA-P256",
+      "risk": "CRITICAL",
+      "recommendation": "OTA updates are quantum-vulnerable. Migrate to ML-DSA (FIPS 204) to prevent malicious firmware flashes."
+    },
+    {
+      "parameter": "key_management",
+      "asset": "smart-thermostat.acmecorp.com",
+      "component": "key_algorithm",
+      "value": "ECC-P256",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+    },
+    {
+      "parameter": "quantum_readiness",
+      "asset": "smart-thermostat.acmecorp.com",
+      "component": "pqc_deployment",
+      "risk": "HIGH",
+      "recommendation": "Begin PQC algorithm testing and deployment"
+    },
+    {
+      "parameter": "quantum_readiness",
+      "asset": "smart-thermostat.acmecorp.com",
+      "component": "library_support",
+      "risk": "MEDIUM",
+      "recommendation": "Upgrade crypto libraries to versions with PQC support"
+    },
+    {
+      "parameter": "device_longevity",
+      "asset": "industrial-plc.acmecorp.com",
+      "component": "device_longevity",
+      "risk": "CRITICAL",
+      "recommendation": "Device expected to operate until 2045. Immediate PQC migration required to prevent harvest-now-decrypt-later attacks."
+    },
+    {
+      "parameter": "firmware_signing",
+      "asset": "industrial-plc.acmecorp.com",
+      "component": "firmware_signing",
+      "algorithm": "RSA-4096",
+      "risk": "HIGH",
+      "recommendation": "Migrate to LMS or XMSS per NIST SP 800-208 for long-lived firmware signatures"
+    },
+    {
+      "parameter": "ota_security",
+      "asset": "industrial-plc.acmecorp.com",
+      "component": "ota_security",
+      "algorithm": "RSA-3072",
+      "risk": "CRITICAL",
+      "recommendation": "OTA updates are quantum-vulnerable. Migrate to ML-DSA (FIPS 204) to prevent malicious firmware flashes."
+    },
+    {
+      "parameter": "key_management",
+      "asset": "industrial-plc.acmecorp.com",
+      "component": "key_algorithm",
+      "value": "RSA-4096",
+      "risk": "HIGH",
+      "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+    },
+    {
+      "parameter": "quantum_readiness",
+      "asset": "industrial-plc.acmecorp.com",
+      "component": "crypto_agility",
+      "risk": "HIGH",
+      "recommendation": "Refactor to use configurable algorithm selection (crypto agility)"
+    },
+    {
+      "parameter": "device_longevity",
+      "asset": "nextgen-medical-monitor.acmecorp.com",
+      "component": "device_longevity",
+      "risk": "CRITICAL",
+      "recommendation": "Device expected to operate until 2036. Immediate PQC migration required to prevent harvest-now-decrypt-later attacks."
+    }
+  ],
+  "summary": {
+    "total_findings": 22,
+    "critical": 10,
+    "high": 8,
+    "medium": 4,
+    "low": 0
+  },
+  "rated_assets": [
+    {
+      "asset": "fleet-tracker-gps.acmecorp.com",
+      "domain": "iot_edge",
+      "rating": 2,
+      "verdict": "Critical / Insecure",
+      "action": "\ud83d\udea8 Immediate action \u2014 HNDL exposed",
+      "weighted_score": 0.1402,
+      "parameter_scores": {
+        "firmware_signing": {
+          "score": 0.1,
+          "weight": 0.3,
+          "weighted_score": 0.03,
+          "details": "Signed with RSA-2048"
+        },
+        "device_longevity": {
+          "score": 0.4,
+          "weight": 0.25,
+          "weighted_score": 0.1,
+          "details": "Lifespan ends 2033"
+        },
+        "ota_security": {
+          "score": 0.0,
+          "weight": 0.2,
+          "weighted_score": 0.0,
+          "details": "OTA algorithm: none"
+        },
+        "key_management": {
+          "score": 0.038,
+          "weight": 0.15,
+          "weighted_score": 0.0057,
+          "details": "hardcoded storage, no_rotation"
+        },
+        "quantum_readiness": {
+          "score": 0.045,
+          "weight": 0.1,
+          "weighted_score": 0.0045,
+          "details": "No PQC readiness"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "device_longevity",
+          "asset": "fleet-tracker-gps.acmecorp.com",
+          "component": "device_longevity",
+          "risk": "CRITICAL",
+          "recommendation": "Device expected to operate until 2033. Immediate PQC migration required to prevent harvest-now-decrypt-later attacks."
+        },
+        {
+          "parameter": "firmware_signing",
+          "asset": "fleet-tracker-gps.acmecorp.com",
+          "component": "firmware_signing",
+          "algorithm": "RSA-2048",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to LMS or XMSS per NIST SP 800-208 for long-lived firmware signatures"
+        },
+        {
+          "parameter": "ota_security",
+          "asset": "fleet-tracker-gps.acmecorp.com",
+          "component": "ota_security",
+          "risk": "CRITICAL",
+          "recommendation": "Device operates into quantum era but lacks OTA. Impossible to patch cryptographically."
+        },
+        {
+          "parameter": "key_management",
+          "asset": "fleet-tracker-gps.acmecorp.com",
+          "component": "key_storage",
+          "value": "hardcoded",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+        },
+        {
+          "parameter": "key_management",
+          "asset": "fleet-tracker-gps.acmecorp.com",
+          "component": "rotation_policy",
+          "value": "no_rotation",
+          "risk": "HIGH",
+          "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+        },
+        {
+          "parameter": "key_management",
+          "asset": "fleet-tracker-gps.acmecorp.com",
+          "component": "key_algorithm",
+          "value": "RSA-2048",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+        },
+        {
+          "parameter": "key_management",
+          "asset": "fleet-tracker-gps.acmecorp.com",
+          "component": "audit_logging",
+          "risk": "MEDIUM",
+          "recommendation": "Enable key usage audit logging"
+        },
+        {
+          "parameter": "quantum_readiness",
+          "asset": "fleet-tracker-gps.acmecorp.com",
+          "component": "pqc_deployment",
+          "risk": "HIGH",
+          "recommendation": "Begin PQC algorithm testing and deployment"
+        },
+        {
+          "parameter": "quantum_readiness",
+          "asset": "fleet-tracker-gps.acmecorp.com",
+          "component": "crypto_agility",
+          "risk": "HIGH",
+          "recommendation": "Refactor to use configurable algorithm selection (crypto agility)"
+        },
+        {
+          "parameter": "quantum_readiness",
+          "asset": "fleet-tracker-gps.acmecorp.com",
+          "component": "migration_plan",
+          "risk": "MEDIUM",
+          "recommendation": "Create a PQC migration plan with timeline"
+        },
+        {
+          "parameter": "quantum_readiness",
+          "asset": "fleet-tracker-gps.acmecorp.com",
+          "component": "library_support",
+          "risk": "MEDIUM",
+          "recommendation": "Upgrade crypto libraries to versions with PQC support"
+        }
+      ],
+      "migration_recommendations": [
+        "None"
+      ],
+      "priority_rank": 1
+    },
+    {
+      "asset": "industrial-plc.acmecorp.com",
+      "domain": "iot_edge",
+      "rating": 3,
+      "verdict": "High Risk",
+      "action": "\ud83d\udd34 Urgent migration required",
+      "weighted_score": 0.2677,
+      "parameter_scores": {
+        "firmware_signing": {
+          "score": 0.3,
+          "weight": 0.3,
+          "weighted_score": 0.09,
+          "details": "Signed with RSA-4096"
+        },
+        "device_longevity": {
+          "score": 0.0,
+          "weight": 0.25,
+          "weighted_score": 0.0,
+          "details": "Lifespan ends 2045"
+        },
+        "ota_security": {
+          "score": 0.15,
+          "weight": 0.2,
+          "weighted_score": 0.03,
+          "details": "OTA algorithm: RSA-3072"
+        },
+        "key_management": {
+          "score": 0.675,
+          "weight": 0.15,
+          "weighted_score": 0.1013,
+          "details": "hsm storage, manual_regular"
+        },
+        "quantum_readiness": {
+          "score": 0.465,
+          "weight": 0.1,
+          "weighted_score": 0.0465,
+          "details": "No PQC readiness"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "device_longevity",
+          "asset": "industrial-plc.acmecorp.com",
+          "component": "device_longevity",
+          "risk": "CRITICAL",
+          "recommendation": "Device expected to operate until 2045. Immediate PQC migration required to prevent harvest-now-decrypt-later attacks."
+        },
+        {
+          "parameter": "firmware_signing",
+          "asset": "industrial-plc.acmecorp.com",
+          "component": "firmware_signing",
+          "algorithm": "RSA-4096",
+          "risk": "HIGH",
+          "recommendation": "Migrate to LMS or XMSS per NIST SP 800-208 for long-lived firmware signatures"
+        },
+        {
+          "parameter": "ota_security",
+          "asset": "industrial-plc.acmecorp.com",
+          "component": "ota_security",
+          "algorithm": "RSA-3072",
+          "risk": "CRITICAL",
+          "recommendation": "OTA updates are quantum-vulnerable. Migrate to ML-DSA (FIPS 204) to prevent malicious firmware flashes."
+        },
+        {
+          "parameter": "key_management",
+          "asset": "industrial-plc.acmecorp.com",
+          "component": "key_algorithm",
+          "value": "RSA-4096",
+          "risk": "HIGH",
+          "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+        },
+        {
+          "parameter": "quantum_readiness",
+          "asset": "industrial-plc.acmecorp.com",
+          "component": "crypto_agility",
+          "risk": "HIGH",
+          "recommendation": "Refactor to use configurable algorithm selection (crypto agility)"
+        }
+      ],
+      "migration_recommendations": [
+        "None"
+      ],
+      "priority_rank": 2
+    },
+    {
+      "asset": "smart-thermostat.acmecorp.com",
+      "domain": "iot_edge",
+      "rating": 6,
+      "verdict": "Moderate Risk",
+      "action": "\u26a0\ufe0f Prioritize migration within 6 months",
+      "weighted_score": 0.519,
+      "parameter_scores": {
+        "firmware_signing": {
+          "score": 0.3,
+          "weight": 0.3,
+          "weighted_score": 0.09,
+          "details": "Signed with ECDSA-P256"
+        },
+        "device_longevity": {
+          "score": 1.0,
+          "weight": 0.25,
+          "weighted_score": 0.25,
+          "details": "Lifespan ends 2029"
+        },
+        "ota_security": {
+          "score": 0.2,
+          "weight": 0.2,
+          "weighted_score": 0.04,
+          "details": "OTA algorithm: ECDSA-P256"
+        },
+        "key_management": {
+          "score": 0.66,
+          "weight": 0.15,
+          "weighted_score": 0.099,
+          "details": "tee storage, automatic_365days"
+        },
+        "quantum_readiness": {
+          "score": 0.4,
+          "weight": 0.1,
+          "weighted_score": 0.04,
+          "details": "No PQC readiness"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "firmware_signing",
+          "asset": "smart-thermostat.acmecorp.com",
+          "component": "firmware_signing",
+          "algorithm": "ECDSA-P256",
+          "risk": "HIGH",
+          "recommendation": "Migrate to LMS or XMSS per NIST SP 800-208 for long-lived firmware signatures"
+        },
+        {
+          "parameter": "ota_security",
+          "asset": "smart-thermostat.acmecorp.com",
+          "component": "ota_security",
+          "algorithm": "ECDSA-P256",
+          "risk": "CRITICAL",
+          "recommendation": "OTA updates are quantum-vulnerable. Migrate to ML-DSA (FIPS 204) to prevent malicious firmware flashes."
+        },
+        {
+          "parameter": "key_management",
+          "asset": "smart-thermostat.acmecorp.com",
+          "component": "key_algorithm",
+          "value": "ECC-P256",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+        },
+        {
+          "parameter": "quantum_readiness",
+          "asset": "smart-thermostat.acmecorp.com",
+          "component": "pqc_deployment",
+          "risk": "HIGH",
+          "recommendation": "Begin PQC algorithm testing and deployment"
+        },
+        {
+          "parameter": "quantum_readiness",
+          "asset": "smart-thermostat.acmecorp.com",
+          "component": "library_support",
+          "risk": "MEDIUM",
+          "recommendation": "Upgrade crypto libraries to versions with PQC support"
+        }
+      ],
+      "migration_recommendations": [
+        "None"
+      ],
+      "priority_rank": 3
+    },
+    {
+      "asset": "nextgen-medical-monitor.acmecorp.com",
+      "domain": "iot_edge",
+      "rating": 8,
+      "verdict": "Secure \u2014 needs PQC transition",
+      "action": "\u26a1 Plan migration within 12 months",
+      "weighted_score": 0.748,
+      "parameter_scores": {
+        "firmware_signing": {
+          "score": 1.0,
+          "weight": 0.3,
+          "weighted_score": 0.3,
+          "details": "Signed with LMS"
+        },
+        "device_longevity": {
+          "score": 0.0,
+          "weight": 0.25,
+          "weighted_score": 0.0,
+          "details": "Lifespan ends 2036"
+        },
+        "ota_security": {
+          "score": 1.0,
+          "weight": 0.2,
+          "weighted_score": 0.2,
+          "details": "OTA algorithm: ML-DSA-65"
+        },
+        "key_management": {
+          "score": 1.0,
+          "weight": 0.15,
+          "weighted_score": 0.15,
+          "details": "hsm storage, automatic_90days"
+        },
+        "quantum_readiness": {
+          "score": 0.98,
+          "weight": 0.1,
+          "weighted_score": 0.098,
+          "details": "PQC deployed"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "device_longevity",
+          "asset": "nextgen-medical-monitor.acmecorp.com",
+          "component": "device_longevity",
+          "risk": "CRITICAL",
+          "recommendation": "Device expected to operate until 2036. Immediate PQC migration required to prevent harvest-now-decrypt-later attacks."
+        }
+      ],
+      "migration_recommendations": [
+        "None"
+      ],
+      "priority_rank": 4
+    }
+  ]
+}

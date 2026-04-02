@@ -40,6 +40,7 @@ class BaseAgent(ABC):
         self.run_id = str(uuid.uuid4())
         self.timestamp = datetime.now(timezone.utc).isoformat()
         self.findings: list[dict] = []
+        self.asset_ratings: list[dict] = []   # scored & ranked output
 
         # AWS clients — initialised lazily on first use
         self._bedrock_client = None
@@ -102,11 +103,15 @@ class BaseAgent(ABC):
         """Build the full assessment JSON conforming to schema v1.0."""
         risk_counts = {"CRITICAL": 0, "HIGH": 0, "MEDIUM": 0, "LOW": 0}
         for f in self.findings:
-            level = f["vulnerability"]["risk_level"].upper()
+            # Support both formats: nested (from add_finding) and flat (from tools)
+            if "vulnerability" in f and isinstance(f["vulnerability"], dict):
+                level = f["vulnerability"].get("risk_level", "").upper()
+            else:
+                level = f.get("risk", f.get("risk_level", "")).upper()
             if level in risk_counts:
                 risk_counts[level] += 1
 
-        return {
+        assessment = {
             "schema_version": SCHEMA_VERSION,
             "agent_name": self.agent_name,
             "timestamp": self.timestamp,
@@ -120,6 +125,12 @@ class BaseAgent(ABC):
                 "low": risk_counts["LOW"],
             },
         }
+
+        # Include scored ratings if available
+        if self.asset_ratings:
+            assessment["rated_assets"] = self.asset_ratings
+
+        return assessment
 
     # ── Persistence ─────────────────────────────────────────────────────────
     def save_local(self) -> str:
