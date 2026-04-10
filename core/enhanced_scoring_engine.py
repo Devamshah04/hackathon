@@ -49,6 +49,18 @@ ENHANCED_WEIGHT_PROFILES: dict[str, dict[str, float]] = {
         "multi_cloud_security": 0.09,
         "regulatory_compliance": 0.08,
     },
+    "algorithms_network": {
+        "tls_transport": 0.15,
+        "public_key_crypto": 0.12,
+        "symmetric_crypto": 0.10,
+        "network_protocols": 0.12,
+        "quantum_readiness": 0.08,
+        "certificate_security": 0.10,
+        "hash_algorithms": 0.08,
+        "key_management": 0.08,
+        "code_crypto_audit": 0.09,
+        "regulatory_compliance": 0.08,
+    },
 }
 
 # Enhanced Decision Criteria (100-point scale)

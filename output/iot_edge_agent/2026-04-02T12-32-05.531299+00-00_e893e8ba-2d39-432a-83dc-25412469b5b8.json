@@ -1,0 +1,1027 @@
+{
+  "schema_version": "1.0",
+  "agent_name": "iot_edge_agent",
+  "timestamp": "2026-04-02T12:32:05.531299+00:00",
+  "run_id": "e893e8ba-2d39-432a-83dc-25412469b5b8",
+  "findings": [
+    {
+      "parameter": "device_longevity",
+      "asset": "google.com",
+      "component": "device_longevity",
+      "risk": "CRITICAL",
+      "recommendation": "Device expected to operate until 2035. Immediate PQC migration required to prevent harvest-now-decrypt-later attacks."
+    },
+    {
+      "parameter": "firmware_signing",
+      "asset": "google.com",
+      "component": "firmware_signing",
+      "algorithm": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to LMS or XMSS per NIST SP 800-208 for long-lived firmware signatures"
+    },
+    {
+      "parameter": "ota_security",
+      "asset": "google.com",
+      "component": "ota_security",
+      "algorithm": "RSA-2048",
+      "risk": "CRITICAL",
+      "recommendation": "OTA updates are quantum-vulnerable. Migrate to ML-DSA (FIPS 204) to prevent malicious firmware flashes."
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "google.com",
+      "issue": "Weak data-at-rest encryption",
+      "details": "AES-128 provides only 64-bit quantum security",
+      "recommendation": "Upgrade to AES-256 for quantum resistance"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "google.com",
+      "issue": "Insecure key storage",
+      "details": "Encryption keys stored on filesystem",
+      "recommendation": "Use HSM or cloud KMS for key storage"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "google.com",
+      "issue": "No key rotation policy",
+      "details": "Encryption keys not rotated regularly",
+      "recommendation": "Implement 90-day key rotation"
+    },
+    {
+      "parameter": "device_longevity",
+      "asset": "www.google.com",
+      "component": "device_longevity",
+      "risk": "CRITICAL",
+      "recommendation": "Device expected to operate until 2035. Immediate PQC migration required to prevent harvest-now-decrypt-later attacks."
+    },
+    {
+      "parameter": "firmware_signing",
+      "asset": "www.google.com",
+      "component": "firmware_signing",
+      "algorithm": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to LMS or XMSS per NIST SP 800-208 for long-lived firmware signatures"
+    },
+    {
+      "parameter": "ota_security",
+      "asset": "www.google.com",
+      "component": "ota_security",
+      "algorithm": "RSA-2048",
+      "risk": "CRITICAL",
+      "recommendation": "OTA updates are quantum-vulnerable. Migrate to ML-DSA (FIPS 204) to prevent malicious firmware flashes."
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "www.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "www.google.com",
+      "issue": "Weak data-at-rest encryption",
+      "details": "AES-128 provides only 64-bit quantum security",
+      "recommendation": "Upgrade to AES-256 for quantum resistance"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "www.google.com",
+      "issue": "Insecure key storage",
+      "details": "Encryption keys stored on filesystem",
+      "recommendation": "Use HSM or cloud KMS for key storage"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "www.google.com",
+      "issue": "No key rotation policy",
+      "details": "Encryption keys not rotated regularly",
+      "recommendation": "Implement 90-day key rotation"
+    },
+    {
+      "parameter": "device_longevity",
+      "asset": "api.google.com",
+      "component": "device_longevity",
+      "risk": "CRITICAL",
+      "recommendation": "Device expected to operate until 2035. Immediate PQC migration required to prevent harvest-now-decrypt-later attacks."
+    },
+    {
+      "parameter": "firmware_signing",
+      "asset": "api.google.com",
+      "component": "firmware_signing",
+      "algorithm": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to LMS or XMSS per NIST SP 800-208 for long-lived firmware signatures"
+    },
+    {
+      "parameter": "ota_security",
+      "asset": "api.google.com",
+      "component": "ota_security",
+      "algorithm": "RSA-2048",
+      "risk": "CRITICAL",
+      "recommendation": "OTA updates are quantum-vulnerable. Migrate to ML-DSA (FIPS 204) to prevent malicious firmware flashes."
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "api.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "api.google.com",
+      "issue": "Weak data-at-rest encryption",
+      "details": "AES-128 provides only 64-bit quantum security",
+      "recommendation": "Upgrade to AES-256 for quantum resistance"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "api.google.com",
+      "issue": "Insecure key storage",
+      "details": "Encryption keys stored on filesystem",
+      "recommendation": "Use HSM or cloud KMS for key storage"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "api.google.com",
+      "issue": "No key rotation policy",
+      "details": "Encryption keys not rotated regularly",
+      "recommendation": "Implement 90-day key rotation"
+    },
+    {
+      "parameter": "device_longevity",
+      "asset": "admin.google.com",
+      "component": "device_longevity",
+      "risk": "CRITICAL",
+      "recommendation": "Device expected to operate until 2035. Immediate PQC migration required to prevent harvest-now-decrypt-later attacks."
+    },
+    {
+      "parameter": "firmware_signing",
+      "asset": "admin.google.com",
+      "component": "firmware_signing",
+      "algorithm": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to LMS or XMSS per NIST SP 800-208 for long-lived firmware signatures"
+    },
+    {
+      "parameter": "ota_security",
+      "asset": "admin.google.com",
+      "component": "ota_security",
+      "algorithm": "RSA-2048",
+      "risk": "CRITICAL",
+      "recommendation": "OTA updates are quantum-vulnerable. Migrate to ML-DSA (FIPS 204) to prevent malicious firmware flashes."
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "admin.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "admin.google.com",
+      "issue": "Weak data-at-rest encryption",
+      "details": "AES-128 provides only 64-bit quantum security",
+      "recommendation": "Upgrade to AES-256 for quantum resistance"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "admin.google.com",
+      "issue": "Insecure key storage",
+      "details": "Encryption keys stored on filesystem",
+      "recommendation": "Use HSM or cloud KMS for key storage"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "admin.google.com",
+      "issue": "No key rotation policy",
+      "details": "Encryption keys not rotated regularly",
+      "recommendation": "Implement 90-day key rotation"
+    },
+    {
+      "parameter": "device_longevity",
+      "asset": "mail.google.com",
+      "component": "device_longevity",
+      "risk": "CRITICAL",
+      "recommendation": "Device expected to operate until 2035. Immediate PQC migration required to prevent harvest-now-decrypt-later attacks."
+    },
+    {
+      "parameter": "firmware_signing",
+      "asset": "mail.google.com",
+      "component": "firmware_signing",
+      "algorithm": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to LMS or XMSS per NIST SP 800-208 for long-lived firmware signatures"
+    },
+    {
+      "parameter": "ota_security",
+      "asset": "mail.google.com",
+      "component": "ota_security",
+      "algorithm": "RSA-2048",
+      "risk": "CRITICAL",
+      "recommendation": "OTA updates are quantum-vulnerable. Migrate to ML-DSA (FIPS 204) to prevent malicious firmware flashes."
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "mail.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "mail.google.com",
+      "issue": "Weak data-at-rest encryption",
+      "details": "AES-128 provides only 64-bit quantum security",
+      "recommendation": "Upgrade to AES-256 for quantum resistance"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "mail.google.com",
+      "issue": "Insecure key storage",
+      "details": "Encryption keys stored on filesystem",
+      "recommendation": "Use HSM or cloud KMS for key storage"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "mail.google.com",
+      "issue": "No key rotation policy",
+      "details": "Encryption keys not rotated regularly",
+      "recommendation": "Implement 90-day key rotation"
+    }
+  ],
+  "summary": {
+    "total_findings": 35,
+    "critical": 15,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "rated_assets": [
+    {
+      "asset": "google.com",
+      "domain": "iot_edge",
+      "region": "US",
+      "score_100": 18,
+      "verdict": "Insecure",
+      "action": "\ud83d\udc80 Emergency migration required",
+      "priority_level": "CRITICAL",
+      "weighted_score": 0.1847,
+      "parameter_scores": {
+        "firmware_signing": {
+          "score": 0.0,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0,
+          "details": "Signed with ECDHE/DHE"
+        },
+        "device_longevity": {
+          "score": 0.1,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.012,
+          "details": "Lifespan ends 2035"
+        },
+        "ota_security": {
+          "score": 0.1,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.01,
+          "details": "OTA algorithm: RSA-2048"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0,
+          "details": "No key management data provided"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data provided"
+        },
+        "hardware_security": {
+          "score": 0.2,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.02,
+          "details": "HRoT: False, TPM: False"
+        },
+        "communication_protocol": {
+          "score": 0.2,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.016,
+          "details": "Protocol: HTTPS, Encryption: TLSv1.3"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.048,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "data_at_rest": {
+          "score": 0.3,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.027,
+          "details": "Storage: AES-128"
+        },
+        "regulatory_compliance": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "No regulatory compliance data provided"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "device_longevity",
+          "asset": "google.com",
+          "component": "device_longevity",
+          "risk": "CRITICAL",
+          "recommendation": "Device expected to operate until 2035. Immediate PQC migration required to prevent harvest-now-decrypt-later attacks."
+        },
+        {
+          "parameter": "firmware_signing",
+          "asset": "google.com",
+          "component": "firmware_signing",
+          "algorithm": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to LMS or XMSS per NIST SP 800-208 for long-lived firmware signatures"
+        },
+        {
+          "parameter": "ota_security",
+          "asset": "google.com",
+          "component": "ota_security",
+          "algorithm": "RSA-2048",
+          "risk": "CRITICAL",
+          "recommendation": "OTA updates are quantum-vulnerable. Migrate to ML-DSA (FIPS 204) to prevent malicious firmware flashes."
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "google.com",
+          "issue": "Weak data-at-rest encryption",
+          "details": "AES-128 provides only 64-bit quantum security",
+          "recommendation": "Upgrade to AES-256 for quantum resistance"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "google.com",
+          "issue": "Insecure key storage",
+          "details": "Encryption keys stored on filesystem",
+          "recommendation": "Use HSM or cloud KMS for key storage"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "google.com",
+          "issue": "No key rotation policy",
+          "details": "Encryption keys not rotated regularly",
+          "recommendation": "Implement 90-day key rotation"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Migrate firmware signing from RSA/ECDSA to stateful hash-based signatures (LMS/XMSS) per NIST SP 800-208.",
+        "CRITICAL: Device lifespan extends past projected quantum threat year (2030). Immediate hardware or software refresh planning required.",
+        "HIGH: Upgrade OTA update authentication to use ML-DSA to secure the supply chain."
+      ],
+      "priority_rank": 1
+    },
+    {
+      "asset": "www.google.com",
+      "domain": "iot_edge",
+      "region": "US",
+      "score_100": 18,
+      "verdict": "Insecure",
+      "action": "\ud83d\udc80 Emergency migration required",
+      "priority_level": "CRITICAL",
+      "weighted_score": 0.1847,
+      "parameter_scores": {
+        "firmware_signing": {
+          "score": 0.0,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0,
+          "details": "Signed with ECDHE/DHE"
+        },
+        "device_longevity": {
+          "score": 0.1,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.012,
+          "details": "Lifespan ends 2035"
+        },
+        "ota_security": {
+          "score": 0.1,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.01,
+          "details": "OTA algorithm: RSA-2048"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0,
+          "details": "No key management data provided"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data provided"
+        },
+        "hardware_security": {
+          "score": 0.2,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.02,
+          "details": "HRoT: False, TPM: False"
+        },
+        "communication_protocol": {
+          "score": 0.2,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.016,
+          "details": "Protocol: HTTPS, Encryption: TLSv1.3"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.048,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "data_at_rest": {
+          "score": 0.3,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.027,
+          "details": "Storage: AES-128"
+        },
+        "regulatory_compliance": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "No regulatory compliance data provided"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "device_longevity",
+          "asset": "www.google.com",
+          "component": "device_longevity",
+          "risk": "CRITICAL",
+          "recommendation": "Device expected to operate until 2035. Immediate PQC migration required to prevent harvest-now-decrypt-later attacks."
+        },
+        {
+          "parameter": "firmware_signing",
+          "asset": "www.google.com",
+          "component": "firmware_signing",
+          "algorithm": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to LMS or XMSS per NIST SP 800-208 for long-lived firmware signatures"
+        },
+        {
+          "parameter": "ota_security",
+          "asset": "www.google.com",
+          "component": "ota_security",
+          "algorithm": "RSA-2048",
+          "risk": "CRITICAL",
+          "recommendation": "OTA updates are quantum-vulnerable. Migrate to ML-DSA (FIPS 204) to prevent malicious firmware flashes."
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "www.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "www.google.com",
+          "issue": "Weak data-at-rest encryption",
+          "details": "AES-128 provides only 64-bit quantum security",
+          "recommendation": "Upgrade to AES-256 for quantum resistance"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "www.google.com",
+          "issue": "Insecure key storage",
+          "details": "Encryption keys stored on filesystem",
+          "recommendation": "Use HSM or cloud KMS for key storage"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "www.google.com",
+          "issue": "No key rotation policy",
+          "details": "Encryption keys not rotated regularly",
+          "recommendation": "Implement 90-day key rotation"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Migrate firmware signing from RSA/ECDSA to stateful hash-based signatures (LMS/XMSS) per NIST SP 800-208.",
+        "CRITICAL: Device lifespan extends past projected quantum threat year (2030). Immediate hardware or software refresh planning required.",
+        "HIGH: Upgrade OTA update authentication to use ML-DSA to secure the supply chain."
+      ],
+      "priority_rank": 2
+    },
+    {
+      "asset": "api.google.com",
+      "domain": "iot_edge",
+      "region": "US",
+      "score_100": 18,
+      "verdict": "Insecure",
+      "action": "\ud83d\udc80 Emergency migration required",
+      "priority_level": "CRITICAL",
+      "weighted_score": 0.1847,
+      "parameter_scores": {
+        "firmware_signing": {
+          "score": 0.0,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0,
+          "details": "Signed with ECDHE/DHE"
+        },
+        "device_longevity": {
+          "score": 0.1,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.012,
+          "details": "Lifespan ends 2035"
+        },
+        "ota_security": {
+          "score": 0.1,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.01,
+          "details": "OTA algorithm: RSA-2048"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0,
+          "details": "No key management data provided"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data provided"
+        },
+        "hardware_security": {
+          "score": 0.2,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.02,
+          "details": "HRoT: False, TPM: False"
+        },
+        "communication_protocol": {
+          "score": 0.2,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.016,
+          "details": "Protocol: HTTPS, Encryption: TLSv1.3"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.048,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "data_at_rest": {
+          "score": 0.3,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.027,
+          "details": "Storage: AES-128"
+        },
+        "regulatory_compliance": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "No regulatory compliance data provided"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "device_longevity",
+          "asset": "api.google.com",
+          "component": "device_longevity",
+          "risk": "CRITICAL",
+          "recommendation": "Device expected to operate until 2035. Immediate PQC migration required to prevent harvest-now-decrypt-later attacks."
+        },
+        {
+          "parameter": "firmware_signing",
+          "asset": "api.google.com",
+          "component": "firmware_signing",
+          "algorithm": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to LMS or XMSS per NIST SP 800-208 for long-lived firmware signatures"
+        },
+        {
+          "parameter": "ota_security",
+          "asset": "api.google.com",
+          "component": "ota_security",
+          "algorithm": "RSA-2048",
+          "risk": "CRITICAL",
+          "recommendation": "OTA updates are quantum-vulnerable. Migrate to ML-DSA (FIPS 204) to prevent malicious firmware flashes."
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "api.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "api.google.com",
+          "issue": "Weak data-at-rest encryption",
+          "details": "AES-128 provides only 64-bit quantum security",
+          "recommendation": "Upgrade to AES-256 for quantum resistance"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "api.google.com",
+          "issue": "Insecure key storage",
+          "details": "Encryption keys stored on filesystem",
+          "recommendation": "Use HSM or cloud KMS for key storage"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "api.google.com",
+          "issue": "No key rotation policy",
+          "details": "Encryption keys not rotated regularly",
+          "recommendation": "Implement 90-day key rotation"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Migrate firmware signing from RSA/ECDSA to stateful hash-based signatures (LMS/XMSS) per NIST SP 800-208.",
+        "CRITICAL: Device lifespan extends past projected quantum threat year (2030). Immediate hardware or software refresh planning required.",
+        "HIGH: Upgrade OTA update authentication to use ML-DSA to secure the supply chain."
+      ],
+      "priority_rank": 3
+    },
+    {
+      "asset": "admin.google.com",
+      "domain": "iot_edge",
+      "region": "US",
+      "score_100": 18,
+      "verdict": "Insecure",
+      "action": "\ud83d\udc80 Emergency migration required",
+      "priority_level": "CRITICAL",
+      "weighted_score": 0.1847,
+      "parameter_scores": {
+        "firmware_signing": {
+          "score": 0.0,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0,
+          "details": "Signed with ECDHE/DHE"
+        },
+        "device_longevity": {
+          "score": 0.1,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.012,
+          "details": "Lifespan ends 2035"
+        },
+        "ota_security": {
+          "score": 0.1,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.01,
+          "details": "OTA algorithm: RSA-2048"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0,
+          "details": "No key management data provided"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data provided"
+        },
+        "hardware_security": {
+          "score": 0.2,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.02,
+          "details": "HRoT: False, TPM: False"
+        },
+        "communication_protocol": {
+          "score": 0.2,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.016,
+          "details": "Protocol: HTTPS, Encryption: TLSv1.3"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.048,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "data_at_rest": {
+          "score": 0.3,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.027,
+          "details": "Storage: AES-128"
+        },
+        "regulatory_compliance": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "No regulatory compliance data provided"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "device_longevity",
+          "asset": "admin.google.com",
+          "component": "device_longevity",
+          "risk": "CRITICAL",
+          "recommendation": "Device expected to operate until 2035. Immediate PQC migration required to prevent harvest-now-decrypt-later attacks."
+        },
+        {
+          "parameter": "firmware_signing",
+          "asset": "admin.google.com",
+          "component": "firmware_signing",
+          "algorithm": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to LMS or XMSS per NIST SP 800-208 for long-lived firmware signatures"
+        },
+        {
+          "parameter": "ota_security",
+          "asset": "admin.google.com",
+          "component": "ota_security",
+          "algorithm": "RSA-2048",
+          "risk": "CRITICAL",
+          "recommendation": "OTA updates are quantum-vulnerable. Migrate to ML-DSA (FIPS 204) to prevent malicious firmware flashes."
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "admin.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "admin.google.com",
+          "issue": "Weak data-at-rest encryption",
+          "details": "AES-128 provides only 64-bit quantum security",
+          "recommendation": "Upgrade to AES-256 for quantum resistance"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "admin.google.com",
+          "issue": "Insecure key storage",
+          "details": "Encryption keys stored on filesystem",
+          "recommendation": "Use HSM or cloud KMS for key storage"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "admin.google.com",
+          "issue": "No key rotation policy",
+          "details": "Encryption keys not rotated regularly",
+          "recommendation": "Implement 90-day key rotation"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Migrate firmware signing from RSA/ECDSA to stateful hash-based signatures (LMS/XMSS) per NIST SP 800-208.",
+        "CRITICAL: Device lifespan extends past projected quantum threat year (2030). Immediate hardware or software refresh planning required.",
+        "HIGH: Upgrade OTA update authentication to use ML-DSA to secure the supply chain."
+      ],
+      "priority_rank": 4
+    },
+    {
+      "asset": "mail.google.com",
+      "domain": "iot_edge",
+      "region": "US",
+      "score_100": 18,
+      "verdict": "Insecure",
+      "action": "\ud83d\udc80 Emergency migration required",
+      "priority_level": "CRITICAL",
+      "weighted_score": 0.1847,
+      "parameter_scores": {
+        "firmware_signing": {
+          "score": 0.0,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0,
+          "details": "Signed with ECDHE/DHE"
+        },
+        "device_longevity": {
+          "score": 0.1,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.012,
+          "details": "Lifespan ends 2035"
+        },
+        "ota_security": {
+          "score": 0.1,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.01,
+          "details": "OTA algorithm: RSA-2048"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0,
+          "details": "No key management data provided"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data provided"
+        },
+        "hardware_security": {
+          "score": 0.2,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.02,
+          "details": "HRoT: False, TPM: False"
+        },
+        "communication_protocol": {
+          "score": 0.2,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.016,
+          "details": "Protocol: HTTPS, Encryption: TLSv1.3"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.048,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "data_at_rest": {
+          "score": 0.3,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.027,
+          "details": "Storage: AES-128"
+        },
+        "regulatory_compliance": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "No regulatory compliance data provided"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "device_longevity",
+          "asset": "mail.google.com",
+          "component": "device_longevity",
+          "risk": "CRITICAL",
+          "recommendation": "Device expected to operate until 2035. Immediate PQC migration required to prevent harvest-now-decrypt-later attacks."
+        },
+        {
+          "parameter": "firmware_signing",
+          "asset": "mail.google.com",
+          "component": "firmware_signing",
+          "algorithm": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to LMS or XMSS per NIST SP 800-208 for long-lived firmware signatures"
+        },
+        {
+          "parameter": "ota_security",
+          "asset": "mail.google.com",
+          "component": "ota_security",
+          "algorithm": "RSA-2048",
+          "risk": "CRITICAL",
+          "recommendation": "OTA updates are quantum-vulnerable. Migrate to ML-DSA (FIPS 204) to prevent malicious firmware flashes."
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "mail.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "mail.google.com",
+          "issue": "Weak data-at-rest encryption",
+          "details": "AES-128 provides only 64-bit quantum security",
+          "recommendation": "Upgrade to AES-256 for quantum resistance"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "mail.google.com",
+          "issue": "Insecure key storage",
+          "details": "Encryption keys stored on filesystem",
+          "recommendation": "Use HSM or cloud KMS for key storage"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "mail.google.com",
+          "issue": "No key rotation policy",
+          "details": "Encryption keys not rotated regularly",
+          "recommendation": "Implement 90-day key rotation"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Migrate firmware signing from RSA/ECDSA to stateful hash-based signatures (LMS/XMSS) per NIST SP 800-208.",
+        "CRITICAL: Device lifespan extends past projected quantum threat year (2030). Immediate hardware or software refresh planning required.",
+        "HIGH: Upgrade OTA update authentication to use ML-DSA to secure the supply chain."
+      ],
+      "priority_rank": 5
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "scan_targets": [
+    {
+      "asset": "s3-prod-data.acmecorp.com",
+      "description": "Production S3 data lake with customer records and analytics",
+      "data_at_rest": {
+        "encryption_algorithm": "AES-128",
+        "key_storage": "filesystem",
+        "key_rotation_days": 0
+      },
+      "kms_keys": {
+        "key_spec": "RSA_2048",
+        "key_usage": "ENCRYPT_DECRYPT",
+        "rotation_enabled": false,
+        "hsm_backed": false,
+        "multi_region": false
+      },
+      "backup_config": {
+        "encryption_enabled": true,
+        "retention_years": 10,
+        "cross_region_backup": false,
+        "backup_key_separate": false
+      },
+      "data_transfer": {
+        "in_transit_encryption": "TLS 1.2",
+        "vpn_encryption": "IPSec",
+        "api_encryption": "HTTPS"
+      },
+      "quantum_readiness": {
+        "pqc_algorithms_deployed": [],
+        "hybrid_mode_enabled": false,
+        "crypto_agile": false,
+        "migration_plan_exists": false,
+        "migration_plan_timeline": "",
+        "pqc_testing_done": false,
+        "library_supports_pqc": false
+      },
+      "access_control": {
+        "mfa_enabled": true,
+        "rbac_enabled": true,
+        "least_privilege": false,
+        "access_logging": true
+      },
+      "certificate_security": {
+        "cert_algorithm": "RSA-2048",
+        "validity_years": 3,
+        "chain_depth": 4,
+        "ca_trusted": true
+      },
+      "compliance_auditing": {
+        "audit_logging": true,
+        "frameworks": ["SOC2", "PCI-DSS"],
+        "compliance_monitoring": true,
+        "log_retention_years": 3
+      },
+      "multi_cloud": {
+        "cross_cloud_encryption": false,
+        "unified_key_management": false,
+        "cloud_providers": ["AWS"]
+      },
+      "regulatory_compliance": {
+        "frameworks": ["SOC2", "PCI-DSS"],
+        "pqc_migration_plan": false,
+        "audit_logging": true,
+        "crypto_documentation": false
+      }
+    },
+    {
+      "asset": "rds-primary.acmecorp.com",
+      "description": "Primary RDS database cluster with TDE encryption",
+      "data_at_rest": {
+        "encryption_algorithm": "AES-256",
+        "key_storage": "cloud_kms",
+        "key_rotation_days": 365
+      },
+      "kms_keys": {
+        "key_spec": "RSA_4096",
+        "key_usage": "ENCRYPT_DECRYPT",
+        "rotation_enabled": true,
+        "hsm_backed": false,
+        "multi_region": false
+      },
+      "backup_config": {
+        "encryption_enabled": true,
+        "retention_years": 5,
+        "cross_region_backup": true,
+        "backup_key_separate": true
+      },
+      "data_transfer": {
+        "in_transit_encryption": "TLS 1.3",
+        "vpn_encryption": "WireGuard",
+        "api_encryption": "HTTPS"
+      },
+      "quantum_readiness": {
+        "pqc_algorithms_deployed": [],
+        "hybrid_mode_enabled": false,
+        "crypto_agile": true,
+        "migration_plan_exists": true,
+        "migration_plan_timeline": "2027-Q4",
+        "pqc_testing_done": false,
+        "library_supports_pqc": false
+      },
+      "access_control": {
+        "mfa_enabled": true,
+        "rbac_enabled": true,
+        "least_privilege": true,
+        "access_logging": true
+      },
+      "certificate_security": {
+        "cert_algorithm": "ECDSA-P384",
+        "validity_years": 1,
+        "chain_depth": 2,
+        "ca_trusted": true
+      },
+      "compliance_auditing": {
+        "audit_logging": true,
+        "frameworks": ["SOC2", "HIPAA", "ISO27001"],
+        "compliance_monitoring": true,
+        "log_retention_years": 7
+      },
+      "multi_cloud": {
+        "cross_cloud_encryption": false,
+        "unified_key_management": false,
+        "cloud_providers": ["AWS"]
+      },
+      "regulatory_compliance": {
+        "frameworks": ["SOC2", "HIPAA", "ISO27001"],
+        "pqc_migration_plan": true,
+        "audit_logging": true,
+        "crypto_documentation": true
+      }
+    },
+    {
+      "asset": "azure-blob-archive.acmecorp.com",
+      "description": "Azure Blob archive for long-term compliance data",
+      "data_at_rest": {
+        "encryption_algorithm": "AES-256",
+        "key_storage": "azure_keyvault",
+        "key_rotation_days": 180
+      },
+      "kms_keys": {
+        "key_spec": "RSA_2048",
+        "key_usage": "ENCRYPT_DECRYPT",
+        "rotation_enabled": false,
+        "hsm_backed": true,
+        "multi_region": true
+      },
+      "backup_config": {
+        "encryption_enabled": true,
+        "retention_years": 15,
+        "cross_region_backup": true,
+        "backup_key_separate": false
+      },
+      "data_transfer": {
+        "in_transit_encryption": "TLS 1.2",
+        "vpn_encryption": "IPSec",
+        "api_encryption": "HTTPS"
+      },
+      "quantum_readiness": {
+        "pqc_algorithms_deployed": [],
+        "hybrid_mode_enabled": false,
+        "crypto_agile": false,
+        "migration_plan_exists": false,
+        "migration_plan_timeline": "",
+        "pqc_testing_done": false,
+        "library_supports_pqc": false
+      },
+      "access_control": {
+        "mfa_enabled": true,
+        "rbac_enabled": true,
+        "least_privilege": true,
+        "access_logging": true
+      },
+      "certificate_security": {
+        "cert_algorithm": "RSA-2048",
+        "validity_years": 2,
+        "chain_depth": 3,
+        "ca_trusted": true
+      },
+      "compliance_auditing": {
+        "audit_logging": true,
+        "frameworks": ["SOC2", "GDPR"],
+        "compliance_monitoring": false,
+        "log_retention_years": 5
+      },
+      "multi_cloud": {
+        "cross_cloud_encryption": true,
+        "unified_key_management": false,
+        "cloud_providers": ["AWS", "Azure"]
+      },
+      "regulatory_compliance": {
+        "frameworks": ["SOC2", "GDPR"],
+        "pqc_migration_plan": false,
+        "audit_logging": true,
+        "crypto_documentation": false
+      }
+    }
+  ]
+}

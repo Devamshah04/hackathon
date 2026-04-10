@@ -1,0 +1,2497 @@
+{
+  "schema_version": "1.0",
+  "agent_name": "ai_crypto_security_agent",
+  "timestamp": "2026-04-10T04:39:32.724849+00:00",
+  "run_id": "77febb8e-7453-4875-a687-926094f7b213",
+  "findings": [
+    {
+      "parameter": "tls_transport",
+      "asset": "google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "google.com",
+      "component": "certificate",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "public_key_crypto",
+      "asset": "google.com",
+      "risk_level": "CRITICAL",
+      "reason": "RSA-2048 broken by Shor's algorithm on quantum computer",
+      "algorithm": "RSA"
+    },
+    {
+      "parameter": "network_protocols",
+      "asset": "google.com",
+      "component": "protocol_version",
+      "risk_level": "MEDIUM",
+      "reason": "TLS 1.3 is modern but default key exchange (X25519/P-256) is quantum-vulnerable",
+      "migration": "Enable hybrid PQC key exchange (X25519+ML-KEM-768 per IETF draft)"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "google.com",
+      "issue": "No compliance framework identified",
+      "details": "No regulatory compliance framework in use",
+      "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "google.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "google.com",
+      "issue": "Insufficient audit logging",
+      "details": "Cryptographic operations not logged for compliance",
+      "recommendation": "Implement comprehensive audit logging"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "google.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "www.google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "www.google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "www.google.com",
+      "component": "certificate",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "public_key_crypto",
+      "asset": "www.google.com",
+      "risk_level": "CRITICAL",
+      "reason": "RSA-2048 broken by Shor's algorithm on quantum computer",
+      "algorithm": "RSA"
+    },
+    {
+      "parameter": "network_protocols",
+      "asset": "www.google.com",
+      "component": "protocol_version",
+      "risk_level": "MEDIUM",
+      "reason": "TLS 1.3 is modern but default key exchange (X25519/P-256) is quantum-vulnerable",
+      "migration": "Enable hybrid PQC key exchange (X25519+ML-KEM-768 per IETF draft)"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "www.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "www.google.com",
+      "issue": "No compliance framework identified",
+      "details": "No regulatory compliance framework in use",
+      "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "www.google.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "www.google.com",
+      "issue": "Insufficient audit logging",
+      "details": "Cryptographic operations not logged for compliance",
+      "recommendation": "Implement comprehensive audit logging"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "www.google.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "api.google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "api.google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "api.google.com",
+      "component": "certificate",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "public_key_crypto",
+      "asset": "api.google.com",
+      "risk_level": "CRITICAL",
+      "reason": "RSA-2048 broken by Shor's algorithm on quantum computer",
+      "algorithm": "RSA"
+    },
+    {
+      "parameter": "network_protocols",
+      "asset": "api.google.com",
+      "component": "protocol_version",
+      "risk_level": "MEDIUM",
+      "reason": "TLS 1.3 is modern but default key exchange (X25519/P-256) is quantum-vulnerable",
+      "migration": "Enable hybrid PQC key exchange (X25519+ML-KEM-768 per IETF draft)"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "api.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "api.google.com",
+      "issue": "No compliance framework identified",
+      "details": "No regulatory compliance framework in use",
+      "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "api.google.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "api.google.com",
+      "issue": "Insufficient audit logging",
+      "details": "Cryptographic operations not logged for compliance",
+      "recommendation": "Implement comprehensive audit logging"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "api.google.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "admin.google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "admin.google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "admin.google.com",
+      "component": "certificate",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "public_key_crypto",
+      "asset": "admin.google.com",
+      "risk_level": "CRITICAL",
+      "reason": "RSA-2048 broken by Shor's algorithm on quantum computer",
+      "algorithm": "RSA"
+    },
+    {
+      "parameter": "network_protocols",
+      "asset": "admin.google.com",
+      "component": "protocol_version",
+      "risk_level": "MEDIUM",
+      "reason": "TLS 1.3 is modern but default key exchange (X25519/P-256) is quantum-vulnerable",
+      "migration": "Enable hybrid PQC key exchange (X25519+ML-KEM-768 per IETF draft)"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "admin.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "admin.google.com",
+      "issue": "No compliance framework identified",
+      "details": "No regulatory compliance framework in use",
+      "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "admin.google.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "admin.google.com",
+      "issue": "Insufficient audit logging",
+      "details": "Cryptographic operations not logged for compliance",
+      "recommendation": "Implement comprehensive audit logging"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "admin.google.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "mail.google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "mail.google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "mail.google.com",
+      "component": "certificate",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "public_key_crypto",
+      "asset": "mail.google.com",
+      "risk_level": "CRITICAL",
+      "reason": "RSA-2048 broken by Shor's algorithm on quantum computer",
+      "algorithm": "RSA"
+    },
+    {
+      "parameter": "network_protocols",
+      "asset": "mail.google.com",
+      "component": "protocol_version",
+      "risk_level": "MEDIUM",
+      "reason": "TLS 1.3 is modern but default key exchange (X25519/P-256) is quantum-vulnerable",
+      "migration": "Enable hybrid PQC key exchange (X25519+ML-KEM-768 per IETF draft)"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "mail.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "mail.google.com",
+      "issue": "No compliance framework identified",
+      "details": "No regulatory compliance framework in use",
+      "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "mail.google.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "mail.google.com",
+      "issue": "Insufficient audit logging",
+      "details": "Cryptographic operations not logged for compliance",
+      "recommendation": "Implement comprehensive audit logging"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "mail.google.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "blog.google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "blog.google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "blog.google.com",
+      "component": "certificate",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "public_key_crypto",
+      "asset": "blog.google.com",
+      "risk_level": "CRITICAL",
+      "reason": "RSA-2048 broken by Shor's algorithm on quantum computer",
+      "algorithm": "RSA"
+    },
+    {
+      "parameter": "network_protocols",
+      "asset": "blog.google.com",
+      "component": "protocol_version",
+      "risk_level": "MEDIUM",
+      "reason": "TLS 1.3 is modern but default key exchange (X25519/P-256) is quantum-vulnerable",
+      "migration": "Enable hybrid PQC key exchange (X25519+ML-KEM-768 per IETF draft)"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "blog.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "blog.google.com",
+      "issue": "No compliance framework identified",
+      "details": "No regulatory compliance framework in use",
+      "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "blog.google.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "blog.google.com",
+      "issue": "Insufficient audit logging",
+      "details": "Cryptographic operations not logged for compliance",
+      "recommendation": "Implement comprehensive audit logging"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "blog.google.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "shop.google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "shop.google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "shop.google.com",
+      "component": "certificate",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "public_key_crypto",
+      "asset": "shop.google.com",
+      "risk_level": "CRITICAL",
+      "reason": "RSA-2048 broken by Shor's algorithm on quantum computer",
+      "algorithm": "RSA"
+    },
+    {
+      "parameter": "network_protocols",
+      "asset": "shop.google.com",
+      "component": "protocol_version",
+      "risk_level": "MEDIUM",
+      "reason": "TLS 1.3 is modern but default key exchange (X25519/P-256) is quantum-vulnerable",
+      "migration": "Enable hybrid PQC key exchange (X25519+ML-KEM-768 per IETF draft)"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "shop.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "shop.google.com",
+      "issue": "No compliance framework identified",
+      "details": "No regulatory compliance framework in use",
+      "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "shop.google.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "shop.google.com",
+      "issue": "Insufficient audit logging",
+      "details": "Cryptographic operations not logged for compliance",
+      "recommendation": "Implement comprehensive audit logging"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "shop.google.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "store.google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "store.google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "store.google.com",
+      "component": "certificate",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "public_key_crypto",
+      "asset": "store.google.com",
+      "risk_level": "CRITICAL",
+      "reason": "RSA-2048 broken by Shor's algorithm on quantum computer",
+      "algorithm": "RSA"
+    },
+    {
+      "parameter": "network_protocols",
+      "asset": "store.google.com",
+      "component": "protocol_version",
+      "risk_level": "MEDIUM",
+      "reason": "TLS 1.3 is modern but default key exchange (X25519/P-256) is quantum-vulnerable",
+      "migration": "Enable hybrid PQC key exchange (X25519+ML-KEM-768 per IETF draft)"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "store.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "store.google.com",
+      "issue": "No compliance framework identified",
+      "details": "No regulatory compliance framework in use",
+      "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "store.google.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "store.google.com",
+      "issue": "Insufficient audit logging",
+      "details": "Cryptographic operations not logged for compliance",
+      "recommendation": "Implement comprehensive audit logging"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "store.google.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "images.google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "images.google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "images.google.com",
+      "component": "certificate",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "public_key_crypto",
+      "asset": "images.google.com",
+      "risk_level": "CRITICAL",
+      "reason": "RSA-2048 broken by Shor's algorithm on quantum computer",
+      "algorithm": "RSA"
+    },
+    {
+      "parameter": "network_protocols",
+      "asset": "images.google.com",
+      "component": "protocol_version",
+      "risk_level": "MEDIUM",
+      "reason": "TLS 1.3 is modern but default key exchange (X25519/P-256) is quantum-vulnerable",
+      "migration": "Enable hybrid PQC key exchange (X25519+ML-KEM-768 per IETF draft)"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "images.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "images.google.com",
+      "issue": "No compliance framework identified",
+      "details": "No regulatory compliance framework in use",
+      "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "images.google.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "images.google.com",
+      "issue": "Insufficient audit logging",
+      "details": "Cryptographic operations not logged for compliance",
+      "recommendation": "Implement comprehensive audit logging"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "images.google.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "support.google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "support.google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "support.google.com",
+      "component": "certificate",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "public_key_crypto",
+      "asset": "support.google.com",
+      "risk_level": "CRITICAL",
+      "reason": "RSA-2048 broken by Shor's algorithm on quantum computer",
+      "algorithm": "RSA"
+    },
+    {
+      "parameter": "network_protocols",
+      "asset": "support.google.com",
+      "component": "protocol_version",
+      "risk_level": "MEDIUM",
+      "reason": "TLS 1.3 is modern but default key exchange (X25519/P-256) is quantum-vulnerable",
+      "migration": "Enable hybrid PQC key exchange (X25519+ML-KEM-768 per IETF draft)"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "support.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "support.google.com",
+      "issue": "No compliance framework identified",
+      "details": "No regulatory compliance framework in use",
+      "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "support.google.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "support.google.com",
+      "issue": "Insufficient audit logging",
+      "details": "Cryptographic operations not logged for compliance",
+      "recommendation": "Implement comprehensive audit logging"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "support.google.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    }
+  ],
+  "summary": {
+    "total_findings": 100,
+    "critical": 30,
+    "high": 10,
+    "medium": 10,
+    "low": 0
+  },
+  "rated_assets": [
+    {
+      "asset": "google.com",
+      "domain": "algorithms_network",
+      "region": "US",
+      "score_100": 42,
+      "verdict": "Critical Risk",
+      "action": "\ud83d\udea8 Immediate action - HNDL exposed",
+      "priority_level": "HIGH",
+      "weighted_score": 0.4246,
+      "parameter_scores": {
+        "tls_transport": {
+          "score": 0.075,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0112,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "public_key_crypto": {
+          "score": 0.1,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.012,
+          "details": "RSA-2048 (both)"
+        },
+        "symmetric_crypto": {
+          "score": 0.9,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.09,
+          "details": "AES-256-GCM (post-quantum: 128 bits)"
+        },
+        "network_protocols": {
+          "score": 0.6,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.072,
+          "details": "TLS 1.3 (1 findings)"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.06,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "hash_algorithms": {
+          "score": 1.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.08,
+          "details": "SHA256 (OK)"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "No key management data provided"
+        },
+        "code_crypto_audit": {
+          "score": null,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.0,
+          "details": "No code audit data available"
+        },
+        "regulatory_compliance": {
+          "score": 0.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "Frameworks: 0, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "google.com",
+          "component": "certificate",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "public_key_crypto",
+          "asset": "google.com",
+          "risk_level": "CRITICAL",
+          "reason": "RSA-2048 broken by Shor's algorithm on quantum computer",
+          "algorithm": "RSA"
+        },
+        {
+          "parameter": "network_protocols",
+          "asset": "google.com",
+          "component": "protocol_version",
+          "risk_level": "MEDIUM",
+          "reason": "TLS 1.3 is modern but default key exchange (X25519/P-256) is quantum-vulnerable",
+          "migration": "Enable hybrid PQC key exchange (X25519+ML-KEM-768 per IETF draft)"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "google.com",
+          "issue": "No compliance framework identified",
+          "details": "No regulatory compliance framework in use",
+          "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "google.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "google.com",
+          "issue": "Insufficient audit logging",
+          "details": "Cryptographic operations not logged for compliance",
+          "recommendation": "Implement comprehensive audit logging"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "google.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "CRITICAL: Replace RSA/ECC public key algorithms with ML-KEM (FIPS 203) for key exchange and ML-DSA (FIPS 204) for digital signatures. Current algorithms are broken by Shor's algorithm.",
+        "MEDIUM: No PQC migration plan documented. Develop a comprehensive roadmap aligned with NIST IR 8547 guidelines."
+      ],
+      "priority_rank": 1
+    },
+    {
+      "asset": "www.google.com",
+      "domain": "algorithms_network",
+      "region": "US",
+      "score_100": 42,
+      "verdict": "Critical Risk",
+      "action": "\ud83d\udea8 Immediate action - HNDL exposed",
+      "priority_level": "HIGH",
+      "weighted_score": 0.4246,
+      "parameter_scores": {
+        "tls_transport": {
+          "score": 0.075,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0112,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "public_key_crypto": {
+          "score": 0.1,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.012,
+          "details": "RSA-2048 (both)"
+        },
+        "symmetric_crypto": {
+          "score": 0.9,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.09,
+          "details": "AES-256-GCM (post-quantum: 128 bits)"
+        },
+        "network_protocols": {
+          "score": 0.6,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.072,
+          "details": "TLS 1.3 (1 findings)"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.06,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "hash_algorithms": {
+          "score": 1.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.08,
+          "details": "SHA256 (OK)"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "No key management data provided"
+        },
+        "code_crypto_audit": {
+          "score": null,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.0,
+          "details": "No code audit data available"
+        },
+        "regulatory_compliance": {
+          "score": 0.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "Frameworks: 0, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "www.google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "www.google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "www.google.com",
+          "component": "certificate",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "public_key_crypto",
+          "asset": "www.google.com",
+          "risk_level": "CRITICAL",
+          "reason": "RSA-2048 broken by Shor's algorithm on quantum computer",
+          "algorithm": "RSA"
+        },
+        {
+          "parameter": "network_protocols",
+          "asset": "www.google.com",
+          "component": "protocol_version",
+          "risk_level": "MEDIUM",
+          "reason": "TLS 1.3 is modern but default key exchange (X25519/P-256) is quantum-vulnerable",
+          "migration": "Enable hybrid PQC key exchange (X25519+ML-KEM-768 per IETF draft)"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "www.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "www.google.com",
+          "issue": "No compliance framework identified",
+          "details": "No regulatory compliance framework in use",
+          "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "www.google.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "www.google.com",
+          "issue": "Insufficient audit logging",
+          "details": "Cryptographic operations not logged for compliance",
+          "recommendation": "Implement comprehensive audit logging"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "www.google.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "CRITICAL: Replace RSA/ECC public key algorithms with ML-KEM (FIPS 203) for key exchange and ML-DSA (FIPS 204) for digital signatures. Current algorithms are broken by Shor's algorithm.",
+        "MEDIUM: No PQC migration plan documented. Develop a comprehensive roadmap aligned with NIST IR 8547 guidelines."
+      ],
+      "priority_rank": 2
+    },
+    {
+      "asset": "api.google.com",
+      "domain": "algorithms_network",
+      "region": "US",
+      "score_100": 42,
+      "verdict": "Critical Risk",
+      "action": "\ud83d\udea8 Immediate action - HNDL exposed",
+      "priority_level": "HIGH",
+      "weighted_score": 0.4246,
+      "parameter_scores": {
+        "tls_transport": {
+          "score": 0.075,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0112,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "public_key_crypto": {
+          "score": 0.1,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.012,
+          "details": "RSA-2048 (both)"
+        },
+        "symmetric_crypto": {
+          "score": 0.9,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.09,
+          "details": "AES-256-GCM (post-quantum: 128 bits)"
+        },
+        "network_protocols": {
+          "score": 0.6,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.072,
+          "details": "TLS 1.3 (1 findings)"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.06,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "hash_algorithms": {
+          "score": 1.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.08,
+          "details": "SHA256 (OK)"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "No key management data provided"
+        },
+        "code_crypto_audit": {
+          "score": null,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.0,
+          "details": "No code audit data available"
+        },
+        "regulatory_compliance": {
+          "score": 0.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "Frameworks: 0, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "api.google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "api.google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "api.google.com",
+          "component": "certificate",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "public_key_crypto",
+          "asset": "api.google.com",
+          "risk_level": "CRITICAL",
+          "reason": "RSA-2048 broken by Shor's algorithm on quantum computer",
+          "algorithm": "RSA"
+        },
+        {
+          "parameter": "network_protocols",
+          "asset": "api.google.com",
+          "component": "protocol_version",
+          "risk_level": "MEDIUM",
+          "reason": "TLS 1.3 is modern but default key exchange (X25519/P-256) is quantum-vulnerable",
+          "migration": "Enable hybrid PQC key exchange (X25519+ML-KEM-768 per IETF draft)"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "api.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "api.google.com",
+          "issue": "No compliance framework identified",
+          "details": "No regulatory compliance framework in use",
+          "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "api.google.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "api.google.com",
+          "issue": "Insufficient audit logging",
+          "details": "Cryptographic operations not logged for compliance",
+          "recommendation": "Implement comprehensive audit logging"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "api.google.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "CRITICAL: Replace RSA/ECC public key algorithms with ML-KEM (FIPS 203) for key exchange and ML-DSA (FIPS 204) for digital signatures. Current algorithms are broken by Shor's algorithm.",
+        "MEDIUM: No PQC migration plan documented. Develop a comprehensive roadmap aligned with NIST IR 8547 guidelines."
+      ],
+      "priority_rank": 3
+    },
+    {
+      "asset": "admin.google.com",
+      "domain": "algorithms_network",
+      "region": "US",
+      "score_100": 42,
+      "verdict": "Critical Risk",
+      "action": "\ud83d\udea8 Immediate action - HNDL exposed",
+      "priority_level": "HIGH",
+      "weighted_score": 0.4246,
+      "parameter_scores": {
+        "tls_transport": {
+          "score": 0.075,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0112,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "public_key_crypto": {
+          "score": 0.1,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.012,
+          "details": "RSA-2048 (both)"
+        },
+        "symmetric_crypto": {
+          "score": 0.9,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.09,
+          "details": "AES-256-GCM (post-quantum: 128 bits)"
+        },
+        "network_protocols": {
+          "score": 0.6,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.072,
+          "details": "TLS 1.3 (1 findings)"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.06,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "hash_algorithms": {
+          "score": 1.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.08,
+          "details": "SHA256 (OK)"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "No key management data provided"
+        },
+        "code_crypto_audit": {
+          "score": null,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.0,
+          "details": "No code audit data available"
+        },
+        "regulatory_compliance": {
+          "score": 0.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "Frameworks: 0, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "admin.google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "admin.google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "admin.google.com",
+          "component": "certificate",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "public_key_crypto",
+          "asset": "admin.google.com",
+          "risk_level": "CRITICAL",
+          "reason": "RSA-2048 broken by Shor's algorithm on quantum computer",
+          "algorithm": "RSA"
+        },
+        {
+          "parameter": "network_protocols",
+          "asset": "admin.google.com",
+          "component": "protocol_version",
+          "risk_level": "MEDIUM",
+          "reason": "TLS 1.3 is modern but default key exchange (X25519/P-256) is quantum-vulnerable",
+          "migration": "Enable hybrid PQC key exchange (X25519+ML-KEM-768 per IETF draft)"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "admin.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "admin.google.com",
+          "issue": "No compliance framework identified",
+          "details": "No regulatory compliance framework in use",
+          "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "admin.google.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "admin.google.com",
+          "issue": "Insufficient audit logging",
+          "details": "Cryptographic operations not logged for compliance",
+          "recommendation": "Implement comprehensive audit logging"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "admin.google.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "CRITICAL: Replace RSA/ECC public key algorithms with ML-KEM (FIPS 203) for key exchange and ML-DSA (FIPS 204) for digital signatures. Current algorithms are broken by Shor's algorithm.",
+        "MEDIUM: No PQC migration plan documented. Develop a comprehensive roadmap aligned with NIST IR 8547 guidelines."
+      ],
+      "priority_rank": 4
+    },
+    {
+      "asset": "mail.google.com",
+      "domain": "algorithms_network",
+      "region": "US",
+      "score_100": 42,
+      "verdict": "Critical Risk",
+      "action": "\ud83d\udea8 Immediate action - HNDL exposed",
+      "priority_level": "HIGH",
+      "weighted_score": 0.4246,
+      "parameter_scores": {
+        "tls_transport": {
+          "score": 0.075,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0112,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "public_key_crypto": {
+          "score": 0.1,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.012,
+          "details": "RSA-2048 (both)"
+        },
+        "symmetric_crypto": {
+          "score": 0.9,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.09,
+          "details": "AES-256-GCM (post-quantum: 128 bits)"
+        },
+        "network_protocols": {
+          "score": 0.6,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.072,
+          "details": "TLS 1.3 (1 findings)"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.06,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "hash_algorithms": {
+          "score": 1.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.08,
+          "details": "SHA256 (OK)"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "No key management data provided"
+        },
+        "code_crypto_audit": {
+          "score": null,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.0,
+          "details": "No code audit data available"
+        },
+        "regulatory_compliance": {
+          "score": 0.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "Frameworks: 0, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "mail.google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "mail.google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "mail.google.com",
+          "component": "certificate",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "public_key_crypto",
+          "asset": "mail.google.com",
+          "risk_level": "CRITICAL",
+          "reason": "RSA-2048 broken by Shor's algorithm on quantum computer",
+          "algorithm": "RSA"
+        },
+        {
+          "parameter": "network_protocols",
+          "asset": "mail.google.com",
+          "component": "protocol_version",
+          "risk_level": "MEDIUM",
+          "reason": "TLS 1.3 is modern but default key exchange (X25519/P-256) is quantum-vulnerable",
+          "migration": "Enable hybrid PQC key exchange (X25519+ML-KEM-768 per IETF draft)"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "mail.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "mail.google.com",
+          "issue": "No compliance framework identified",
+          "details": "No regulatory compliance framework in use",
+          "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "mail.google.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "mail.google.com",
+          "issue": "Insufficient audit logging",
+          "details": "Cryptographic operations not logged for compliance",
+          "recommendation": "Implement comprehensive audit logging"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "mail.google.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "CRITICAL: Replace RSA/ECC public key algorithms with ML-KEM (FIPS 203) for key exchange and ML-DSA (FIPS 204) for digital signatures. Current algorithms are broken by Shor's algorithm.",
+        "MEDIUM: No PQC migration plan documented. Develop a comprehensive roadmap aligned with NIST IR 8547 guidelines."
+      ],
+      "priority_rank": 5
+    },
+    {
+      "asset": "blog.google.com",
+      "domain": "algorithms_network",
+      "region": "US",
+      "score_100": 42,
+      "verdict": "Critical Risk",
+      "action": "\ud83d\udea8 Immediate action - HNDL exposed",
+      "priority_level": "HIGH",
+      "weighted_score": 0.4246,
+      "parameter_scores": {
+        "tls_transport": {
+          "score": 0.075,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0112,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "public_key_crypto": {
+          "score": 0.1,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.012,
+          "details": "RSA-2048 (both)"
+        },
+        "symmetric_crypto": {
+          "score": 0.9,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.09,
+          "details": "AES-256-GCM (post-quantum: 128 bits)"
+        },
+        "network_protocols": {
+          "score": 0.6,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.072,
+          "details": "TLS 1.3 (1 findings)"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.06,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "hash_algorithms": {
+          "score": 1.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.08,
+          "details": "SHA256 (OK)"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "No key management data provided"
+        },
+        "code_crypto_audit": {
+          "score": null,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.0,
+          "details": "No code audit data available"
+        },
+        "regulatory_compliance": {
+          "score": 0.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "Frameworks: 0, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "blog.google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "blog.google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "blog.google.com",
+          "component": "certificate",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "public_key_crypto",
+          "asset": "blog.google.com",
+          "risk_level": "CRITICAL",
+          "reason": "RSA-2048 broken by Shor's algorithm on quantum computer",
+          "algorithm": "RSA"
+        },
+        {
+          "parameter": "network_protocols",
+          "asset": "blog.google.com",
+          "component": "protocol_version",
+          "risk_level": "MEDIUM",
+          "reason": "TLS 1.3 is modern but default key exchange (X25519/P-256) is quantum-vulnerable",
+          "migration": "Enable hybrid PQC key exchange (X25519+ML-KEM-768 per IETF draft)"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "blog.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "blog.google.com",
+          "issue": "No compliance framework identified",
+          "details": "No regulatory compliance framework in use",
+          "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "blog.google.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "blog.google.com",
+          "issue": "Insufficient audit logging",
+          "details": "Cryptographic operations not logged for compliance",
+          "recommendation": "Implement comprehensive audit logging"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "blog.google.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "CRITICAL: Replace RSA/ECC public key algorithms with ML-KEM (FIPS 203) for key exchange and ML-DSA (FIPS 204) for digital signatures. Current algorithms are broken by Shor's algorithm.",
+        "MEDIUM: No PQC migration plan documented. Develop a comprehensive roadmap aligned with NIST IR 8547 guidelines."
+      ],
+      "priority_rank": 6
+    },
+    {
+      "asset": "shop.google.com",
+      "domain": "algorithms_network",
+      "region": "US",
+      "score_100": 42,
+      "verdict": "Critical Risk",
+      "action": "\ud83d\udea8 Immediate action - HNDL exposed",
+      "priority_level": "HIGH",
+      "weighted_score": 0.4246,
+      "parameter_scores": {
+        "tls_transport": {
+          "score": 0.075,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0112,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "public_key_crypto": {
+          "score": 0.1,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.012,
+          "details": "RSA-2048 (both)"
+        },
+        "symmetric_crypto": {
+          "score": 0.9,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.09,
+          "details": "AES-256-GCM (post-quantum: 128 bits)"
+        },
+        "network_protocols": {
+          "score": 0.6,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.072,
+          "details": "TLS 1.3 (1 findings)"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.06,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "hash_algorithms": {
+          "score": 1.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.08,
+          "details": "SHA256 (OK)"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "No key management data provided"
+        },
+        "code_crypto_audit": {
+          "score": null,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.0,
+          "details": "No code audit data available"
+        },
+        "regulatory_compliance": {
+          "score": 0.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "Frameworks: 0, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "shop.google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "shop.google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "shop.google.com",
+          "component": "certificate",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "public_key_crypto",
+          "asset": "shop.google.com",
+          "risk_level": "CRITICAL",
+          "reason": "RSA-2048 broken by Shor's algorithm on quantum computer",
+          "algorithm": "RSA"
+        },
+        {
+          "parameter": "network_protocols",
+          "asset": "shop.google.com",
+          "component": "protocol_version",
+          "risk_level": "MEDIUM",
+          "reason": "TLS 1.3 is modern but default key exchange (X25519/P-256) is quantum-vulnerable",
+          "migration": "Enable hybrid PQC key exchange (X25519+ML-KEM-768 per IETF draft)"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "shop.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "shop.google.com",
+          "issue": "No compliance framework identified",
+          "details": "No regulatory compliance framework in use",
+          "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "shop.google.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "shop.google.com",
+          "issue": "Insufficient audit logging",
+          "details": "Cryptographic operations not logged for compliance",
+          "recommendation": "Implement comprehensive audit logging"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "shop.google.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "CRITICAL: Replace RSA/ECC public key algorithms with ML-KEM (FIPS 203) for key exchange and ML-DSA (FIPS 204) for digital signatures. Current algorithms are broken by Shor's algorithm.",
+        "MEDIUM: No PQC migration plan documented. Develop a comprehensive roadmap aligned with NIST IR 8547 guidelines."
+      ],
+      "priority_rank": 7
+    },
+    {
+      "asset": "store.google.com",
+      "domain": "algorithms_network",
+      "region": "US",
+      "score_100": 42,
+      "verdict": "Critical Risk",
+      "action": "\ud83d\udea8 Immediate action - HNDL exposed",
+      "priority_level": "HIGH",
+      "weighted_score": 0.4246,
+      "parameter_scores": {
+        "tls_transport": {
+          "score": 0.075,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0112,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "public_key_crypto": {
+          "score": 0.1,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.012,
+          "details": "RSA-2048 (both)"
+        },
+        "symmetric_crypto": {
+          "score": 0.9,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.09,
+          "details": "AES-256-GCM (post-quantum: 128 bits)"
+        },
+        "network_protocols": {
+          "score": 0.6,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.072,
+          "details": "TLS 1.3 (1 findings)"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.06,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "hash_algorithms": {
+          "score": 1.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.08,
+          "details": "SHA256 (OK)"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "No key management data provided"
+        },
+        "code_crypto_audit": {
+          "score": null,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.0,
+          "details": "No code audit data available"
+        },
+        "regulatory_compliance": {
+          "score": 0.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "Frameworks: 0, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "store.google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "store.google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "store.google.com",
+          "component": "certificate",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "public_key_crypto",
+          "asset": "store.google.com",
+          "risk_level": "CRITICAL",
+          "reason": "RSA-2048 broken by Shor's algorithm on quantum computer",
+          "algorithm": "RSA"
+        },
+        {
+          "parameter": "network_protocols",
+          "asset": "store.google.com",
+          "component": "protocol_version",
+          "risk_level": "MEDIUM",
+          "reason": "TLS 1.3 is modern but default key exchange (X25519/P-256) is quantum-vulnerable",
+          "migration": "Enable hybrid PQC key exchange (X25519+ML-KEM-768 per IETF draft)"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "store.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "store.google.com",
+          "issue": "No compliance framework identified",
+          "details": "No regulatory compliance framework in use",
+          "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "store.google.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "store.google.com",
+          "issue": "Insufficient audit logging",
+          "details": "Cryptographic operations not logged for compliance",
+          "recommendation": "Implement comprehensive audit logging"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "store.google.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "CRITICAL: Replace RSA/ECC public key algorithms with ML-KEM (FIPS 203) for key exchange and ML-DSA (FIPS 204) for digital signatures. Current algorithms are broken by Shor's algorithm.",
+        "MEDIUM: No PQC migration plan documented. Develop a comprehensive roadmap aligned with NIST IR 8547 guidelines."
+      ],
+      "priority_rank": 8
+    },
+    {
+      "asset": "images.google.com",
+      "domain": "algorithms_network",
+      "region": "US",
+      "score_100": 42,
+      "verdict": "Critical Risk",
+      "action": "\ud83d\udea8 Immediate action - HNDL exposed",
+      "priority_level": "HIGH",
+      "weighted_score": 0.4246,
+      "parameter_scores": {
+        "tls_transport": {
+          "score": 0.075,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0112,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "public_key_crypto": {
+          "score": 0.1,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.012,
+          "details": "RSA-2048 (both)"
+        },
+        "symmetric_crypto": {
+          "score": 0.9,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.09,
+          "details": "AES-256-GCM (post-quantum: 128 bits)"
+        },
+        "network_protocols": {
+          "score": 0.6,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.072,
+          "details": "TLS 1.3 (1 findings)"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.06,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "hash_algorithms": {
+          "score": 1.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.08,
+          "details": "SHA256 (OK)"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "No key management data provided"
+        },
+        "code_crypto_audit": {
+          "score": null,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.0,
+          "details": "No code audit data available"
+        },
+        "regulatory_compliance": {
+          "score": 0.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "Frameworks: 0, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "images.google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "images.google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "images.google.com",
+          "component": "certificate",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "public_key_crypto",
+          "asset": "images.google.com",
+          "risk_level": "CRITICAL",
+          "reason": "RSA-2048 broken by Shor's algorithm on quantum computer",
+          "algorithm": "RSA"
+        },
+        {
+          "parameter": "network_protocols",
+          "asset": "images.google.com",
+          "component": "protocol_version",
+          "risk_level": "MEDIUM",
+          "reason": "TLS 1.3 is modern but default key exchange (X25519/P-256) is quantum-vulnerable",
+          "migration": "Enable hybrid PQC key exchange (X25519+ML-KEM-768 per IETF draft)"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "images.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "images.google.com",
+          "issue": "No compliance framework identified",
+          "details": "No regulatory compliance framework in use",
+          "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "images.google.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "images.google.com",
+          "issue": "Insufficient audit logging",
+          "details": "Cryptographic operations not logged for compliance",
+          "recommendation": "Implement comprehensive audit logging"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "images.google.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "CRITICAL: Replace RSA/ECC public key algorithms with ML-KEM (FIPS 203) for key exchange and ML-DSA (FIPS 204) for digital signatures. Current algorithms are broken by Shor's algorithm.",
+        "MEDIUM: No PQC migration plan documented. Develop a comprehensive roadmap aligned with NIST IR 8547 guidelines."
+      ],
+      "priority_rank": 9
+    },
+    {
+      "asset": "support.google.com",
+      "domain": "algorithms_network",
+      "region": "US",
+      "score_100": 42,
+      "verdict": "Critical Risk",
+      "action": "\ud83d\udea8 Immediate action - HNDL exposed",
+      "priority_level": "HIGH",
+      "weighted_score": 0.4246,
+      "parameter_scores": {
+        "tls_transport": {
+          "score": 0.075,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0112,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "public_key_crypto": {
+          "score": 0.1,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.012,
+          "details": "RSA-2048 (both)"
+        },
+        "symmetric_crypto": {
+          "score": 0.9,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.09,
+          "details": "AES-256-GCM (post-quantum: 128 bits)"
+        },
+        "network_protocols": {
+          "score": 0.6,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.072,
+          "details": "TLS 1.3 (1 findings)"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.06,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "hash_algorithms": {
+          "score": 1.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.08,
+          "details": "SHA256 (OK)"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "No key management data provided"
+        },
+        "code_crypto_audit": {
+          "score": null,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.0,
+          "details": "No code audit data available"
+        },
+        "regulatory_compliance": {
+          "score": 0.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "Frameworks: 0, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "support.google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "support.google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "support.google.com",
+          "component": "certificate",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "public_key_crypto",
+          "asset": "support.google.com",
+          "risk_level": "CRITICAL",
+          "reason": "RSA-2048 broken by Shor's algorithm on quantum computer",
+          "algorithm": "RSA"
+        },
+        {
+          "parameter": "network_protocols",
+          "asset": "support.google.com",
+          "component": "protocol_version",
+          "risk_level": "MEDIUM",
+          "reason": "TLS 1.3 is modern but default key exchange (X25519/P-256) is quantum-vulnerable",
+          "migration": "Enable hybrid PQC key exchange (X25519+ML-KEM-768 per IETF draft)"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "support.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "support.google.com",
+          "issue": "No compliance framework identified",
+          "details": "No regulatory compliance framework in use",
+          "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "support.google.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "support.google.com",
+          "issue": "Insufficient audit logging",
+          "details": "Cryptographic operations not logged for compliance",
+          "recommendation": "Implement comprehensive audit logging"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "support.google.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "CRITICAL: Replace RSA/ECC public key algorithms with ML-KEM (FIPS 203) for key exchange and ML-DSA (FIPS 204) for digital signatures. Current algorithms are broken by Shor's algorithm.",
+        "MEDIUM: No PQC migration plan documented. Develop a comprehensive roadmap aligned with NIST IR 8547 guidelines."
+      ],
+      "priority_rank": 10
+    }
+  ]
+}

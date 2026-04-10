@@ -27,6 +27,17 @@ layer. Scoring, tools, and learning all run locally.
 
 from __future__ import annotations
 
+import sys as _sys
+import os as _os
+
+# Fix Windows console encoding for box-drawing characters
+if _sys.platform == "win32":
+    try:
+        _sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        _sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 import json
 import logging
 import os
@@ -546,7 +557,7 @@ Provide:
         assessment = agent.scan(targets)
         agent.save_local()
 
-        print(f"\n📊 Learning Store: {agent.learning_store.summary()}")
+        print(f"\n[*] Learning Store: {agent.learning_store.summary()}")
         return assessment
 
 
@@ -711,10 +722,10 @@ def run_interactive_cli():
     MOCK_COMPANIES = ['AcmeCorp', 'MockCorp']
 
     print(BANNER)
-    print("⚙ Initialising Strands agent with Amazon Bedrock...\n")
+    print("[*] Initialising Strands agent with Amazon Bedrock...\n")
     time.sleep(1) # simulate loading
     
-    print("🤖PQC Readiness Agent - Interactive Mode")
+    print("[*] PQC Readiness Agent - Interactive Mode")
     print(f"Available mock datasets: {MOCK_COMPANIES}")
     print("Type 'help' for suggested queries, 'exit' to quit.\n")
     
@@ -779,14 +790,22 @@ def run_interactive_cli():
                             print(f"       {param:25s} {bar} N/A (Not Assessed)")
                         else:
                             bar = "█" * int(data["score"] * 20) + "░" * (20 - int(data["score"] * 20))
-                            print(f"       {param:25s} {bar} {data['score']:.2f}")
+                            print(f"       {param:25s} {bar} {data['score']:.2f} (weight: {data.get('effective_weight', 0):.2f})")
+
+                    # Show recommendations
+                    recs = item.get("migration_recommendations", [])
+                    if recs:
+                        print(f"\n     [>] Recommendations:")
+                        for rec in recs[:3]:
+                            display = rec[:120] + "..." if len(rec) > 120 else rec
+                            print(f"       -> {display}")
 
                 # Automatically export PDF formal Report
                 try:
                     from core.pdf_report_generator import PdfReportGenerator
                     generator = PdfReportGenerator()
                     pdf_path = generator.generate_report(assessment, domain_name=target_arg)
-                    print(f"\n📄 Complete Risk Assessment PDF exported to: {pdf_path}")
+                    print(f"\n[*] Complete Risk Assessment PDF exported to: {pdf_path}")
                 except Exception as e:
                     print(f"\n[!] Failed to generate PDF Report: {e}")
 

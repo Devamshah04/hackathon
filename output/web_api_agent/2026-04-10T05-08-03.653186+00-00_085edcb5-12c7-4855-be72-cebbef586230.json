@@ -1,0 +1,1185 @@
+{
+  "schema_version": "1.0",
+  "agent_name": "web_api_agent",
+  "timestamp": "2026-04-10T05:08:03.653186+00:00",
+  "run_id": "085edcb5-12c7-4855-be72-cebbef586230",
+  "findings": [
+    {
+      "parameter": "auth_token_crypto",
+      "asset": "payment-api.acmecorp.com",
+      "algorithm": "RS256",
+      "score": 0.1,
+      "quantum_vulnerable": true,
+      "risk_level": "CRITICAL",
+      "reason": "Algorithm 'RS256' is vulnerable to quantum attack",
+      "migration_target": {
+        "algorithm": "ML-DSA-65",
+        "standard": "FIPS 204"
+      }
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "payment-api.acmecorp.com",
+      "component": "tls_version",
+      "value": "TLS 1.2",
+      "risk": "HIGH",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "payment-api.acmecorp.com",
+      "component": "key_exchange",
+      "value": "RSA",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "payment-api.acmecorp.com",
+      "component": "certificate",
+      "value": "RSA_2048",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "payment-api.acmecorp.com",
+      "component": "cipher_suite",
+      "value": "AES_128_CBC",
+      "risk": "MEDIUM",
+      "recommendation": "Upgrade to AES-256-GCM or ChaCha20-Poly1305"
+    },
+    {
+      "parameter": "oauth_oidc",
+      "asset": "payment-api.acmecorp.com",
+      "component": "signing_algorithm",
+      "algorithm": "RS256",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-DSA (FIPS 204)"
+    },
+    {
+      "parameter": "oauth_oidc",
+      "asset": "payment-api.acmecorp.com",
+      "component": "pkce",
+      "risk": "MEDIUM",
+      "recommendation": "Enable PKCE for authorization code flows"
+    },
+    {
+      "parameter": "oauth_oidc",
+      "asset": "payment-api.acmecorp.com",
+      "component": "jwks_key_types",
+      "key_types": [
+        "RSA"
+      ],
+      "risk": "HIGH",
+      "recommendation": "Plan JWKS key migration to PQC-safe key types"
+    },
+    {
+      "parameter": "key_management",
+      "asset": "payment-api.acmecorp.com",
+      "component": "key_storage",
+      "value": "environment_variable",
+      "risk": "HIGH",
+      "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+    },
+    {
+      "parameter": "key_management",
+      "asset": "payment-api.acmecorp.com",
+      "component": "rotation_policy",
+      "value": "no_rotation",
+      "risk": "HIGH",
+      "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+    },
+    {
+      "parameter": "key_management",
+      "asset": "payment-api.acmecorp.com",
+      "component": "key_algorithm",
+      "value": "RSA-2048",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+    },
+    {
+      "parameter": "key_management",
+      "asset": "payment-api.acmecorp.com",
+      "component": "audit_logging",
+      "risk": "MEDIUM",
+      "recommendation": "Enable key usage audit logging"
+    },
+    {
+      "parameter": "auth_token_crypto",
+      "asset": "user-auth.acmecorp.com",
+      "algorithm": "ES256",
+      "score": 0.2,
+      "quantum_vulnerable": true,
+      "risk_level": "HIGH",
+      "reason": "Algorithm 'ES256' is vulnerable to quantum attack",
+      "migration_target": {
+        "algorithm": "ML-DSA-44",
+        "standard": "FIPS 204"
+      }
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "user-auth.acmecorp.com",
+      "component": "key_exchange",
+      "value": "ECDHE_P256",
+      "risk": "HIGH",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "user-auth.acmecorp.com",
+      "component": "certificate",
+      "value": "ECDSA_P256",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "oauth_oidc",
+      "asset": "user-auth.acmecorp.com",
+      "component": "signing_algorithm",
+      "algorithm": "ES256",
+      "risk": "HIGH",
+      "recommendation": "Migrate to ML-DSA (FIPS 204)"
+    },
+    {
+      "parameter": "oauth_oidc",
+      "asset": "user-auth.acmecorp.com",
+      "component": "jwks_key_types",
+      "key_types": [
+        "EC"
+      ],
+      "risk": "HIGH",
+      "recommendation": "Plan JWKS key migration to PQC-safe key types"
+    },
+    {
+      "parameter": "key_management",
+      "asset": "user-auth.acmecorp.com",
+      "component": "key_algorithm",
+      "value": "ECC-P256",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+    },
+    {
+      "parameter": "quantum_readiness",
+      "asset": "user-auth.acmecorp.com",
+      "component": "pqc_deployment",
+      "risk": "HIGH",
+      "recommendation": "Begin PQC algorithm testing and deployment"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "data-analytics-api.acmecorp.com",
+      "component": "key_exchange",
+      "value": "X25519",
+      "risk": "HIGH",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "data-analytics-api.acmecorp.com",
+      "component": "certificate",
+      "value": "ECDSA_P384",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "oauth_oidc",
+      "asset": "data-analytics-api.acmecorp.com",
+      "component": "pkce",
+      "risk": "MEDIUM",
+      "recommendation": "Enable PKCE for authorization code flows"
+    },
+    {
+      "parameter": "quantum_readiness",
+      "asset": "data-analytics-api.acmecorp.com",
+      "component": "pqc_deployment",
+      "risk": "HIGH",
+      "recommendation": "Begin PQC algorithm testing and deployment"
+    },
+    {
+      "parameter": "quantum_readiness",
+      "asset": "data-analytics-api.acmecorp.com",
+      "component": "migration_plan",
+      "risk": "MEDIUM",
+      "recommendation": "Create a PQC migration plan with timeline"
+    },
+    {
+      "parameter": "auth_token_crypto",
+      "asset": "partner-integration.acmecorp.com",
+      "algorithm": "PS256",
+      "score": 0.15,
+      "quantum_vulnerable": true,
+      "risk_level": "CRITICAL",
+      "reason": "Algorithm 'PS256' is vulnerable to quantum attack",
+      "migration_target": {
+        "algorithm": "ML-DSA-65",
+        "standard": "FIPS 204"
+      }
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "partner-integration.acmecorp.com",
+      "component": "tls_version",
+      "value": "TLS 1.2",
+      "risk": "HIGH",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "partner-integration.acmecorp.com",
+      "component": "key_exchange",
+      "value": "DHE_2048",
+      "risk": "HIGH",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "partner-integration.acmecorp.com",
+      "component": "certificate",
+      "value": "RSA_4096",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "oauth_oidc",
+      "asset": "partner-integration.acmecorp.com",
+      "component": "signing_algorithm",
+      "algorithm": "PS256",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-DSA (FIPS 204)"
+    },
+    {
+      "parameter": "oauth_oidc",
+      "asset": "partner-integration.acmecorp.com",
+      "component": "signing_algorithm",
+      "algorithm": "RS256",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-DSA (FIPS 204)"
+    },
+    {
+      "parameter": "oauth_oidc",
+      "asset": "partner-integration.acmecorp.com",
+      "component": "pkce",
+      "risk": "MEDIUM",
+      "recommendation": "Enable PKCE for authorization code flows"
+    },
+    {
+      "parameter": "oauth_oidc",
+      "asset": "partner-integration.acmecorp.com",
+      "component": "jwks_key_types",
+      "key_types": [
+        "RSA"
+      ],
+      "risk": "HIGH",
+      "recommendation": "Plan JWKS key migration to PQC-safe key types"
+    },
+    {
+      "parameter": "key_management",
+      "asset": "partner-integration.acmecorp.com",
+      "component": "key_algorithm",
+      "value": "RSA-4096",
+      "risk": "HIGH",
+      "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+    },
+    {
+      "parameter": "auth_token_crypto",
+      "asset": "mobile-bff.acmecorp.com",
+      "algorithm": "RS256",
+      "score": 0.1,
+      "quantum_vulnerable": true,
+      "risk_level": "CRITICAL",
+      "reason": "Algorithm 'RS256' is vulnerable to quantum attack",
+      "migration_target": {
+        "algorithm": "ML-DSA-65",
+        "standard": "FIPS 204"
+      }
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "mobile-bff.acmecorp.com",
+      "component": "key_exchange",
+      "value": "ECDHE_P256",
+      "risk": "HIGH",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "mobile-bff.acmecorp.com",
+      "component": "certificate",
+      "value": "RSA_2048",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "oauth_oidc",
+      "asset": "mobile-bff.acmecorp.com",
+      "component": "signing_algorithm",
+      "algorithm": "RS256",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-DSA (FIPS 204)"
+    },
+    {
+      "parameter": "oauth_oidc",
+      "asset": "mobile-bff.acmecorp.com",
+      "component": "jwks_key_types",
+      "key_types": [
+        "RSA"
+      ],
+      "risk": "HIGH",
+      "recommendation": "Plan JWKS key migration to PQC-safe key types"
+    },
+    {
+      "parameter": "key_management",
+      "asset": "mobile-bff.acmecorp.com",
+      "component": "key_algorithm",
+      "value": "RSA-2048",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+    }
+  ],
+  "summary": {
+    "total_findings": 39,
+    "critical": 11,
+    "high": 22,
+    "medium": 6,
+    "low": 0
+  },
+  "rated_assets": [
+    {
+      "asset": "payment-api.acmecorp.com",
+      "domain": "web_api",
+      "region": "US",
+      "score_100": 17,
+      "verdict": "Insecure",
+      "action": "\ud83d\udc80 Emergency migration required",
+      "priority_level": "CRITICAL",
+      "weighted_score": 0.1695,
+      "parameter_scores": {
+        "auth_token_crypto": {
+          "score": 0.1,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.015,
+          "details": "RS256 signing \u2014 Algorithm 'RS256' is vulnerable to quantum attack"
+        },
+        "tls_transport": {
+          "score": 0.21,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0252,
+          "details": "TLS 1.2 + RSA"
+        },
+        "oauth_oidc": {
+          "score": 0.3,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.03,
+          "details": "OAuth at https://auth.acmecorp.com/.well-known/openid-configuration"
+        },
+        "key_management": {
+          "score": 0.107,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0128,
+          "details": "environment_variable storage, no_rotation"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": null,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.0,
+          "details": "No certificate data provided"
+        },
+        "api_encryption": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "No API encryption data provided"
+        },
+        "session_management": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "No session management data provided"
+        },
+        "data_at_rest": {
+          "score": null,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.0,
+          "details": "No data-at-rest encryption data provided"
+        },
+        "regulatory_compliance": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "No regulatory compliance data provided"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "auth_token_crypto",
+          "asset": "payment-api.acmecorp.com",
+          "algorithm": "RS256",
+          "score": 0.1,
+          "quantum_vulnerable": true,
+          "risk_level": "CRITICAL",
+          "reason": "Algorithm 'RS256' is vulnerable to quantum attack",
+          "migration_target": {
+            "algorithm": "ML-DSA-65",
+            "standard": "FIPS 204"
+          }
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "payment-api.acmecorp.com",
+          "component": "tls_version",
+          "value": "TLS 1.2",
+          "risk": "HIGH",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "payment-api.acmecorp.com",
+          "component": "key_exchange",
+          "value": "RSA",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "payment-api.acmecorp.com",
+          "component": "certificate",
+          "value": "RSA_2048",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "payment-api.acmecorp.com",
+          "component": "cipher_suite",
+          "value": "AES_128_CBC",
+          "risk": "MEDIUM",
+          "recommendation": "Upgrade to AES-256-GCM or ChaCha20-Poly1305"
+        },
+        {
+          "parameter": "oauth_oidc",
+          "asset": "payment-api.acmecorp.com",
+          "component": "signing_algorithm",
+          "algorithm": "RS256",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-DSA (FIPS 204)"
+        },
+        {
+          "parameter": "oauth_oidc",
+          "asset": "payment-api.acmecorp.com",
+          "component": "pkce",
+          "risk": "MEDIUM",
+          "recommendation": "Enable PKCE for authorization code flows"
+        },
+        {
+          "parameter": "oauth_oidc",
+          "asset": "payment-api.acmecorp.com",
+          "component": "jwks_key_types",
+          "key_types": [
+            "RSA"
+          ],
+          "risk": "HIGH",
+          "recommendation": "Plan JWKS key migration to PQC-safe key types"
+        },
+        {
+          "parameter": "key_management",
+          "asset": "payment-api.acmecorp.com",
+          "component": "key_storage",
+          "value": "environment_variable",
+          "risk": "HIGH",
+          "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+        },
+        {
+          "parameter": "key_management",
+          "asset": "payment-api.acmecorp.com",
+          "component": "rotation_policy",
+          "value": "no_rotation",
+          "risk": "HIGH",
+          "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+        },
+        {
+          "parameter": "key_management",
+          "asset": "payment-api.acmecorp.com",
+          "component": "key_algorithm",
+          "value": "RSA-2048",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+        },
+        {
+          "parameter": "key_management",
+          "asset": "payment-api.acmecorp.com",
+          "component": "audit_logging",
+          "risk": "MEDIUM",
+          "recommendation": "Enable key usage audit logging"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Migrate JWT signing from RSA/ECDSA to ML-DSA (FIPS 204). Current tokens are vulnerable to Shor's algorithm.",
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "MEDIUM: Improve oauth_oidc (OAuth at https://auth.acmecorp.com/.well-known/openid-configuration). Score 0.3/1.0 indicates partial quantum exposure.",
+        "CRITICAL: Move keys to HSM/KMS with auto-rotation. Migrate key algorithms to ML-KEM/ML-DSA."
+      ],
+      "priority_rank": 1
+    },
+    {
+      "asset": "partner-integration.acmecorp.com",
+      "domain": "web_api",
+      "region": "US",
+      "score_100": 37,
+      "verdict": "Insecure",
+      "action": "\ud83d\udc80 Emergency migration required",
+      "priority_level": "CRITICAL",
+      "weighted_score": 0.3667,
+      "parameter_scores": {
+        "auth_token_crypto": {
+          "score": 0.15,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0225,
+          "details": "PS256 signing \u2014 Algorithm 'PS256' is vulnerable to quantum attack"
+        },
+        "tls_transport": {
+          "score": 0.385,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0462,
+          "details": "TLS 1.2 + DHE_2048"
+        },
+        "oauth_oidc": {
+          "score": 0.3,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.03,
+          "details": "OAuth at https://b2b-auth.acmecorp.com/oauth2/config"
+        },
+        "key_management": {
+          "score": 0.675,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.081,
+          "details": "hsm storage, manual_regular"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": null,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.0,
+          "details": "No certificate data provided"
+        },
+        "api_encryption": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "No API encryption data provided"
+        },
+        "session_management": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "No session management data provided"
+        },
+        "data_at_rest": {
+          "score": null,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.0,
+          "details": "No data-at-rest encryption data provided"
+        },
+        "regulatory_compliance": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "No regulatory compliance data provided"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "auth_token_crypto",
+          "asset": "partner-integration.acmecorp.com",
+          "algorithm": "PS256",
+          "score": 0.15,
+          "quantum_vulnerable": true,
+          "risk_level": "CRITICAL",
+          "reason": "Algorithm 'PS256' is vulnerable to quantum attack",
+          "migration_target": {
+            "algorithm": "ML-DSA-65",
+            "standard": "FIPS 204"
+          }
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "partner-integration.acmecorp.com",
+          "component": "tls_version",
+          "value": "TLS 1.2",
+          "risk": "HIGH",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "partner-integration.acmecorp.com",
+          "component": "key_exchange",
+          "value": "DHE_2048",
+          "risk": "HIGH",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "partner-integration.acmecorp.com",
+          "component": "certificate",
+          "value": "RSA_4096",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "oauth_oidc",
+          "asset": "partner-integration.acmecorp.com",
+          "component": "signing_algorithm",
+          "algorithm": "PS256",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-DSA (FIPS 204)"
+        },
+        {
+          "parameter": "oauth_oidc",
+          "asset": "partner-integration.acmecorp.com",
+          "component": "signing_algorithm",
+          "algorithm": "RS256",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-DSA (FIPS 204)"
+        },
+        {
+          "parameter": "oauth_oidc",
+          "asset": "partner-integration.acmecorp.com",
+          "component": "pkce",
+          "risk": "MEDIUM",
+          "recommendation": "Enable PKCE for authorization code flows"
+        },
+        {
+          "parameter": "oauth_oidc",
+          "asset": "partner-integration.acmecorp.com",
+          "component": "jwks_key_types",
+          "key_types": [
+            "RSA"
+          ],
+          "risk": "HIGH",
+          "recommendation": "Plan JWKS key migration to PQC-safe key types"
+        },
+        {
+          "parameter": "key_management",
+          "asset": "partner-integration.acmecorp.com",
+          "component": "key_algorithm",
+          "value": "RSA-4096",
+          "risk": "HIGH",
+          "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Migrate JWT signing from RSA/ECDSA to ML-DSA (FIPS 204). Current tokens are vulnerable to Shor's algorithm.",
+        "MEDIUM: Improve tls_transport (TLS 1.2 + DHE_2048). Score 0.4/1.0 indicates partial quantum exposure.",
+        "MEDIUM: Improve oauth_oidc (OAuth at https://b2b-auth.acmecorp.com/oauth2/config). Score 0.3/1.0 indicates partial quantum exposure."
+      ],
+      "priority_rank": 2
+    },
+    {
+      "asset": "mobile-bff.acmecorp.com",
+      "domain": "web_api",
+      "region": "US",
+      "score_100": 38,
+      "verdict": "Insecure",
+      "action": "\ud83d\udc80 Emergency migration required",
+      "priority_level": "CRITICAL",
+      "weighted_score": 0.3829,
+      "parameter_scores": {
+        "auth_token_crypto": {
+          "score": 0.1,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.015,
+          "details": "RS256 signing \u2014 Algorithm 'RS256' is vulnerable to quantum attack"
+        },
+        "tls_transport": {
+          "score": 0.485,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0582,
+          "details": "TLS 1.3 + ECDHE_P256"
+        },
+        "oauth_oidc": {
+          "score": 0.4,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.04,
+          "details": "OAuth at https://mobile-auth.acmecorp.com/.well-known/openid-configuration"
+        },
+        "key_management": {
+          "score": 0.62,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0744,
+          "details": "cloud_kms storage, automatic_90days"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": null,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.0,
+          "details": "No certificate data provided"
+        },
+        "api_encryption": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "No API encryption data provided"
+        },
+        "session_management": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "No session management data provided"
+        },
+        "data_at_rest": {
+          "score": null,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.0,
+          "details": "No data-at-rest encryption data provided"
+        },
+        "regulatory_compliance": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "No regulatory compliance data provided"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "auth_token_crypto",
+          "asset": "mobile-bff.acmecorp.com",
+          "algorithm": "RS256",
+          "score": 0.1,
+          "quantum_vulnerable": true,
+          "risk_level": "CRITICAL",
+          "reason": "Algorithm 'RS256' is vulnerable to quantum attack",
+          "migration_target": {
+            "algorithm": "ML-DSA-65",
+            "standard": "FIPS 204"
+          }
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "mobile-bff.acmecorp.com",
+          "component": "key_exchange",
+          "value": "ECDHE_P256",
+          "risk": "HIGH",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "mobile-bff.acmecorp.com",
+          "component": "certificate",
+          "value": "RSA_2048",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "oauth_oidc",
+          "asset": "mobile-bff.acmecorp.com",
+          "component": "signing_algorithm",
+          "algorithm": "RS256",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-DSA (FIPS 204)"
+        },
+        {
+          "parameter": "oauth_oidc",
+          "asset": "mobile-bff.acmecorp.com",
+          "component": "jwks_key_types",
+          "key_types": [
+            "RSA"
+          ],
+          "risk": "HIGH",
+          "recommendation": "Plan JWKS key migration to PQC-safe key types"
+        },
+        {
+          "parameter": "key_management",
+          "asset": "mobile-bff.acmecorp.com",
+          "component": "key_algorithm",
+          "value": "RSA-2048",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Migrate JWT signing from RSA/ECDSA to ML-DSA (FIPS 204). Current tokens are vulnerable to Shor's algorithm.",
+        "MEDIUM: Improve tls_transport (TLS 1.3 + ECDHE_P256). Score 0.5/1.0 indicates partial quantum exposure.",
+        "MEDIUM: Improve oauth_oidc (OAuth at https://mobile-auth.acmecorp.com/.well-known/openid-configuration). Score 0.4/1.0 indicates partial quantum exposure."
+      ],
+      "priority_rank": 3
+    },
+    {
+      "asset": "user-auth.acmecorp.com",
+      "domain": "web_api",
+      "region": "US",
+      "score_100": 44,
+      "verdict": "Critical Risk",
+      "action": "\ud83d\udea8 Immediate action - HNDL exposed",
+      "priority_level": "HIGH",
+      "weighted_score": 0.4367,
+      "parameter_scores": {
+        "auth_token_crypto": {
+          "score": 0.2,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.03,
+          "details": "ES256 signing \u2014 Algorithm 'ES256' is vulnerable to quantum attack"
+        },
+        "tls_transport": {
+          "score": 0.48,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0576,
+          "details": "TLS 1.3 + ECDHE_P256"
+        },
+        "oauth_oidc": {
+          "score": 0.48,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.048,
+          "details": "OAuth at https://sso.acmecorp.com/.well-known/openid-configuration"
+        },
+        "key_management": {
+          "score": 0.607,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0728,
+          "details": "cloud_kms storage, automatic_365days"
+        },
+        "quantum_readiness": {
+          "score": 0.5,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.044,
+          "details": "No PQC readiness"
+        },
+        "certificate_security": {
+          "score": null,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.0,
+          "details": "No certificate data provided"
+        },
+        "api_encryption": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "No API encryption data provided"
+        },
+        "session_management": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "No session management data provided"
+        },
+        "data_at_rest": {
+          "score": null,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.0,
+          "details": "No data-at-rest encryption data provided"
+        },
+        "regulatory_compliance": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "No regulatory compliance data provided"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "auth_token_crypto",
+          "asset": "user-auth.acmecorp.com",
+          "algorithm": "ES256",
+          "score": 0.2,
+          "quantum_vulnerable": true,
+          "risk_level": "HIGH",
+          "reason": "Algorithm 'ES256' is vulnerable to quantum attack",
+          "migration_target": {
+            "algorithm": "ML-DSA-44",
+            "standard": "FIPS 204"
+          }
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "user-auth.acmecorp.com",
+          "component": "key_exchange",
+          "value": "ECDHE_P256",
+          "risk": "HIGH",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "user-auth.acmecorp.com",
+          "component": "certificate",
+          "value": "ECDSA_P256",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "oauth_oidc",
+          "asset": "user-auth.acmecorp.com",
+          "component": "signing_algorithm",
+          "algorithm": "ES256",
+          "risk": "HIGH",
+          "recommendation": "Migrate to ML-DSA (FIPS 204)"
+        },
+        {
+          "parameter": "oauth_oidc",
+          "asset": "user-auth.acmecorp.com",
+          "component": "jwks_key_types",
+          "key_types": [
+            "EC"
+          ],
+          "risk": "HIGH",
+          "recommendation": "Plan JWKS key migration to PQC-safe key types"
+        },
+        {
+          "parameter": "key_management",
+          "asset": "user-auth.acmecorp.com",
+          "component": "key_algorithm",
+          "value": "ECC-P256",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+        },
+        {
+          "parameter": "quantum_readiness",
+          "asset": "user-auth.acmecorp.com",
+          "component": "pqc_deployment",
+          "risk": "HIGH",
+          "recommendation": "Begin PQC algorithm testing and deployment"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Migrate JWT signing from RSA/ECDSA to ML-DSA (FIPS 204). Current tokens are vulnerable to Shor's algorithm.",
+        "MEDIUM: Improve tls_transport (TLS 1.3 + ECDHE_P256). Score 0.5/1.0 indicates partial quantum exposure.",
+        "MEDIUM: Improve oauth_oidc (OAuth at https://sso.acmecorp.com/.well-known/openid-configuration). Score 0.5/1.0 indicates partial quantum exposure.",
+        "MEDIUM: Improve quantum_readiness (No PQC readiness). Score 0.5/1.0 indicates partial quantum exposure."
+      ],
+      "priority_rank": 4
+    },
+    {
+      "asset": "data-analytics-api.acmecorp.com",
+      "domain": "web_api",
+      "region": "US",
+      "score_100": 60,
+      "verdict": "Moderate Risk",
+      "action": "\ud83d\udd36 Urgent migration within 6 months",
+      "priority_level": "MEDIUM",
+      "weighted_score": 0.6028,
+      "parameter_scores": {
+        "auth_token_crypto": {
+          "score": 0.7,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.105,
+          "details": "HS256 signing \u2014 Algorithm 'HS256' is quantum-resistant"
+        },
+        "tls_transport": {
+          "score": 0.53,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0636,
+          "details": "TLS 1.3 + X25519"
+        },
+        "oauth_oidc": {
+          "score": 0.56,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.056,
+          "details": "OAuth at https://internal-auth.acmecorp.com/oauth/config"
+        },
+        "key_management": {
+          "score": 0.797,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0956,
+          "details": "vault storage, automatic_180days"
+        },
+        "quantum_readiness": {
+          "score": 0.32,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0282,
+          "details": "No PQC readiness"
+        },
+        "certificate_security": {
+          "score": null,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.0,
+          "details": "No certificate data provided"
+        },
+        "api_encryption": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "No API encryption data provided"
+        },
+        "session_management": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "No session management data provided"
+        },
+        "data_at_rest": {
+          "score": null,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.0,
+          "details": "No data-at-rest encryption data provided"
+        },
+        "regulatory_compliance": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "No regulatory compliance data provided"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "data-analytics-api.acmecorp.com",
+          "component": "key_exchange",
+          "value": "X25519",
+          "risk": "HIGH",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "data-analytics-api.acmecorp.com",
+          "component": "certificate",
+          "value": "ECDSA_P384",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "oauth_oidc",
+          "asset": "data-analytics-api.acmecorp.com",
+          "component": "pkce",
+          "risk": "MEDIUM",
+          "recommendation": "Enable PKCE for authorization code flows"
+        },
+        {
+          "parameter": "quantum_readiness",
+          "asset": "data-analytics-api.acmecorp.com",
+          "component": "pqc_deployment",
+          "risk": "HIGH",
+          "recommendation": "Begin PQC algorithm testing and deployment"
+        },
+        {
+          "parameter": "quantum_readiness",
+          "asset": "data-analytics-api.acmecorp.com",
+          "component": "migration_plan",
+          "risk": "MEDIUM",
+          "recommendation": "Create a PQC migration plan with timeline"
+        }
+      ],
+      "migration_recommendations": [
+        "MEDIUM: Improve tls_transport (TLS 1.3 + X25519). Score 0.5/1.0 indicates partial quantum exposure.",
+        "MEDIUM: Improve oauth_oidc (OAuth at https://internal-auth.acmecorp.com/oauth/config). Score 0.6/1.0 indicates partial quantum exposure.",
+        "MEDIUM: Improve quantum_readiness (No PQC readiness). Score 0.3/1.0 indicates partial quantum exposure."
+      ],
+      "priority_rank": 5
+    }
+  ]
+}

@@ -1,0 +1,3167 @@
+{
+  "schema_version": "1.0",
+  "agent_name": "web_api_agent",
+  "timestamp": "2026-04-02T12:35:24.469856+00:00",
+  "run_id": "1c5a1847-d5df-4aba-ab5e-dd19955ca769",
+  "findings": [
+    {
+      "parameter": "tls_transport",
+      "asset": "google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "google.com",
+      "component": "certificate",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "google.com",
+      "issue": "No API payload encryption",
+      "details": "Sensitive data transmitted in plaintext",
+      "recommendation": "Implement AES-256-GCM payload encryption"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "google.com",
+      "issue": "No field-level encryption",
+      "details": "Sensitive fields not individually encrypted",
+      "recommendation": "Implement field-level encryption for PII/PHI"
+    },
+    {
+      "parameter": "session_management",
+      "asset": "google.com",
+      "issue": "Insecure cookie configuration",
+      "details": "Missing Secure, HttpOnly, SameSite flags",
+      "recommendation": "Enable all security cookie flags"
+    },
+    {
+      "parameter": "session_management",
+      "asset": "google.com",
+      "issue": "No session regeneration",
+      "details": "Session ID not regenerated after authentication",
+      "recommendation": "Regenerate session ID on privilege changes"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "google.com",
+      "issue": "Weak data-at-rest encryption",
+      "details": "AES-128 provides only 64-bit quantum security",
+      "recommendation": "Upgrade to AES-256 for quantum resistance"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "google.com",
+      "issue": "Insecure key storage",
+      "details": "Encryption keys stored on filesystem",
+      "recommendation": "Use HSM or cloud KMS for key storage"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "google.com",
+      "issue": "No key rotation policy",
+      "details": "Encryption keys not rotated regularly",
+      "recommendation": "Implement 90-day key rotation"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "google.com",
+      "issue": "No compliance framework identified",
+      "details": "No regulatory compliance framework in use",
+      "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "google.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "google.com",
+      "issue": "Insufficient audit logging",
+      "details": "Cryptographic operations not logged for compliance",
+      "recommendation": "Implement comprehensive audit logging"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "google.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "www.google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "www.google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "www.google.com",
+      "component": "certificate",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "www.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "www.google.com",
+      "issue": "No API payload encryption",
+      "details": "Sensitive data transmitted in plaintext",
+      "recommendation": "Implement AES-256-GCM payload encryption"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "www.google.com",
+      "issue": "No field-level encryption",
+      "details": "Sensitive fields not individually encrypted",
+      "recommendation": "Implement field-level encryption for PII/PHI"
+    },
+    {
+      "parameter": "session_management",
+      "asset": "www.google.com",
+      "issue": "Insecure cookie configuration",
+      "details": "Missing Secure, HttpOnly, SameSite flags",
+      "recommendation": "Enable all security cookie flags"
+    },
+    {
+      "parameter": "session_management",
+      "asset": "www.google.com",
+      "issue": "No session regeneration",
+      "details": "Session ID not regenerated after authentication",
+      "recommendation": "Regenerate session ID on privilege changes"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "www.google.com",
+      "issue": "Weak data-at-rest encryption",
+      "details": "AES-128 provides only 64-bit quantum security",
+      "recommendation": "Upgrade to AES-256 for quantum resistance"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "www.google.com",
+      "issue": "Insecure key storage",
+      "details": "Encryption keys stored on filesystem",
+      "recommendation": "Use HSM or cloud KMS for key storage"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "www.google.com",
+      "issue": "No key rotation policy",
+      "details": "Encryption keys not rotated regularly",
+      "recommendation": "Implement 90-day key rotation"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "www.google.com",
+      "issue": "No compliance framework identified",
+      "details": "No regulatory compliance framework in use",
+      "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "www.google.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "www.google.com",
+      "issue": "Insufficient audit logging",
+      "details": "Cryptographic operations not logged for compliance",
+      "recommendation": "Implement comprehensive audit logging"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "www.google.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "api.google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "api.google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "api.google.com",
+      "component": "certificate",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "api.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "api.google.com",
+      "issue": "No API payload encryption",
+      "details": "Sensitive data transmitted in plaintext",
+      "recommendation": "Implement AES-256-GCM payload encryption"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "api.google.com",
+      "issue": "No field-level encryption",
+      "details": "Sensitive fields not individually encrypted",
+      "recommendation": "Implement field-level encryption for PII/PHI"
+    },
+    {
+      "parameter": "session_management",
+      "asset": "api.google.com",
+      "issue": "Insecure cookie configuration",
+      "details": "Missing Secure, HttpOnly, SameSite flags",
+      "recommendation": "Enable all security cookie flags"
+    },
+    {
+      "parameter": "session_management",
+      "asset": "api.google.com",
+      "issue": "No session regeneration",
+      "details": "Session ID not regenerated after authentication",
+      "recommendation": "Regenerate session ID on privilege changes"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "api.google.com",
+      "issue": "Weak data-at-rest encryption",
+      "details": "AES-128 provides only 64-bit quantum security",
+      "recommendation": "Upgrade to AES-256 for quantum resistance"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "api.google.com",
+      "issue": "Insecure key storage",
+      "details": "Encryption keys stored on filesystem",
+      "recommendation": "Use HSM or cloud KMS for key storage"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "api.google.com",
+      "issue": "No key rotation policy",
+      "details": "Encryption keys not rotated regularly",
+      "recommendation": "Implement 90-day key rotation"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "api.google.com",
+      "issue": "No compliance framework identified",
+      "details": "No regulatory compliance framework in use",
+      "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "api.google.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "api.google.com",
+      "issue": "Insufficient audit logging",
+      "details": "Cryptographic operations not logged for compliance",
+      "recommendation": "Implement comprehensive audit logging"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "api.google.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "admin.google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "admin.google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "admin.google.com",
+      "component": "certificate",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "admin.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "admin.google.com",
+      "issue": "No API payload encryption",
+      "details": "Sensitive data transmitted in plaintext",
+      "recommendation": "Implement AES-256-GCM payload encryption"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "admin.google.com",
+      "issue": "No field-level encryption",
+      "details": "Sensitive fields not individually encrypted",
+      "recommendation": "Implement field-level encryption for PII/PHI"
+    },
+    {
+      "parameter": "session_management",
+      "asset": "admin.google.com",
+      "issue": "Insecure cookie configuration",
+      "details": "Missing Secure, HttpOnly, SameSite flags",
+      "recommendation": "Enable all security cookie flags"
+    },
+    {
+      "parameter": "session_management",
+      "asset": "admin.google.com",
+      "issue": "No session regeneration",
+      "details": "Session ID not regenerated after authentication",
+      "recommendation": "Regenerate session ID on privilege changes"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "admin.google.com",
+      "issue": "Weak data-at-rest encryption",
+      "details": "AES-128 provides only 64-bit quantum security",
+      "recommendation": "Upgrade to AES-256 for quantum resistance"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "admin.google.com",
+      "issue": "Insecure key storage",
+      "details": "Encryption keys stored on filesystem",
+      "recommendation": "Use HSM or cloud KMS for key storage"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "admin.google.com",
+      "issue": "No key rotation policy",
+      "details": "Encryption keys not rotated regularly",
+      "recommendation": "Implement 90-day key rotation"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "admin.google.com",
+      "issue": "No compliance framework identified",
+      "details": "No regulatory compliance framework in use",
+      "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "admin.google.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "admin.google.com",
+      "issue": "Insufficient audit logging",
+      "details": "Cryptographic operations not logged for compliance",
+      "recommendation": "Implement comprehensive audit logging"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "admin.google.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "mail.google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "mail.google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "mail.google.com",
+      "component": "certificate",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "mail.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "mail.google.com",
+      "issue": "No API payload encryption",
+      "details": "Sensitive data transmitted in plaintext",
+      "recommendation": "Implement AES-256-GCM payload encryption"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "mail.google.com",
+      "issue": "No field-level encryption",
+      "details": "Sensitive fields not individually encrypted",
+      "recommendation": "Implement field-level encryption for PII/PHI"
+    },
+    {
+      "parameter": "session_management",
+      "asset": "mail.google.com",
+      "issue": "Insecure cookie configuration",
+      "details": "Missing Secure, HttpOnly, SameSite flags",
+      "recommendation": "Enable all security cookie flags"
+    },
+    {
+      "parameter": "session_management",
+      "asset": "mail.google.com",
+      "issue": "No session regeneration",
+      "details": "Session ID not regenerated after authentication",
+      "recommendation": "Regenerate session ID on privilege changes"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "mail.google.com",
+      "issue": "Weak data-at-rest encryption",
+      "details": "AES-128 provides only 64-bit quantum security",
+      "recommendation": "Upgrade to AES-256 for quantum resistance"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "mail.google.com",
+      "issue": "Insecure key storage",
+      "details": "Encryption keys stored on filesystem",
+      "recommendation": "Use HSM or cloud KMS for key storage"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "mail.google.com",
+      "issue": "No key rotation policy",
+      "details": "Encryption keys not rotated regularly",
+      "recommendation": "Implement 90-day key rotation"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "mail.google.com",
+      "issue": "No compliance framework identified",
+      "details": "No regulatory compliance framework in use",
+      "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "mail.google.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "mail.google.com",
+      "issue": "Insufficient audit logging",
+      "details": "Cryptographic operations not logged for compliance",
+      "recommendation": "Implement comprehensive audit logging"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "mail.google.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "blog.google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "blog.google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "blog.google.com",
+      "component": "certificate",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "blog.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "blog.google.com",
+      "issue": "No API payload encryption",
+      "details": "Sensitive data transmitted in plaintext",
+      "recommendation": "Implement AES-256-GCM payload encryption"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "blog.google.com",
+      "issue": "No field-level encryption",
+      "details": "Sensitive fields not individually encrypted",
+      "recommendation": "Implement field-level encryption for PII/PHI"
+    },
+    {
+      "parameter": "session_management",
+      "asset": "blog.google.com",
+      "issue": "Insecure cookie configuration",
+      "details": "Missing Secure, HttpOnly, SameSite flags",
+      "recommendation": "Enable all security cookie flags"
+    },
+    {
+      "parameter": "session_management",
+      "asset": "blog.google.com",
+      "issue": "No session regeneration",
+      "details": "Session ID not regenerated after authentication",
+      "recommendation": "Regenerate session ID on privilege changes"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "blog.google.com",
+      "issue": "Weak data-at-rest encryption",
+      "details": "AES-128 provides only 64-bit quantum security",
+      "recommendation": "Upgrade to AES-256 for quantum resistance"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "blog.google.com",
+      "issue": "Insecure key storage",
+      "details": "Encryption keys stored on filesystem",
+      "recommendation": "Use HSM or cloud KMS for key storage"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "blog.google.com",
+      "issue": "No key rotation policy",
+      "details": "Encryption keys not rotated regularly",
+      "recommendation": "Implement 90-day key rotation"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "blog.google.com",
+      "issue": "No compliance framework identified",
+      "details": "No regulatory compliance framework in use",
+      "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "blog.google.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "blog.google.com",
+      "issue": "Insufficient audit logging",
+      "details": "Cryptographic operations not logged for compliance",
+      "recommendation": "Implement comprehensive audit logging"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "blog.google.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "shop.google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "shop.google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "shop.google.com",
+      "component": "certificate",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "shop.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "shop.google.com",
+      "issue": "No API payload encryption",
+      "details": "Sensitive data transmitted in plaintext",
+      "recommendation": "Implement AES-256-GCM payload encryption"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "shop.google.com",
+      "issue": "No field-level encryption",
+      "details": "Sensitive fields not individually encrypted",
+      "recommendation": "Implement field-level encryption for PII/PHI"
+    },
+    {
+      "parameter": "session_management",
+      "asset": "shop.google.com",
+      "issue": "Insecure cookie configuration",
+      "details": "Missing Secure, HttpOnly, SameSite flags",
+      "recommendation": "Enable all security cookie flags"
+    },
+    {
+      "parameter": "session_management",
+      "asset": "shop.google.com",
+      "issue": "No session regeneration",
+      "details": "Session ID not regenerated after authentication",
+      "recommendation": "Regenerate session ID on privilege changes"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "shop.google.com",
+      "issue": "Weak data-at-rest encryption",
+      "details": "AES-128 provides only 64-bit quantum security",
+      "recommendation": "Upgrade to AES-256 for quantum resistance"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "shop.google.com",
+      "issue": "Insecure key storage",
+      "details": "Encryption keys stored on filesystem",
+      "recommendation": "Use HSM or cloud KMS for key storage"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "shop.google.com",
+      "issue": "No key rotation policy",
+      "details": "Encryption keys not rotated regularly",
+      "recommendation": "Implement 90-day key rotation"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "shop.google.com",
+      "issue": "No compliance framework identified",
+      "details": "No regulatory compliance framework in use",
+      "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "shop.google.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "shop.google.com",
+      "issue": "Insufficient audit logging",
+      "details": "Cryptographic operations not logged for compliance",
+      "recommendation": "Implement comprehensive audit logging"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "shop.google.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "store.google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "store.google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "store.google.com",
+      "component": "certificate",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "store.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "store.google.com",
+      "issue": "No API payload encryption",
+      "details": "Sensitive data transmitted in plaintext",
+      "recommendation": "Implement AES-256-GCM payload encryption"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "store.google.com",
+      "issue": "No field-level encryption",
+      "details": "Sensitive fields not individually encrypted",
+      "recommendation": "Implement field-level encryption for PII/PHI"
+    },
+    {
+      "parameter": "session_management",
+      "asset": "store.google.com",
+      "issue": "Insecure cookie configuration",
+      "details": "Missing Secure, HttpOnly, SameSite flags",
+      "recommendation": "Enable all security cookie flags"
+    },
+    {
+      "parameter": "session_management",
+      "asset": "store.google.com",
+      "issue": "No session regeneration",
+      "details": "Session ID not regenerated after authentication",
+      "recommendation": "Regenerate session ID on privilege changes"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "store.google.com",
+      "issue": "Weak data-at-rest encryption",
+      "details": "AES-128 provides only 64-bit quantum security",
+      "recommendation": "Upgrade to AES-256 for quantum resistance"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "store.google.com",
+      "issue": "Insecure key storage",
+      "details": "Encryption keys stored on filesystem",
+      "recommendation": "Use HSM or cloud KMS for key storage"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "store.google.com",
+      "issue": "No key rotation policy",
+      "details": "Encryption keys not rotated regularly",
+      "recommendation": "Implement 90-day key rotation"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "store.google.com",
+      "issue": "No compliance framework identified",
+      "details": "No regulatory compliance framework in use",
+      "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "store.google.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "store.google.com",
+      "issue": "Insufficient audit logging",
+      "details": "Cryptographic operations not logged for compliance",
+      "recommendation": "Implement comprehensive audit logging"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "store.google.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "images.google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "images.google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "images.google.com",
+      "component": "certificate",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "images.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "images.google.com",
+      "issue": "No API payload encryption",
+      "details": "Sensitive data transmitted in plaintext",
+      "recommendation": "Implement AES-256-GCM payload encryption"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "images.google.com",
+      "issue": "No field-level encryption",
+      "details": "Sensitive fields not individually encrypted",
+      "recommendation": "Implement field-level encryption for PII/PHI"
+    },
+    {
+      "parameter": "session_management",
+      "asset": "images.google.com",
+      "issue": "Insecure cookie configuration",
+      "details": "Missing Secure, HttpOnly, SameSite flags",
+      "recommendation": "Enable all security cookie flags"
+    },
+    {
+      "parameter": "session_management",
+      "asset": "images.google.com",
+      "issue": "No session regeneration",
+      "details": "Session ID not regenerated after authentication",
+      "recommendation": "Regenerate session ID on privilege changes"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "images.google.com",
+      "issue": "Weak data-at-rest encryption",
+      "details": "AES-128 provides only 64-bit quantum security",
+      "recommendation": "Upgrade to AES-256 for quantum resistance"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "images.google.com",
+      "issue": "Insecure key storage",
+      "details": "Encryption keys stored on filesystem",
+      "recommendation": "Use HSM or cloud KMS for key storage"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "images.google.com",
+      "issue": "No key rotation policy",
+      "details": "Encryption keys not rotated regularly",
+      "recommendation": "Implement 90-day key rotation"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "images.google.com",
+      "issue": "No compliance framework identified",
+      "details": "No regulatory compliance framework in use",
+      "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "images.google.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "images.google.com",
+      "issue": "Insufficient audit logging",
+      "details": "Cryptographic operations not logged for compliance",
+      "recommendation": "Implement comprehensive audit logging"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "images.google.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "support.google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "support.google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "support.google.com",
+      "component": "certificate",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "support.google.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "support.google.com",
+      "issue": "No API payload encryption",
+      "details": "Sensitive data transmitted in plaintext",
+      "recommendation": "Implement AES-256-GCM payload encryption"
+    },
+    {
+      "parameter": "api_encryption",
+      "asset": "support.google.com",
+      "issue": "No field-level encryption",
+      "details": "Sensitive fields not individually encrypted",
+      "recommendation": "Implement field-level encryption for PII/PHI"
+    },
+    {
+      "parameter": "session_management",
+      "asset": "support.google.com",
+      "issue": "Insecure cookie configuration",
+      "details": "Missing Secure, HttpOnly, SameSite flags",
+      "recommendation": "Enable all security cookie flags"
+    },
+    {
+      "parameter": "session_management",
+      "asset": "support.google.com",
+      "issue": "No session regeneration",
+      "details": "Session ID not regenerated after authentication",
+      "recommendation": "Regenerate session ID on privilege changes"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "support.google.com",
+      "issue": "Weak data-at-rest encryption",
+      "details": "AES-128 provides only 64-bit quantum security",
+      "recommendation": "Upgrade to AES-256 for quantum resistance"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "support.google.com",
+      "issue": "Insecure key storage",
+      "details": "Encryption keys stored on filesystem",
+      "recommendation": "Use HSM or cloud KMS for key storage"
+    },
+    {
+      "parameter": "data_at_rest",
+      "asset": "support.google.com",
+      "issue": "No key rotation policy",
+      "details": "Encryption keys not rotated regularly",
+      "recommendation": "Implement 90-day key rotation"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "support.google.com",
+      "issue": "No compliance framework identified",
+      "details": "No regulatory compliance framework in use",
+      "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "support.google.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "support.google.com",
+      "issue": "Insufficient audit logging",
+      "details": "Cryptographic operations not logged for compliance",
+      "recommendation": "Implement comprehensive audit logging"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "support.google.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    }
+  ],
+  "summary": {
+    "total_findings": 150,
+    "critical": 20,
+    "high": 10,
+    "medium": 0,
+    "low": 0
+  },
+  "rated_assets": [
+    {
+      "asset": "google.com",
+      "domain": "web_api",
+      "region": "US",
+      "score_100": 33,
+      "verdict": "Insecure",
+      "action": "\ud83d\udc80 Emergency migration required",
+      "priority_level": "CRITICAL",
+      "weighted_score": 0.3251,
+      "parameter_scores": {
+        "auth_token_crypto": {
+          "score": null,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0,
+          "details": "No JWT token analyzed"
+        },
+        "tls_transport": {
+          "score": 0.075,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.009,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "oauth_oidc": {
+          "score": null,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.0,
+          "details": "No public OAuth config provided"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0,
+          "details": "Internal key management data inaccessible"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.06,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "api_encryption": {
+          "score": 0.5,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.04,
+          "details": "Payload: none"
+        },
+        "session_management": {
+          "score": 0.6,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.048,
+          "details": "Token: HMAC-SHA256, timeout: 30m"
+        },
+        "data_at_rest": {
+          "score": 0.3,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.027,
+          "details": "Storage: AES-128"
+        },
+        "regulatory_compliance": {
+          "score": 0.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "Frameworks: 0, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "google.com",
+          "component": "certificate",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "google.com",
+          "issue": "No API payload encryption",
+          "details": "Sensitive data transmitted in plaintext",
+          "recommendation": "Implement AES-256-GCM payload encryption"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "google.com",
+          "issue": "No field-level encryption",
+          "details": "Sensitive fields not individually encrypted",
+          "recommendation": "Implement field-level encryption for PII/PHI"
+        },
+        {
+          "parameter": "session_management",
+          "asset": "google.com",
+          "issue": "Insecure cookie configuration",
+          "details": "Missing Secure, HttpOnly, SameSite flags",
+          "recommendation": "Enable all security cookie flags"
+        },
+        {
+          "parameter": "session_management",
+          "asset": "google.com",
+          "issue": "No session regeneration",
+          "details": "Session ID not regenerated after authentication",
+          "recommendation": "Regenerate session ID on privilege changes"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "google.com",
+          "issue": "Weak data-at-rest encryption",
+          "details": "AES-128 provides only 64-bit quantum security",
+          "recommendation": "Upgrade to AES-256 for quantum resistance"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "google.com",
+          "issue": "Insecure key storage",
+          "details": "Encryption keys stored on filesystem",
+          "recommendation": "Use HSM or cloud KMS for key storage"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "google.com",
+          "issue": "No key rotation policy",
+          "details": "Encryption keys not rotated regularly",
+          "recommendation": "Implement 90-day key rotation"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "google.com",
+          "issue": "No compliance framework identified",
+          "details": "No regulatory compliance framework in use",
+          "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "google.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "google.com",
+          "issue": "Insufficient audit logging",
+          "details": "Cryptographic operations not logged for compliance",
+          "recommendation": "Implement comprehensive audit logging"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "google.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "MEDIUM: Improve api_encryption (Payload: none). Score 0.5/1.0 indicates partial quantum exposure."
+      ],
+      "priority_rank": 1
+    },
+    {
+      "asset": "www.google.com",
+      "domain": "web_api",
+      "region": "US",
+      "score_100": 33,
+      "verdict": "Insecure",
+      "action": "\ud83d\udc80 Emergency migration required",
+      "priority_level": "CRITICAL",
+      "weighted_score": 0.3251,
+      "parameter_scores": {
+        "auth_token_crypto": {
+          "score": null,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0,
+          "details": "No JWT token analyzed"
+        },
+        "tls_transport": {
+          "score": 0.075,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.009,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "oauth_oidc": {
+          "score": null,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.0,
+          "details": "No public OAuth config provided"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0,
+          "details": "Internal key management data inaccessible"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.06,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "api_encryption": {
+          "score": 0.5,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.04,
+          "details": "Payload: none"
+        },
+        "session_management": {
+          "score": 0.6,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.048,
+          "details": "Token: HMAC-SHA256, timeout: 30m"
+        },
+        "data_at_rest": {
+          "score": 0.3,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.027,
+          "details": "Storage: AES-128"
+        },
+        "regulatory_compliance": {
+          "score": 0.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "Frameworks: 0, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "www.google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "www.google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "www.google.com",
+          "component": "certificate",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "www.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "www.google.com",
+          "issue": "No API payload encryption",
+          "details": "Sensitive data transmitted in plaintext",
+          "recommendation": "Implement AES-256-GCM payload encryption"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "www.google.com",
+          "issue": "No field-level encryption",
+          "details": "Sensitive fields not individually encrypted",
+          "recommendation": "Implement field-level encryption for PII/PHI"
+        },
+        {
+          "parameter": "session_management",
+          "asset": "www.google.com",
+          "issue": "Insecure cookie configuration",
+          "details": "Missing Secure, HttpOnly, SameSite flags",
+          "recommendation": "Enable all security cookie flags"
+        },
+        {
+          "parameter": "session_management",
+          "asset": "www.google.com",
+          "issue": "No session regeneration",
+          "details": "Session ID not regenerated after authentication",
+          "recommendation": "Regenerate session ID on privilege changes"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "www.google.com",
+          "issue": "Weak data-at-rest encryption",
+          "details": "AES-128 provides only 64-bit quantum security",
+          "recommendation": "Upgrade to AES-256 for quantum resistance"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "www.google.com",
+          "issue": "Insecure key storage",
+          "details": "Encryption keys stored on filesystem",
+          "recommendation": "Use HSM or cloud KMS for key storage"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "www.google.com",
+          "issue": "No key rotation policy",
+          "details": "Encryption keys not rotated regularly",
+          "recommendation": "Implement 90-day key rotation"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "www.google.com",
+          "issue": "No compliance framework identified",
+          "details": "No regulatory compliance framework in use",
+          "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "www.google.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "www.google.com",
+          "issue": "Insufficient audit logging",
+          "details": "Cryptographic operations not logged for compliance",
+          "recommendation": "Implement comprehensive audit logging"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "www.google.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "MEDIUM: Improve api_encryption (Payload: none). Score 0.5/1.0 indicates partial quantum exposure."
+      ],
+      "priority_rank": 2
+    },
+    {
+      "asset": "api.google.com",
+      "domain": "web_api",
+      "region": "US",
+      "score_100": 33,
+      "verdict": "Insecure",
+      "action": "\ud83d\udc80 Emergency migration required",
+      "priority_level": "CRITICAL",
+      "weighted_score": 0.3251,
+      "parameter_scores": {
+        "auth_token_crypto": {
+          "score": null,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0,
+          "details": "No JWT token analyzed"
+        },
+        "tls_transport": {
+          "score": 0.075,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.009,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "oauth_oidc": {
+          "score": null,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.0,
+          "details": "No public OAuth config provided"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0,
+          "details": "Internal key management data inaccessible"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.06,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "api_encryption": {
+          "score": 0.5,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.04,
+          "details": "Payload: none"
+        },
+        "session_management": {
+          "score": 0.6,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.048,
+          "details": "Token: HMAC-SHA256, timeout: 30m"
+        },
+        "data_at_rest": {
+          "score": 0.3,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.027,
+          "details": "Storage: AES-128"
+        },
+        "regulatory_compliance": {
+          "score": 0.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "Frameworks: 0, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "api.google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "api.google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "api.google.com",
+          "component": "certificate",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "api.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "api.google.com",
+          "issue": "No API payload encryption",
+          "details": "Sensitive data transmitted in plaintext",
+          "recommendation": "Implement AES-256-GCM payload encryption"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "api.google.com",
+          "issue": "No field-level encryption",
+          "details": "Sensitive fields not individually encrypted",
+          "recommendation": "Implement field-level encryption for PII/PHI"
+        },
+        {
+          "parameter": "session_management",
+          "asset": "api.google.com",
+          "issue": "Insecure cookie configuration",
+          "details": "Missing Secure, HttpOnly, SameSite flags",
+          "recommendation": "Enable all security cookie flags"
+        },
+        {
+          "parameter": "session_management",
+          "asset": "api.google.com",
+          "issue": "No session regeneration",
+          "details": "Session ID not regenerated after authentication",
+          "recommendation": "Regenerate session ID on privilege changes"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "api.google.com",
+          "issue": "Weak data-at-rest encryption",
+          "details": "AES-128 provides only 64-bit quantum security",
+          "recommendation": "Upgrade to AES-256 for quantum resistance"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "api.google.com",
+          "issue": "Insecure key storage",
+          "details": "Encryption keys stored on filesystem",
+          "recommendation": "Use HSM or cloud KMS for key storage"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "api.google.com",
+          "issue": "No key rotation policy",
+          "details": "Encryption keys not rotated regularly",
+          "recommendation": "Implement 90-day key rotation"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "api.google.com",
+          "issue": "No compliance framework identified",
+          "details": "No regulatory compliance framework in use",
+          "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "api.google.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "api.google.com",
+          "issue": "Insufficient audit logging",
+          "details": "Cryptographic operations not logged for compliance",
+          "recommendation": "Implement comprehensive audit logging"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "api.google.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "MEDIUM: Improve api_encryption (Payload: none). Score 0.5/1.0 indicates partial quantum exposure."
+      ],
+      "priority_rank": 3
+    },
+    {
+      "asset": "admin.google.com",
+      "domain": "web_api",
+      "region": "US",
+      "score_100": 33,
+      "verdict": "Insecure",
+      "action": "\ud83d\udc80 Emergency migration required",
+      "priority_level": "CRITICAL",
+      "weighted_score": 0.3251,
+      "parameter_scores": {
+        "auth_token_crypto": {
+          "score": null,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0,
+          "details": "No JWT token analyzed"
+        },
+        "tls_transport": {
+          "score": 0.075,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.009,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "oauth_oidc": {
+          "score": null,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.0,
+          "details": "No public OAuth config provided"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0,
+          "details": "Internal key management data inaccessible"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.06,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "api_encryption": {
+          "score": 0.5,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.04,
+          "details": "Payload: none"
+        },
+        "session_management": {
+          "score": 0.6,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.048,
+          "details": "Token: HMAC-SHA256, timeout: 30m"
+        },
+        "data_at_rest": {
+          "score": 0.3,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.027,
+          "details": "Storage: AES-128"
+        },
+        "regulatory_compliance": {
+          "score": 0.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "Frameworks: 0, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "admin.google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "admin.google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "admin.google.com",
+          "component": "certificate",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "admin.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "admin.google.com",
+          "issue": "No API payload encryption",
+          "details": "Sensitive data transmitted in plaintext",
+          "recommendation": "Implement AES-256-GCM payload encryption"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "admin.google.com",
+          "issue": "No field-level encryption",
+          "details": "Sensitive fields not individually encrypted",
+          "recommendation": "Implement field-level encryption for PII/PHI"
+        },
+        {
+          "parameter": "session_management",
+          "asset": "admin.google.com",
+          "issue": "Insecure cookie configuration",
+          "details": "Missing Secure, HttpOnly, SameSite flags",
+          "recommendation": "Enable all security cookie flags"
+        },
+        {
+          "parameter": "session_management",
+          "asset": "admin.google.com",
+          "issue": "No session regeneration",
+          "details": "Session ID not regenerated after authentication",
+          "recommendation": "Regenerate session ID on privilege changes"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "admin.google.com",
+          "issue": "Weak data-at-rest encryption",
+          "details": "AES-128 provides only 64-bit quantum security",
+          "recommendation": "Upgrade to AES-256 for quantum resistance"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "admin.google.com",
+          "issue": "Insecure key storage",
+          "details": "Encryption keys stored on filesystem",
+          "recommendation": "Use HSM or cloud KMS for key storage"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "admin.google.com",
+          "issue": "No key rotation policy",
+          "details": "Encryption keys not rotated regularly",
+          "recommendation": "Implement 90-day key rotation"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "admin.google.com",
+          "issue": "No compliance framework identified",
+          "details": "No regulatory compliance framework in use",
+          "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "admin.google.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "admin.google.com",
+          "issue": "Insufficient audit logging",
+          "details": "Cryptographic operations not logged for compliance",
+          "recommendation": "Implement comprehensive audit logging"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "admin.google.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "MEDIUM: Improve api_encryption (Payload: none). Score 0.5/1.0 indicates partial quantum exposure."
+      ],
+      "priority_rank": 4
+    },
+    {
+      "asset": "mail.google.com",
+      "domain": "web_api",
+      "region": "US",
+      "score_100": 33,
+      "verdict": "Insecure",
+      "action": "\ud83d\udc80 Emergency migration required",
+      "priority_level": "CRITICAL",
+      "weighted_score": 0.3251,
+      "parameter_scores": {
+        "auth_token_crypto": {
+          "score": null,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0,
+          "details": "No JWT token analyzed"
+        },
+        "tls_transport": {
+          "score": 0.075,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.009,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "oauth_oidc": {
+          "score": null,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.0,
+          "details": "No public OAuth config provided"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0,
+          "details": "Internal key management data inaccessible"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.06,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "api_encryption": {
+          "score": 0.5,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.04,
+          "details": "Payload: none"
+        },
+        "session_management": {
+          "score": 0.6,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.048,
+          "details": "Token: HMAC-SHA256, timeout: 30m"
+        },
+        "data_at_rest": {
+          "score": 0.3,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.027,
+          "details": "Storage: AES-128"
+        },
+        "regulatory_compliance": {
+          "score": 0.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "Frameworks: 0, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "mail.google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "mail.google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "mail.google.com",
+          "component": "certificate",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "mail.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "mail.google.com",
+          "issue": "No API payload encryption",
+          "details": "Sensitive data transmitted in plaintext",
+          "recommendation": "Implement AES-256-GCM payload encryption"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "mail.google.com",
+          "issue": "No field-level encryption",
+          "details": "Sensitive fields not individually encrypted",
+          "recommendation": "Implement field-level encryption for PII/PHI"
+        },
+        {
+          "parameter": "session_management",
+          "asset": "mail.google.com",
+          "issue": "Insecure cookie configuration",
+          "details": "Missing Secure, HttpOnly, SameSite flags",
+          "recommendation": "Enable all security cookie flags"
+        },
+        {
+          "parameter": "session_management",
+          "asset": "mail.google.com",
+          "issue": "No session regeneration",
+          "details": "Session ID not regenerated after authentication",
+          "recommendation": "Regenerate session ID on privilege changes"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "mail.google.com",
+          "issue": "Weak data-at-rest encryption",
+          "details": "AES-128 provides only 64-bit quantum security",
+          "recommendation": "Upgrade to AES-256 for quantum resistance"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "mail.google.com",
+          "issue": "Insecure key storage",
+          "details": "Encryption keys stored on filesystem",
+          "recommendation": "Use HSM or cloud KMS for key storage"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "mail.google.com",
+          "issue": "No key rotation policy",
+          "details": "Encryption keys not rotated regularly",
+          "recommendation": "Implement 90-day key rotation"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "mail.google.com",
+          "issue": "No compliance framework identified",
+          "details": "No regulatory compliance framework in use",
+          "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "mail.google.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "mail.google.com",
+          "issue": "Insufficient audit logging",
+          "details": "Cryptographic operations not logged for compliance",
+          "recommendation": "Implement comprehensive audit logging"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "mail.google.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "MEDIUM: Improve api_encryption (Payload: none). Score 0.5/1.0 indicates partial quantum exposure."
+      ],
+      "priority_rank": 5
+    },
+    {
+      "asset": "blog.google.com",
+      "domain": "web_api",
+      "region": "US",
+      "score_100": 33,
+      "verdict": "Insecure",
+      "action": "\ud83d\udc80 Emergency migration required",
+      "priority_level": "CRITICAL",
+      "weighted_score": 0.3251,
+      "parameter_scores": {
+        "auth_token_crypto": {
+          "score": null,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0,
+          "details": "No JWT token analyzed"
+        },
+        "tls_transport": {
+          "score": 0.075,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.009,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "oauth_oidc": {
+          "score": null,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.0,
+          "details": "No public OAuth config provided"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0,
+          "details": "Internal key management data inaccessible"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.06,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "api_encryption": {
+          "score": 0.5,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.04,
+          "details": "Payload: none"
+        },
+        "session_management": {
+          "score": 0.6,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.048,
+          "details": "Token: HMAC-SHA256, timeout: 30m"
+        },
+        "data_at_rest": {
+          "score": 0.3,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.027,
+          "details": "Storage: AES-128"
+        },
+        "regulatory_compliance": {
+          "score": 0.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "Frameworks: 0, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "blog.google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "blog.google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "blog.google.com",
+          "component": "certificate",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "blog.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "blog.google.com",
+          "issue": "No API payload encryption",
+          "details": "Sensitive data transmitted in plaintext",
+          "recommendation": "Implement AES-256-GCM payload encryption"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "blog.google.com",
+          "issue": "No field-level encryption",
+          "details": "Sensitive fields not individually encrypted",
+          "recommendation": "Implement field-level encryption for PII/PHI"
+        },
+        {
+          "parameter": "session_management",
+          "asset": "blog.google.com",
+          "issue": "Insecure cookie configuration",
+          "details": "Missing Secure, HttpOnly, SameSite flags",
+          "recommendation": "Enable all security cookie flags"
+        },
+        {
+          "parameter": "session_management",
+          "asset": "blog.google.com",
+          "issue": "No session regeneration",
+          "details": "Session ID not regenerated after authentication",
+          "recommendation": "Regenerate session ID on privilege changes"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "blog.google.com",
+          "issue": "Weak data-at-rest encryption",
+          "details": "AES-128 provides only 64-bit quantum security",
+          "recommendation": "Upgrade to AES-256 for quantum resistance"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "blog.google.com",
+          "issue": "Insecure key storage",
+          "details": "Encryption keys stored on filesystem",
+          "recommendation": "Use HSM or cloud KMS for key storage"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "blog.google.com",
+          "issue": "No key rotation policy",
+          "details": "Encryption keys not rotated regularly",
+          "recommendation": "Implement 90-day key rotation"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "blog.google.com",
+          "issue": "No compliance framework identified",
+          "details": "No regulatory compliance framework in use",
+          "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "blog.google.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "blog.google.com",
+          "issue": "Insufficient audit logging",
+          "details": "Cryptographic operations not logged for compliance",
+          "recommendation": "Implement comprehensive audit logging"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "blog.google.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "MEDIUM: Improve api_encryption (Payload: none). Score 0.5/1.0 indicates partial quantum exposure."
+      ],
+      "priority_rank": 6
+    },
+    {
+      "asset": "shop.google.com",
+      "domain": "web_api",
+      "region": "US",
+      "score_100": 33,
+      "verdict": "Insecure",
+      "action": "\ud83d\udc80 Emergency migration required",
+      "priority_level": "CRITICAL",
+      "weighted_score": 0.3251,
+      "parameter_scores": {
+        "auth_token_crypto": {
+          "score": null,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0,
+          "details": "No JWT token analyzed"
+        },
+        "tls_transport": {
+          "score": 0.075,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.009,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "oauth_oidc": {
+          "score": null,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.0,
+          "details": "No public OAuth config provided"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0,
+          "details": "Internal key management data inaccessible"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.06,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "api_encryption": {
+          "score": 0.5,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.04,
+          "details": "Payload: none"
+        },
+        "session_management": {
+          "score": 0.6,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.048,
+          "details": "Token: HMAC-SHA256, timeout: 30m"
+        },
+        "data_at_rest": {
+          "score": 0.3,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.027,
+          "details": "Storage: AES-128"
+        },
+        "regulatory_compliance": {
+          "score": 0.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "Frameworks: 0, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "shop.google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "shop.google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "shop.google.com",
+          "component": "certificate",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "shop.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "shop.google.com",
+          "issue": "No API payload encryption",
+          "details": "Sensitive data transmitted in plaintext",
+          "recommendation": "Implement AES-256-GCM payload encryption"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "shop.google.com",
+          "issue": "No field-level encryption",
+          "details": "Sensitive fields not individually encrypted",
+          "recommendation": "Implement field-level encryption for PII/PHI"
+        },
+        {
+          "parameter": "session_management",
+          "asset": "shop.google.com",
+          "issue": "Insecure cookie configuration",
+          "details": "Missing Secure, HttpOnly, SameSite flags",
+          "recommendation": "Enable all security cookie flags"
+        },
+        {
+          "parameter": "session_management",
+          "asset": "shop.google.com",
+          "issue": "No session regeneration",
+          "details": "Session ID not regenerated after authentication",
+          "recommendation": "Regenerate session ID on privilege changes"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "shop.google.com",
+          "issue": "Weak data-at-rest encryption",
+          "details": "AES-128 provides only 64-bit quantum security",
+          "recommendation": "Upgrade to AES-256 for quantum resistance"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "shop.google.com",
+          "issue": "Insecure key storage",
+          "details": "Encryption keys stored on filesystem",
+          "recommendation": "Use HSM or cloud KMS for key storage"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "shop.google.com",
+          "issue": "No key rotation policy",
+          "details": "Encryption keys not rotated regularly",
+          "recommendation": "Implement 90-day key rotation"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "shop.google.com",
+          "issue": "No compliance framework identified",
+          "details": "No regulatory compliance framework in use",
+          "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "shop.google.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "shop.google.com",
+          "issue": "Insufficient audit logging",
+          "details": "Cryptographic operations not logged for compliance",
+          "recommendation": "Implement comprehensive audit logging"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "shop.google.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "MEDIUM: Improve api_encryption (Payload: none). Score 0.5/1.0 indicates partial quantum exposure."
+      ],
+      "priority_rank": 7
+    },
+    {
+      "asset": "store.google.com",
+      "domain": "web_api",
+      "region": "US",
+      "score_100": 33,
+      "verdict": "Insecure",
+      "action": "\ud83d\udc80 Emergency migration required",
+      "priority_level": "CRITICAL",
+      "weighted_score": 0.3251,
+      "parameter_scores": {
+        "auth_token_crypto": {
+          "score": null,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0,
+          "details": "No JWT token analyzed"
+        },
+        "tls_transport": {
+          "score": 0.075,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.009,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "oauth_oidc": {
+          "score": null,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.0,
+          "details": "No public OAuth config provided"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0,
+          "details": "Internal key management data inaccessible"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.06,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "api_encryption": {
+          "score": 0.5,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.04,
+          "details": "Payload: none"
+        },
+        "session_management": {
+          "score": 0.6,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.048,
+          "details": "Token: HMAC-SHA256, timeout: 30m"
+        },
+        "data_at_rest": {
+          "score": 0.3,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.027,
+          "details": "Storage: AES-128"
+        },
+        "regulatory_compliance": {
+          "score": 0.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "Frameworks: 0, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "store.google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "store.google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "store.google.com",
+          "component": "certificate",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "store.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "store.google.com",
+          "issue": "No API payload encryption",
+          "details": "Sensitive data transmitted in plaintext",
+          "recommendation": "Implement AES-256-GCM payload encryption"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "store.google.com",
+          "issue": "No field-level encryption",
+          "details": "Sensitive fields not individually encrypted",
+          "recommendation": "Implement field-level encryption for PII/PHI"
+        },
+        {
+          "parameter": "session_management",
+          "asset": "store.google.com",
+          "issue": "Insecure cookie configuration",
+          "details": "Missing Secure, HttpOnly, SameSite flags",
+          "recommendation": "Enable all security cookie flags"
+        },
+        {
+          "parameter": "session_management",
+          "asset": "store.google.com",
+          "issue": "No session regeneration",
+          "details": "Session ID not regenerated after authentication",
+          "recommendation": "Regenerate session ID on privilege changes"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "store.google.com",
+          "issue": "Weak data-at-rest encryption",
+          "details": "AES-128 provides only 64-bit quantum security",
+          "recommendation": "Upgrade to AES-256 for quantum resistance"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "store.google.com",
+          "issue": "Insecure key storage",
+          "details": "Encryption keys stored on filesystem",
+          "recommendation": "Use HSM or cloud KMS for key storage"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "store.google.com",
+          "issue": "No key rotation policy",
+          "details": "Encryption keys not rotated regularly",
+          "recommendation": "Implement 90-day key rotation"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "store.google.com",
+          "issue": "No compliance framework identified",
+          "details": "No regulatory compliance framework in use",
+          "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "store.google.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "store.google.com",
+          "issue": "Insufficient audit logging",
+          "details": "Cryptographic operations not logged for compliance",
+          "recommendation": "Implement comprehensive audit logging"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "store.google.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "MEDIUM: Improve api_encryption (Payload: none). Score 0.5/1.0 indicates partial quantum exposure."
+      ],
+      "priority_rank": 8
+    },
+    {
+      "asset": "images.google.com",
+      "domain": "web_api",
+      "region": "US",
+      "score_100": 33,
+      "verdict": "Insecure",
+      "action": "\ud83d\udc80 Emergency migration required",
+      "priority_level": "CRITICAL",
+      "weighted_score": 0.3251,
+      "parameter_scores": {
+        "auth_token_crypto": {
+          "score": null,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0,
+          "details": "No JWT token analyzed"
+        },
+        "tls_transport": {
+          "score": 0.075,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.009,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "oauth_oidc": {
+          "score": null,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.0,
+          "details": "No public OAuth config provided"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0,
+          "details": "Internal key management data inaccessible"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.06,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "api_encryption": {
+          "score": 0.5,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.04,
+          "details": "Payload: none"
+        },
+        "session_management": {
+          "score": 0.6,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.048,
+          "details": "Token: HMAC-SHA256, timeout: 30m"
+        },
+        "data_at_rest": {
+          "score": 0.3,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.027,
+          "details": "Storage: AES-128"
+        },
+        "regulatory_compliance": {
+          "score": 0.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "Frameworks: 0, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "images.google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "images.google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "images.google.com",
+          "component": "certificate",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "images.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "images.google.com",
+          "issue": "No API payload encryption",
+          "details": "Sensitive data transmitted in plaintext",
+          "recommendation": "Implement AES-256-GCM payload encryption"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "images.google.com",
+          "issue": "No field-level encryption",
+          "details": "Sensitive fields not individually encrypted",
+          "recommendation": "Implement field-level encryption for PII/PHI"
+        },
+        {
+          "parameter": "session_management",
+          "asset": "images.google.com",
+          "issue": "Insecure cookie configuration",
+          "details": "Missing Secure, HttpOnly, SameSite flags",
+          "recommendation": "Enable all security cookie flags"
+        },
+        {
+          "parameter": "session_management",
+          "asset": "images.google.com",
+          "issue": "No session regeneration",
+          "details": "Session ID not regenerated after authentication",
+          "recommendation": "Regenerate session ID on privilege changes"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "images.google.com",
+          "issue": "Weak data-at-rest encryption",
+          "details": "AES-128 provides only 64-bit quantum security",
+          "recommendation": "Upgrade to AES-256 for quantum resistance"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "images.google.com",
+          "issue": "Insecure key storage",
+          "details": "Encryption keys stored on filesystem",
+          "recommendation": "Use HSM or cloud KMS for key storage"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "images.google.com",
+          "issue": "No key rotation policy",
+          "details": "Encryption keys not rotated regularly",
+          "recommendation": "Implement 90-day key rotation"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "images.google.com",
+          "issue": "No compliance framework identified",
+          "details": "No regulatory compliance framework in use",
+          "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "images.google.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "images.google.com",
+          "issue": "Insufficient audit logging",
+          "details": "Cryptographic operations not logged for compliance",
+          "recommendation": "Implement comprehensive audit logging"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "images.google.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "MEDIUM: Improve api_encryption (Payload: none). Score 0.5/1.0 indicates partial quantum exposure."
+      ],
+      "priority_rank": 9
+    },
+    {
+      "asset": "support.google.com",
+      "domain": "web_api",
+      "region": "US",
+      "score_100": 33,
+      "verdict": "Insecure",
+      "action": "\ud83d\udc80 Emergency migration required",
+      "priority_level": "CRITICAL",
+      "weighted_score": 0.3251,
+      "parameter_scores": {
+        "auth_token_crypto": {
+          "score": null,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0,
+          "details": "No JWT token analyzed"
+        },
+        "tls_transport": {
+          "score": 0.075,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.009,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "oauth_oidc": {
+          "score": null,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.0,
+          "details": "No public OAuth config provided"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0,
+          "details": "Internal key management data inaccessible"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.06,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "api_encryption": {
+          "score": 0.5,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.04,
+          "details": "Payload: none"
+        },
+        "session_management": {
+          "score": 0.6,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.048,
+          "details": "Token: HMAC-SHA256, timeout: 30m"
+        },
+        "data_at_rest": {
+          "score": 0.3,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.027,
+          "details": "Storage: AES-128"
+        },
+        "regulatory_compliance": {
+          "score": 0.0,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "Frameworks: 0, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "support.google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "support.google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "support.google.com",
+          "component": "certificate",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "support.google.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "support.google.com",
+          "issue": "No API payload encryption",
+          "details": "Sensitive data transmitted in plaintext",
+          "recommendation": "Implement AES-256-GCM payload encryption"
+        },
+        {
+          "parameter": "api_encryption",
+          "asset": "support.google.com",
+          "issue": "No field-level encryption",
+          "details": "Sensitive fields not individually encrypted",
+          "recommendation": "Implement field-level encryption for PII/PHI"
+        },
+        {
+          "parameter": "session_management",
+          "asset": "support.google.com",
+          "issue": "Insecure cookie configuration",
+          "details": "Missing Secure, HttpOnly, SameSite flags",
+          "recommendation": "Enable all security cookie flags"
+        },
+        {
+          "parameter": "session_management",
+          "asset": "support.google.com",
+          "issue": "No session regeneration",
+          "details": "Session ID not regenerated after authentication",
+          "recommendation": "Regenerate session ID on privilege changes"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "support.google.com",
+          "issue": "Weak data-at-rest encryption",
+          "details": "AES-128 provides only 64-bit quantum security",
+          "recommendation": "Upgrade to AES-256 for quantum resistance"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "support.google.com",
+          "issue": "Insecure key storage",
+          "details": "Encryption keys stored on filesystem",
+          "recommendation": "Use HSM or cloud KMS for key storage"
+        },
+        {
+          "parameter": "data_at_rest",
+          "asset": "support.google.com",
+          "issue": "No key rotation policy",
+          "details": "Encryption keys not rotated regularly",
+          "recommendation": "Implement 90-day key rotation"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "support.google.com",
+          "issue": "No compliance framework identified",
+          "details": "No regulatory compliance framework in use",
+          "recommendation": "Implement relevant compliance framework (NIST, ISO, etc.)"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "support.google.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "support.google.com",
+          "issue": "Insufficient audit logging",
+          "details": "Cryptographic operations not logged for compliance",
+          "recommendation": "Implement comprehensive audit logging"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "support.google.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable.",
+        "MEDIUM: Improve api_encryption (Payload: none). Score 0.5/1.0 indicates partial quantum exposure."
+      ],
+      "priority_rank": 10
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0",
+  "agent_name": "web_api_agent",
+  "timestamp": "2026-04-02T12:02:13.967135+00:00",
+  "run_id": "1ee3482c-5422-4c83-9ba2-57855768f995",
+  "findings": [
+    {
+      "parameter": "tls_transport",
+      "asset": "google.com",
+      "component": "tls_version",
+      "value": "TLS TLSv1.3",
+      "risk": "CRITICAL",
+      "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "google.com",
+      "component": "key_exchange",
+      "value": "ECDHE/DHE",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+    },
+    {
+      "parameter": "tls_transport",
+      "asset": "google.com",
+      "component": "certificate",
+      "value": "RSA/ECDSA",
+      "risk": "HIGH",
+      "recommendation": "Plan certificate migration to ML-DSA signed certs"
+    }
+  ],
+  "summary": {
+    "total_findings": 3,
+    "critical": 2,
+    "high": 1,
+    "medium": 0,
+    "low": 0
+  },
+  "rated_assets": [
+    {
+      "asset": "google.com",
+      "domain": "web_api",
+      "region": "US",
+      "score_100": 8,
+      "verdict": "Insecure",
+      "action": "\ud83d\udc80 Emergency migration required",
+      "priority_level": "CRITICAL",
+      "weighted_score": 0.075,
+      "parameter_scores": {
+        "auth_token_crypto": {
+          "score": null,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.0,
+          "details": "No JWT token analyzed"
+        },
+        "tls_transport": {
+          "score": 0.075,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.009,
+          "details": "TLS TLSv1.3 + ECDHE/DHE"
+        },
+        "oauth_oidc": {
+          "score": null,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.0,
+          "details": "No public OAuth config provided"
+        },
+        "key_management": {
+          "score": null,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0,
+          "details": "Internal key management data inaccessible"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data"
+        },
+        "certificate_security": {
+          "score": null,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.0,
+          "details": "Not assessed"
+        },
+        "api_encryption": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "Not assessed"
+        },
+        "session_management": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.0,
+          "details": "Not assessed"
+        },
+        "data_at_rest": {
+          "score": null,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.0,
+          "details": "Not assessed"
+        },
+        "regulatory_compliance": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.0,
+          "details": "Not assessed"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "tls_transport",
+          "asset": "google.com",
+          "component": "tls_version",
+          "value": "TLS TLSv1.3",
+          "risk": "CRITICAL",
+          "recommendation": "Upgrade to TLS 1.3 with hybrid PQC key exchange"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "google.com",
+          "component": "key_exchange",
+          "value": "ECDHE/DHE",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to ML-KEM hybrid key exchange (X25519+ML-KEM-768)"
+        },
+        {
+          "parameter": "tls_transport",
+          "asset": "google.com",
+          "component": "certificate",
+          "value": "RSA/ECDSA",
+          "risk": "HIGH",
+          "recommendation": "Plan certificate migration to ML-DSA signed certs"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade to TLS 1.3 with hybrid PQC key exchange (X25519+ML-KEM-768). Current transport layer is quantum-vulnerable."
+      ],
+      "priority_rank": 1
+    }
+  ]
+}

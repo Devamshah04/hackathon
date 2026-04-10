@@ -1,0 +1,629 @@
+{
+  "schema_version": "1.0",
+  "agent_name": "cloud_storage_agent",
+  "timestamp": "2026-04-09T18:08:25.331996+00:00",
+  "run_id": "34d822b6-6ace-44be-93ce-1e667ab6cac0",
+  "findings": [
+    {
+      "parameter": "key_management_service",
+      "asset": "s3-bucket-prod",
+      "component": "key_storage",
+      "value": "unknown",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "s3-bucket-prod",
+      "component": "rotation_policy",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "s3-bucket-prod",
+      "component": "key_algorithm",
+      "value": "unknown",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "s3-bucket-prod",
+      "component": "audit_logging",
+      "risk": "MEDIUM",
+      "recommendation": "Enable key usage audit logging"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "s3-bucket-prod",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "s3-bucket-prod",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "s3-bucket-prod",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "rds-database",
+      "component": "key_storage",
+      "value": "unknown",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "rds-database",
+      "component": "rotation_policy",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "rds-database",
+      "component": "key_algorithm",
+      "value": "unknown",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "rds-database",
+      "component": "audit_logging",
+      "risk": "MEDIUM",
+      "recommendation": "Enable key usage audit logging"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "rds-database",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "rds-database",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "rds-database",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "ebs-volumes",
+      "component": "key_storage",
+      "value": "unknown",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "ebs-volumes",
+      "component": "rotation_policy",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "ebs-volumes",
+      "component": "key_algorithm",
+      "value": "unknown",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "ebs-volumes",
+      "component": "audit_logging",
+      "risk": "MEDIUM",
+      "recommendation": "Enable key usage audit logging"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "ebs-volumes",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "ebs-volumes",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "ebs-volumes",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    }
+  ],
+  "summary": {
+    "total_findings": 21,
+    "critical": 6,
+    "high": 3,
+    "medium": 3,
+    "low": 0
+  },
+  "rated_assets": [
+    {
+      "asset": "s3-bucket-prod",
+      "domain": "cloud_storage",
+      "region": "US",
+      "score_100": 59,
+      "verdict": "High Risk",
+      "action": "\ud83d\udd34 Critical migration within 3 months",
+      "priority_level": "HIGH",
+      "weighted_score": 0.5929,
+      "parameter_scores": {
+        "data_at_rest_encryption": {
+          "score": 1.0,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.15,
+          "details": "Storage: AES-256"
+        },
+        "key_management_service": {
+          "score": 0.0,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0,
+          "details": "KMS: RSA_2048, rotation: False"
+        },
+        "backup_archive": {
+          "score": 0.8,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.08,
+          "details": "Backup encryption: True, retention: 7y"
+        },
+        "data_transfer_encryption": {
+          "score": 0.7,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.084,
+          "details": "In-transit: TLS 1.2"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data provided"
+        },
+        "access_control_iam": {
+          "score": 0.7,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.07,
+          "details": "MFA: True, RBAC: True"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.048,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "compliance_auditing": {
+          "score": 0.6,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.048,
+          "details": "Audit logging: True, compliance: 2"
+        },
+        "multi_cloud_security": {
+          "score": 0.3,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.027,
+          "details": "Cross-cloud encryption: False"
+        },
+        "regulatory_compliance": {
+          "score": 0.5,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.048,
+          "details": "Frameworks: 2, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "key_management_service",
+          "asset": "s3-bucket-prod",
+          "component": "key_storage",
+          "value": "unknown",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+        },
+        {
+          "parameter": "key_management_service",
+          "asset": "s3-bucket-prod",
+          "component": "rotation_policy",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+        },
+        {
+          "parameter": "key_management_service",
+          "asset": "s3-bucket-prod",
+          "component": "key_algorithm",
+          "value": "unknown",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+        },
+        {
+          "parameter": "key_management_service",
+          "asset": "s3-bucket-prod",
+          "component": "audit_logging",
+          "risk": "MEDIUM",
+          "recommendation": "Enable key usage audit logging"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "s3-bucket-prod",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "s3-bucket-prod",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "s3-bucket-prod",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade KMS keys to quantum-resistant algorithms. Enable automatic key rotation and use HSM-backed keys.",
+        "MEDIUM: Improve multi_cloud_security (Cross-cloud encryption: False). Score 0.3/1.0 indicates partial quantum exposure.",
+        "MEDIUM: Improve regulatory_compliance (Frameworks: 2, PQC plan: False). Score 0.5/1.0 indicates partial quantum exposure."
+      ],
+      "priority_rank": 1
+    },
+    {
+      "asset": "rds-database",
+      "domain": "cloud_storage",
+      "region": "US",
+      "score_100": 59,
+      "verdict": "High Risk",
+      "action": "\ud83d\udd34 Critical migration within 3 months",
+      "priority_level": "HIGH",
+      "weighted_score": 0.5929,
+      "parameter_scores": {
+        "data_at_rest_encryption": {
+          "score": 1.0,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.15,
+          "details": "Storage: AES-256"
+        },
+        "key_management_service": {
+          "score": 0.0,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0,
+          "details": "KMS: RSA_2048, rotation: False"
+        },
+        "backup_archive": {
+          "score": 0.8,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.08,
+          "details": "Backup encryption: True, retention: 7y"
+        },
+        "data_transfer_encryption": {
+          "score": 0.7,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.084,
+          "details": "In-transit: TLS 1.2"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data provided"
+        },
+        "access_control_iam": {
+          "score": 0.7,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.07,
+          "details": "MFA: True, RBAC: True"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.048,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "compliance_auditing": {
+          "score": 0.6,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.048,
+          "details": "Audit logging: True, compliance: 2"
+        },
+        "multi_cloud_security": {
+          "score": 0.3,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.027,
+          "details": "Cross-cloud encryption: False"
+        },
+        "regulatory_compliance": {
+          "score": 0.5,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.048,
+          "details": "Frameworks: 2, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "key_management_service",
+          "asset": "rds-database",
+          "component": "key_storage",
+          "value": "unknown",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+        },
+        {
+          "parameter": "key_management_service",
+          "asset": "rds-database",
+          "component": "rotation_policy",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+        },
+        {
+          "parameter": "key_management_service",
+          "asset": "rds-database",
+          "component": "key_algorithm",
+          "value": "unknown",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+        },
+        {
+          "parameter": "key_management_service",
+          "asset": "rds-database",
+          "component": "audit_logging",
+          "risk": "MEDIUM",
+          "recommendation": "Enable key usage audit logging"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "rds-database",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "rds-database",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "rds-database",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade KMS keys to quantum-resistant algorithms. Enable automatic key rotation and use HSM-backed keys.",
+        "MEDIUM: Improve multi_cloud_security (Cross-cloud encryption: False). Score 0.3/1.0 indicates partial quantum exposure.",
+        "MEDIUM: Improve regulatory_compliance (Frameworks: 2, PQC plan: False). Score 0.5/1.0 indicates partial quantum exposure."
+      ],
+      "priority_rank": 2
+    },
+    {
+      "asset": "ebs-volumes",
+      "domain": "cloud_storage",
+      "region": "US",
+      "score_100": 59,
+      "verdict": "High Risk",
+      "action": "\ud83d\udd34 Critical migration within 3 months",
+      "priority_level": "HIGH",
+      "weighted_score": 0.5929,
+      "parameter_scores": {
+        "data_at_rest_encryption": {
+          "score": 1.0,
+          "base_weight": 0.15,
+          "region_modifier": 1.0,
+          "effective_weight": 0.15,
+          "weighted_score": 0.15,
+          "details": "Storage: AES-256"
+        },
+        "key_management_service": {
+          "score": 0.0,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.0,
+          "details": "KMS: RSA_2048, rotation: False"
+        },
+        "backup_archive": {
+          "score": 0.8,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.08,
+          "details": "Backup encryption: True, retention: 7y"
+        },
+        "data_transfer_encryption": {
+          "score": 0.7,
+          "base_weight": 0.12,
+          "region_modifier": 1.0,
+          "effective_weight": 0.12,
+          "weighted_score": 0.084,
+          "details": "In-transit: TLS 1.2"
+        },
+        "quantum_readiness": {
+          "score": null,
+          "base_weight": 0.08,
+          "region_modifier": 1.1,
+          "effective_weight": 0.088,
+          "weighted_score": 0.0,
+          "details": "No verifiable quantum readiness data provided"
+        },
+        "access_control_iam": {
+          "score": 0.7,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.07,
+          "details": "MFA: True, RBAC: True"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.048,
+          "details": "Cert: RSA-2048, 1y validity"
+        },
+        "compliance_auditing": {
+          "score": 0.6,
+          "base_weight": 0.08,
+          "region_modifier": 1.0,
+          "effective_weight": 0.08,
+          "weighted_score": 0.048,
+          "details": "Audit logging: True, compliance: 2"
+        },
+        "multi_cloud_security": {
+          "score": 0.3,
+          "base_weight": 0.09,
+          "region_modifier": 1.0,
+          "effective_weight": 0.09,
+          "weighted_score": 0.027,
+          "details": "Cross-cloud encryption: False"
+        },
+        "regulatory_compliance": {
+          "score": 0.5,
+          "base_weight": 0.08,
+          "region_modifier": 1.2,
+          "effective_weight": 0.096,
+          "weighted_score": 0.048,
+          "details": "Frameworks: 2, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "key_management_service",
+          "asset": "ebs-volumes",
+          "component": "key_storage",
+          "value": "unknown",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+        },
+        {
+          "parameter": "key_management_service",
+          "asset": "ebs-volumes",
+          "component": "rotation_policy",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+        },
+        {
+          "parameter": "key_management_service",
+          "asset": "ebs-volumes",
+          "component": "key_algorithm",
+          "value": "unknown",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+        },
+        {
+          "parameter": "key_management_service",
+          "asset": "ebs-volumes",
+          "component": "audit_logging",
+          "risk": "MEDIUM",
+          "recommendation": "Enable key usage audit logging"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "ebs-volumes",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "ebs-volumes",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "ebs-volumes",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade KMS keys to quantum-resistant algorithms. Enable automatic key rotation and use HSM-backed keys.",
+        "MEDIUM: Improve multi_cloud_security (Cross-cloud encryption: False). Score 0.3/1.0 indicates partial quantum exposure.",
+        "MEDIUM: Improve regulatory_compliance (Frameworks: 2, PQC plan: False). Score 0.5/1.0 indicates partial quantum exposure."
+      ],
+      "priority_rank": 3
+    }
+  ]
+}

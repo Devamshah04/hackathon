@@ -27,6 +27,16 @@ layer. Scoring, tools, and learning all run locally.
 
 from __future__ import annotations
 
+import sys as _sys
+
+# Fix Windows console encoding for box-drawing characters
+if _sys.platform == "win32":
+    try:
+        _sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        _sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 import json
 import logging
 import os
@@ -505,8 +515,8 @@ Provide:
         assessment = agent.scan(targets)
         agent.save_local()
 
-        print(f"\n📈 Learning Store: {agent.learning_store.summary()}")
-
+        print(f"\n[*] Learning Store: {agent.learning_store.summary()}")
+        return assessment
 
 # ── Interactive CLI Mode ──────────────────────────────────────────────────────────────
 
@@ -697,6 +707,14 @@ def run_interactive_cli():
                             else:
                                 bar = "█" * int(data["score"] * 20) + "░" * (20 - int(data["score"] * 20))
                                 print(f"       {param:25s} {bar} {data['score']:.2f} (weight: {data.get('effective_weight', 0):.2f})")
+
+                    # Show recommendations
+                    recs = item.get("migration_recommendations", [])
+                    if recs:
+                        print(f"\n     [>] Recommendations:")
+                        for rec in recs[:3]:
+                            display = rec[:120] + "..." if len(rec) > 120 else rec
+                            print(f"       -> {display}")
 
                     # Automatically export PDF report
                     try:
