@@ -227,6 +227,68 @@ class EnhancedScoringEngine:
             migration_recommendations=recommendations or [],
         )
 
+    def score_asset_dynamic(
+        self,
+        asset: str,
+        scores: dict[str, tuple[float, str]],
+        findings: list[dict] | None = None,
+        recommendations: list[str] | None = None,
+    ) -> EnhancedAssetRating:
+        """
+        Score an asset with a fully dynamic parameter set.
+
+        Unlike score_asset(), this method does NOT use a predefined weight
+        profile.  It distributes weight equally across all provided
+        parameters and applies regional modifiers where the parameter name
+        matches a key in the region profile.
+
+        Args:
+            asset:   Target asset name.
+            scores:  {param_name: (score_0_to_1, details_str)} — only REAL
+                     assessed parameters.  Do NOT include None scores; simply
+                     omit unassessed parameters from the dict.
+            findings:          Raw finding dicts from scanner tools.
+            recommendations:   Human-readable migration recommendations.
+
+        Returns:
+            EnhancedAssetRating (identical type to score_asset, works with
+            the same PDF/CLI/JSON pipelines).
+        """
+        if not scores:
+            # Nothing to score — return a zero-rated entry
+            return EnhancedAssetRating(
+                asset=asset,
+                domain=self.domain,
+                region=self.region,
+                parameter_scores=[],
+                findings=findings or [],
+                migration_recommendations=recommendations or [],
+            )
+
+        n = len(scores)
+        equal_weight = 1.0 / n
+        region_modifiers = self.region_profile.get("weight_modifiers", {})
+
+        param_scores = []
+        for param_name, (score_val, details) in scores.items():
+            region_modifier = region_modifiers.get(param_name, 1.0)
+            param_scores.append(EnhancedParameterScore(
+                name=param_name,
+                score=max(0.0, min(1.0, score_val)),
+                base_weight=round(equal_weight, 4),
+                region_modifier=region_modifier,
+                details=details,
+            ))
+
+        return EnhancedAssetRating(
+            asset=asset,
+            domain=self.domain,
+            region=self.region,
+            parameter_scores=param_scores,
+            findings=findings or [],
+            migration_recommendations=recommendations or [],
+        )
+
     def rank_assets(self, ratings: list[EnhancedAssetRating]) -> list[dict]:
         """Sort assets by score (ascending = worst first = highest migration priority)."""
         sorted_ratings = sorted(ratings, key=lambda r: r.score_100)

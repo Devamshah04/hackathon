@@ -225,7 +225,7 @@ Your analysis should:
                     **{k: v for k, v in jwt_result.items() if k != "token_header"},
                 })
         else:
-            scores["auth_token_crypto"] = (None, "No JWT token analyzed")
+            logger.debug(f"  Skipping auth_token_crypto — no JWT data for {asset}")
 
         # 2. TLS/Transport Security
         tls_config = target.get("tls_config", {})
@@ -239,8 +239,6 @@ Your analysis should:
                 {"parameter": "tls_transport", "asset": asset, **f}
                 for f in tls_result.get("findings", [])
             ])
-        else:
-            scores["tls_transport"] = (None, "No TLS config provided")
 
         # 3. OAuth/OIDC Security
         oauth_config = target.get("oauth_config", {})
@@ -254,8 +252,6 @@ Your analysis should:
                 {"parameter": "oauth_oidc", "asset": asset, **f}
                 for f in oauth_result.get("findings", [])
             ])
-        else:
-            scores["oauth_oidc"] = (None, "No public OAuth config provided")
 
         # 4. Key Management
         keymgmt_config = target.get("key_management", {})
@@ -269,8 +265,6 @@ Your analysis should:
                 {"parameter": "key_management", "asset": asset, **f}
                 for f in km_result.get("findings", [])
             ])
-        else:
-            scores["key_management"] = (None, "Internal key management data inaccessible")
 
         # 5. Quantum Readiness
         qr_config = target.get("quantum_readiness", {})
@@ -285,8 +279,6 @@ Your analysis should:
                 {"parameter": "quantum_readiness", "asset": asset, **f}
                 for f in qr_result.get("findings", [])
             ])
-        else:
-            scores["quantum_readiness"] = (None, "No verifiable quantum readiness data")
 
         # 6. Certificate Security
         cert_config = target.get("certificate_security", {})
@@ -300,8 +292,6 @@ Your analysis should:
                 {"parameter": "certificate_security", "asset": asset, **f}
                 for f in cert_result.get("findings", [])
             ])
-        else:
-            scores["certificate_security"] = (None, "No certificate data provided")
 
         # 7. API Encryption
         api_enc_config = target.get("api_encryption", {})
@@ -315,8 +305,6 @@ Your analysis should:
                 {"parameter": "api_encryption", "asset": asset, **f}
                 for f in api_result.get("findings", [])
             ])
-        else:
-            scores["api_encryption"] = (None, "No API encryption data provided")
 
         # 8. Session Management
         session_config = target.get("session_management", {})
@@ -330,8 +318,6 @@ Your analysis should:
                 {"parameter": "session_management", "asset": asset, **f}
                 for f in session_result.get("findings", [])
             ])
-        else:
-            scores["session_management"] = (None, "No session management data provided")
 
         # 9. Data at Rest
         data_rest_config = target.get("data_at_rest", {})
@@ -345,8 +331,6 @@ Your analysis should:
                 {"parameter": "data_at_rest", "asset": asset, **f}
                 for f in data_result.get("findings", [])
             ])
-        else:
-            scores["data_at_rest"] = (None, "No data-at-rest encryption data provided")
 
         # 10. Regulatory Compliance
         compliance_config = target.get("regulatory_compliance", {})
@@ -360,8 +344,6 @@ Your analysis should:
                 {"parameter": "regulatory_compliance", "asset": asset, **f}
                 for f in compliance_result.get("findings", [])
             ])
-        else:
-            scores["regulatory_compliance"] = (None, "No regulatory compliance data provided")
 
         return {
             "asset": asset,
@@ -414,8 +396,6 @@ Provide:
         recommendations = []
 
         for param_name, (score, details) in scores.items():
-            if score is None:
-                continue
 
             if score < 0.3:
                 if param_name == "auth_token_crypto":
@@ -494,7 +474,7 @@ Provide:
             )
 
             # Step 3: Compute weighted score → 1–10 rating
-            asset_rating = self.scoring_engine.score_asset(
+            asset_rating = self.scoring_engine.score_asset_dynamic(
                 asset=asset,
                 scores=scan_result["scores"],
                 findings=scan_result["findings"],
@@ -782,15 +762,11 @@ def run_interactive_cli():
                     print(f"     Rating:  {item['score_100']}/100 — {item['verdict']}")
                     print(f"     Action:  {item['action']}")
                     print(f"     Score:   {item['weighted_score']:.4f}")
-                    print(f"     Params:")
+                    print(f"     Params ({len(item.get('parameter_scores', {}))} discovered):")
                     for param, data in item.get("parameter_scores", {}).items():
-                        # Handle potential skipped parameters via dynamic scoring
-                        if data["score"] is None:
-                            bar = "░" * 20
-                            print(f"       {param:25s} {bar} N/A (Not Assessed)")
-                        else:
-                            bar = "█" * int(data["score"] * 20) + "░" * (20 - int(data["score"] * 20))
-                            print(f"       {param:25s} {bar} {data['score']:.2f} (weight: {data.get('effective_weight', 0):.2f})")
+                        filled = int(data["score"] * 20)
+                        bar = chr(9608) * filled + chr(9617) * (20 - filled)
+                        print(f"       {param:25s} {bar} {data['score']:.2f} (weight: {data.get('effective_weight', 0):.2f})")
 
                     # Show recommendations
                     recs = item.get("migration_recommendations", [])

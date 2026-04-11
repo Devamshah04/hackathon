@@ -207,10 +207,6 @@ Your analysis should:
                 {"parameter": f["component"], "asset": asset, **f}
                 for f in iot_result.get("findings", [])
             ])
-        else:
-            scores["firmware_signing"] = (None, "No firmware metadata provided")
-            scores["device_longevity"] = (None, "No longevity data provided")
-            scores["ota_security"] = (None, "No OTA data provided")
 
         # 4. Key Management
         keymgmt_config = target.get("key_management", {})
@@ -224,8 +220,6 @@ Your analysis should:
                 {"parameter": "key_management", "asset": asset, **f}
                 for f in km_result.get("findings", [])
             ])
-        else:
-            scores["key_management"] = (None, "No key management data provided")
 
         # 5. Quantum Readiness
         qr_config = target.get("quantum_readiness", {})
@@ -239,8 +233,6 @@ Your analysis should:
                 {"parameter": "quantum_readiness", "asset": asset, **f}
                 for f in qr_result.get("findings", [])
             ])
-        else:
-            scores["quantum_readiness"] = (None, "No verifiable quantum readiness data provided")
 
         # 6. Hardware Security
         hw_config = target.get("hardware_security", firmware_metadata)
@@ -250,8 +242,6 @@ Your analysis should:
                 hw_score,
                 f"HRoT: {hw_config.get('hardware_root_of_trust', False)}, TPM: {hw_config.get('tpm_enabled', False)}"
             )
-        else:
-            scores["hardware_security"] = (None, "No hardware security data provided")
 
         # 7. Communication Protocol
         comm_config = target.get("communication_protocol", {})
@@ -268,8 +258,6 @@ Your analysis should:
                 comm_score,
                 f"Protocol: {protocol}, Encryption: {comm_config.get('encryption', 'unknown')}"
             )
-        else:
-            scores["communication_protocol"] = (None, "No communication protocol data provided")
 
         # 8. Certificate Security
         cert_config = target.get("certificate_security", {})
@@ -283,8 +271,6 @@ Your analysis should:
                 {"parameter": "certificate_security", "asset": asset, **f}
                 for f in cert_result.get("findings", [])
             ])
-        else:
-            scores["certificate_security"] = (None, "No certificate data provided")
 
         # 9. Data at Rest
         data_rest_config = target.get("data_at_rest", {})
@@ -298,8 +284,6 @@ Your analysis should:
                 {"parameter": "data_at_rest", "asset": asset, **f}
                 for f in data_result.get("findings", [])
             ])
-        else:
-            scores["data_at_rest"] = (None, "No data-at-rest encryption data provided")
 
         # 10. Regulatory Compliance
         compliance_config = target.get("regulatory_compliance", {})
@@ -313,8 +297,6 @@ Your analysis should:
                 {"parameter": "regulatory_compliance", "asset": asset, **f}
                 for f in compliance_result.get("findings", [])
             ])
-        else:
-            scores["regulatory_compliance"] = (None, "No regulatory compliance data provided")
 
         return {
             "asset": asset,
@@ -367,8 +349,6 @@ Provide:
         recommendations = []
 
         for param_name, (score, details) in scores.items():
-            if score is None:
-                continue
 
             if score < 0.3:
                 if param_name == "firmware_signing":
@@ -444,7 +424,7 @@ Provide:
             )
 
             # Step 3: Compute weighted score → 1–10 rating
-            asset_rating = self.scoring_engine.score_asset(
+            asset_rating = self.scoring_engine.score_asset_dynamic(
                 asset=asset,
                 scores=scan_result["scores"],
                 findings=scan_result["findings"],
@@ -724,14 +704,11 @@ def run_interactive_cli():
                         print(f"     Action:  {item['action']}")
                         print(f"     Score:   {item['weighted_score']:.4f}")
                         print(f"     Region:  {item.get('region', 'US')}")
-                        print(f"     Params:")
+                        print(f"     Params ({len(item.get('parameter_scores', {}))} discovered):")
                         for param, data in item.get("parameter_scores", {}).items():
-                            if data["score"] is None:
-                                bar = "░" * 20
-                                print(f"       {param:25s} {bar} N/A (Not Assessed)")
-                            else:
-                                bar = "█" * int(data["score"] * 20) + "░" * (20 - int(data["score"] * 20))
-                                print(f"       {param:25s} {bar} {data['score']:.2f} (weight: {data.get('effective_weight', 0):.2f})")
+                            filled = int(data["score"] * 20)
+                            bar = chr(9608) * filled + chr(9617) * (20 - filled)
+                            print(f"       {param:25s} {bar} {data['score']:.2f} (weight: {data.get('effective_weight', 0):.2f})")
 
                     # Show recommendations
                     recs = item.get("migration_recommendations", [])

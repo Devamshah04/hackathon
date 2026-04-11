@@ -1120,5 +1120,69 @@
     "findings_summary": "7 findings, rating 63/100 (Moderate Risk)",
     "feedback": null,
     "feedback_applied": false
+  },
+  {
+    "id": "cloud_storage_agent_1775906563_s3-prod-data.acmecorp.com",
+    "timestamp": "2026-04-11T11:22:43.022310+00:00",
+    "run_id": "883c75ad-b615-4758-b016-eb562b230fb8",
+    "asset": "s3-prod-data.acmecorp.com",
+    "rating": 48,
+    "parameter_scores": {
+      "data_at_rest_encryption": 0.29999999999999993,
+      "key_management_service": 0.0,
+      "backup_archive": 0.8,
+      "data_transfer_encryption": 0.7,
+      "access_control_iam": 0.7,
+      "certificate_security": 0.39999999999999997,
+      "compliance_auditing": 0.6,
+      "multi_cloud_security": 0.3,
+      "regulatory_compliance": 0.5
+    },
+    "findings_summary": "11 findings, rating 48/100 (Critical Risk)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "cloud_storage_agent_1775906563_rds-primary.acmecorp.com",
+    "timestamp": "2026-04-11T11:22:43.024549+00:00",
+    "run_id": "883c75ad-b615-4758-b016-eb562b230fb8",
+    "asset": "rds-primary.acmecorp.com",
+    "rating": 61,
+    "parameter_scores": {
+      "data_at_rest_encryption": 1.0,
+      "key_management_service": 0.0,
+      "backup_archive": 0.8,
+      "data_transfer_encryption": 0.7,
+      "quantum_readiness": 0.4,
+      "access_control_iam": 0.7,
+      "certificate_security": 0.5,
+      "compliance_auditing": 0.6,
+      "multi_cloud_security": 0.3,
+      "regulatory_compliance": 1.0
+    },
+    "findings_summary": "7 findings, rating 61/100 (Moderate Risk)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "cloud_storage_agent_1775906563_azure-blob-archive.acmecorp.com",
+    "timestamp": "2026-04-11T11:22:43.026744+00:00",
+    "run_id": "883c75ad-b615-4758-b016-eb562b230fb8",
+    "asset": "azure-blob-archive.acmecorp.com",
+    "rating": 62,
+    "parameter_scores": {
+      "data_at_rest_encryption": 1.0,
+      "key_management_service": 0.0,
+      "backup_archive": 0.8,
+      "data_transfer_encryption": 0.7,
+      "access_control_iam": 0.7,
+      "certificate_security": 0.6,
+      "compliance_auditing": 0.6,
+      "multi_cloud_security": 0.7,
+      "regulatory_compliance": 0.5
+    },
+    "findings_summary": "7 findings, rating 62/100 (Moderate Risk)",
+    "feedback": null,
+    "feedback_applied": false
   }
 ]

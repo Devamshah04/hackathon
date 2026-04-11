@@ -3025,5 +3025,87 @@
     "findings_summary": "15 findings, rating 33/100 (Insecure)",
     "feedback": null,
     "feedback_applied": false
+  },
+  {
+    "id": "web_api_agent_1775906562_payment-api.acmecorp.com",
+    "timestamp": "2026-04-11T11:22:42.997525+00:00",
+    "run_id": "231b4ac7-d68e-4139-af18-fcddcd515b4e",
+    "asset": "payment-api.acmecorp.com",
+    "rating": 18,
+    "parameter_scores": {
+      "auth_token_crypto": 0.1,
+      "tls_transport": 0.21,
+      "oauth_oidc": 0.3,
+      "key_management": 0.107
+    },
+    "findings_summary": "12 findings, rating 18/100 (Insecure)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "web_api_agent_1775906563_user-auth.acmecorp.com",
+    "timestamp": "2026-04-11T11:22:43.002307+00:00",
+    "run_id": "231b4ac7-d68e-4139-af18-fcddcd515b4e",
+    "asset": "user-auth.acmecorp.com",
+    "rating": 45,
+    "parameter_scores": {
+      "auth_token_crypto": 0.2,
+      "tls_transport": 0.48,
+      "oauth_oidc": 0.48,
+      "key_management": 0.607,
+      "quantum_readiness": 0.5
+    },
+    "findings_summary": "7 findings, rating 45/100 (Critical Risk)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "web_api_agent_1775906563_data-analytics-api.acmecorp.com",
+    "timestamp": "2026-04-11T11:22:43.005823+00:00",
+    "run_id": "231b4ac7-d68e-4139-af18-fcddcd515b4e",
+    "asset": "data-analytics-api.acmecorp.com",
+    "rating": 58,
+    "parameter_scores": {
+      "auth_token_crypto": 0.7,
+      "tls_transport": 0.53,
+      "oauth_oidc": 0.56,
+      "key_management": 0.797,
+      "quantum_readiness": 0.32
+    },
+    "findings_summary": "5 findings, rating 58/100 (High Risk)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "web_api_agent_1775906563_partner-integration.acmecorp.com",
+    "timestamp": "2026-04-11T11:22:43.009491+00:00",
+    "run_id": "231b4ac7-d68e-4139-af18-fcddcd515b4e",
+    "asset": "partner-integration.acmecorp.com",
+    "rating": 38,
+    "parameter_scores": {
+      "auth_token_crypto": 0.15,
+      "tls_transport": 0.385,
+      "oauth_oidc": 0.3,
+      "key_management": 0.675
+    },
+    "findings_summary": "9 findings, rating 38/100 (Insecure)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "web_api_agent_1775906563_mobile-bff.acmecorp.com",
+    "timestamp": "2026-04-11T11:22:43.013053+00:00",
+    "run_id": "231b4ac7-d68e-4139-af18-fcddcd515b4e",
+    "asset": "mobile-bff.acmecorp.com",
+    "rating": 40,
+    "parameter_scores": {
+      "auth_token_crypto": 0.1,
+      "tls_transport": 0.485,
+      "oauth_oidc": 0.4,
+      "key_management": 0.62
+    },
+    "findings_summary": "6 findings, rating 40/100 (Critical Risk)",
+    "feedback": null,
+    "feedback_applied": false
   }
 ]

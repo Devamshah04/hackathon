@@ -768,5 +768,90 @@
     "findings_summary": "9 findings, rating 57/100 (High Risk)",
     "feedback": null,
     "feedback_applied": false
+  },
+  {
+    "id": "ai_crypto_security_agent_1775906563_api-gateway.acmecorp.com",
+    "timestamp": "2026-04-11T11:22:43.045545+00:00",
+    "run_id": "81b275d4-6ed4-4d16-9b05-b9f7763b8443",
+    "asset": "api-gateway.acmecorp.com",
+    "rating": 39,
+    "parameter_scores": {
+      "tls_transport": 0.355,
+      "public_key_crypto": 0.1,
+      "symmetric_crypto": 0.3,
+      "network_protocols": 0.35,
+      "certificate_security": 0.6,
+      "hash_algorithms": 0.6,
+      "key_management": 0.125,
+      "code_crypto_audit": 0.55,
+      "regulatory_compliance": 0.5
+    },
+    "findings_summary": "14 findings, rating 39/100 (Insecure)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "ai_crypto_security_agent_1775906563_ssh-bastion.acmecorp.com",
+    "timestamp": "2026-04-11T11:22:43.046050+00:00",
+    "run_id": "81b275d4-6ed4-4d16-9b05-b9f7763b8443",
+    "asset": "ssh-bastion.acmecorp.com",
+    "rating": 65,
+    "parameter_scores": {
+      "public_key_crypto": 0.3,
+      "symmetric_crypto": 0.9,
+      "network_protocols": 0.15,
+      "certificate_security": 0.8,
+      "hash_algorithms": 1.0,
+      "key_management": 0.55,
+      "code_crypto_audit": 0.9,
+      "regulatory_compliance": 0.6
+    },
+    "findings_summary": "6 findings, rating 65/100 (Moderate Risk)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "ai_crypto_security_agent_1775906563_vpn-gateway.acmecorp.com",
+    "timestamp": "2026-04-11T11:22:43.047755+00:00",
+    "run_id": "81b275d4-6ed4-4d16-9b05-b9f7763b8443",
+    "asset": "vpn-gateway.acmecorp.com",
+    "rating": 60,
+    "parameter_scores": {
+      "tls_transport": 0.48,
+      "public_key_crypto": 0.1,
+      "symmetric_crypto": 0.9,
+      "network_protocols": 0.35,
+      "quantum_readiness": 0.4,
+      "certificate_security": 0.5,
+      "hash_algorithms": 1.0,
+      "key_management": 0.5,
+      "code_crypto_audit": 0.75,
+      "regulatory_compliance": 1.0
+    },
+    "findings_summary": "9 findings, rating 60/100 (Moderate Risk)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "ai_crypto_security_agent_1775908300_google.com",
+    "timestamp": "2026-04-11T11:51:40.775418+00:00",
+    "run_id": "e90dde2e-7194-4814-b2d6-7e9d27ce286e",
+    "asset": "google.com",
+    "rating": 0,
+    "parameter_scores": {},
+    "findings_summary": "0 findings, rating 0/100 (Insecure)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "ai_crypto_security_agent_1775912003_google.com",
+    "timestamp": "2026-04-11T12:53:23.303582+00:00",
+    "run_id": "d0950fd2-81e2-4731-b002-49c5ca91fa5c",
+    "asset": "google.com",
+    "rating": 0,
+    "parameter_scores": {},
+    "findings_summary": "0 findings, rating 0/100 (Insecure)",
+    "feedback": null,
+    "feedback_applied": false
   }
 ]

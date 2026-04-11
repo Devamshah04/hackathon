@@ -1029,5 +1029,75 @@
     "findings_summary": "1 findings, rating 79/100 (Good - Needs PQC transition)",
     "feedback": null,
     "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775906563_fleet-tracker-gps.acmecorp.com",
+    "timestamp": "2026-04-11T11:22:43.034164+00:00",
+    "run_id": "f7da906f-df90-444f-8533-bcca8e43a354",
+    "asset": "fleet-tracker-gps.acmecorp.com",
+    "rating": 15,
+    "parameter_scores": {
+      "firmware_signing": 0.1,
+      "device_longevity": 0.4,
+      "ota_security": 0.0,
+      "key_management": 0.038,
+      "hardware_security": 0.2
+    },
+    "findings_summary": "7 findings, rating 15/100 (Insecure)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775906563_smart-thermostat.acmecorp.com",
+    "timestamp": "2026-04-11T11:22:43.035165+00:00",
+    "run_id": "f7da906f-df90-444f-8533-bcca8e43a354",
+    "asset": "smart-thermostat.acmecorp.com",
+    "rating": 56,
+    "parameter_scores": {
+      "firmware_signing": 0.3,
+      "device_longevity": 1.0,
+      "ota_security": 0.2,
+      "key_management": 0.66,
+      "quantum_readiness": 0.4,
+      "hardware_security": 0.8
+    },
+    "findings_summary": "5 findings, rating 56/100 (High Risk)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775906563_industrial-plc.acmecorp.com",
+    "timestamp": "2026-04-11T11:22:43.037155+00:00",
+    "run_id": "f7da906f-df90-444f-8533-bcca8e43a354",
+    "asset": "industrial-plc.acmecorp.com",
+    "rating": 38,
+    "parameter_scores": {
+      "firmware_signing": 0.3,
+      "device_longevity": 0.0,
+      "ota_security": 0.15,
+      "key_management": 0.675,
+      "hardware_security": 0.8
+    },
+    "findings_summary": "4 findings, rating 38/100 (Insecure)",
+    "feedback": null,
+    "feedback_applied": false
+  },
+  {
+    "id": "iot_edge_agent_1775906563_nextgen-medical-monitor.acmecorp.com",
+    "timestamp": "2026-04-11T11:22:43.038873+00:00",
+    "run_id": "f7da906f-df90-444f-8533-bcca8e43a354",
+    "asset": "nextgen-medical-monitor.acmecorp.com",
+    "rating": 80,
+    "parameter_scores": {
+      "firmware_signing": 1.0,
+      "device_longevity": 0.0,
+      "ota_security": 1.0,
+      "key_management": 1.0,
+      "quantum_readiness": 0.98,
+      "hardware_security": 0.8
+    },
+    "findings_summary": "1 findings, rating 80/100 (Secure - Minor PQC gaps)",
+    "feedback": null,
+    "feedback_applied": false
   }
 ]

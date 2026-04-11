@@ -1,0 +1,671 @@
+{
+  "schema_version": "1.0",
+  "agent_name": "cloud_storage_agent",
+  "timestamp": "2026-04-11T11:22:43.018612+00:00",
+  "run_id": "883c75ad-b615-4758-b016-eb562b230fb8",
+  "findings": [
+    {
+      "parameter": "data_at_rest_encryption",
+      "asset": "s3-prod-data.acmecorp.com",
+      "issue": "Weak data-at-rest encryption",
+      "details": "AES-128 provides only 64-bit quantum security",
+      "recommendation": "Upgrade to AES-256 for quantum resistance"
+    },
+    {
+      "parameter": "data_at_rest_encryption",
+      "asset": "s3-prod-data.acmecorp.com",
+      "issue": "Insecure key storage",
+      "details": "Encryption keys stored on filesystem",
+      "recommendation": "Use HSM or cloud KMS for key storage"
+    },
+    {
+      "parameter": "data_at_rest_encryption",
+      "asset": "s3-prod-data.acmecorp.com",
+      "issue": "No key rotation policy",
+      "details": "Encryption keys not rotated regularly",
+      "recommendation": "Implement 90-day key rotation"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "s3-prod-data.acmecorp.com",
+      "component": "key_storage",
+      "value": "unknown",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "s3-prod-data.acmecorp.com",
+      "component": "rotation_policy",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "s3-prod-data.acmecorp.com",
+      "component": "key_algorithm",
+      "value": "unknown",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "s3-prod-data.acmecorp.com",
+      "component": "audit_logging",
+      "risk": "MEDIUM",
+      "recommendation": "Enable key usage audit logging"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "s3-prod-data.acmecorp.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "s3-prod-data.acmecorp.com",
+      "issue": "Long certificate validity period",
+      "details": "3 years extends past quantum threat timeline",
+      "recommendation": "Reduce validity to 1-2 years maximum"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "s3-prod-data.acmecorp.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "s3-prod-data.acmecorp.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "rds-primary.acmecorp.com",
+      "component": "key_storage",
+      "value": "unknown",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "rds-primary.acmecorp.com",
+      "component": "rotation_policy",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "rds-primary.acmecorp.com",
+      "component": "key_algorithm",
+      "value": "unknown",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "rds-primary.acmecorp.com",
+      "component": "audit_logging",
+      "risk": "MEDIUM",
+      "recommendation": "Enable key usage audit logging"
+    },
+    {
+      "parameter": "quantum_readiness",
+      "asset": "rds-primary.acmecorp.com",
+      "component": "pqc_deployment",
+      "risk": "HIGH",
+      "recommendation": "Begin PQC algorithm testing and deployment"
+    },
+    {
+      "parameter": "quantum_readiness",
+      "asset": "rds-primary.acmecorp.com",
+      "component": "library_support",
+      "risk": "MEDIUM",
+      "recommendation": "Upgrade crypto libraries to versions with PQC support"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "rds-primary.acmecorp.com",
+      "issue": "ECDSA certificates quantum-vulnerable",
+      "details": "All ECC-based certificates broken by Shor's algorithm",
+      "recommendation": "Migrate to ML-DSA (FIPS 204)"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "azure-blob-archive.acmecorp.com",
+      "component": "key_storage",
+      "value": "unknown",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "azure-blob-archive.acmecorp.com",
+      "component": "rotation_policy",
+      "value": "unknown",
+      "risk": "HIGH",
+      "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "azure-blob-archive.acmecorp.com",
+      "component": "key_algorithm",
+      "value": "unknown",
+      "risk": "CRITICAL",
+      "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+    },
+    {
+      "parameter": "key_management_service",
+      "asset": "azure-blob-archive.acmecorp.com",
+      "component": "audit_logging",
+      "risk": "MEDIUM",
+      "recommendation": "Enable key usage audit logging"
+    },
+    {
+      "parameter": "certificate_security",
+      "asset": "azure-blob-archive.acmecorp.com",
+      "issue": "Quantum-vulnerable certificate algorithm",
+      "details": "RSA-2048 vulnerable to Shor's algorithm",
+      "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "azure-blob-archive.acmecorp.com",
+      "issue": "No PQC migration plan",
+      "details": "No documented post-quantum cryptography migration plan",
+      "recommendation": "Develop comprehensive PQC migration roadmap"
+    },
+    {
+      "parameter": "regulatory_compliance",
+      "asset": "azure-blob-archive.acmecorp.com",
+      "issue": "Missing cryptographic documentation",
+      "details": "Cryptographic implementations not documented",
+      "recommendation": "Document all cryptographic implementations"
+    }
+  ],
+  "summary": {
+    "total_findings": 25,
+    "critical": 6,
+    "high": 4,
+    "medium": 4,
+    "low": 0
+  },
+  "rated_assets": [
+    {
+      "asset": "s3-prod-data.acmecorp.com",
+      "domain": "cloud_storage",
+      "region": "US",
+      "score_100": 48,
+      "verdict": "Critical Risk",
+      "action": "\ud83d\udea8 Immediate action - HNDL exposed",
+      "priority_level": "HIGH",
+      "weighted_score": 0.4783,
+      "parameter_scores": {
+        "data_at_rest_encryption": {
+          "score": 0.3,
+          "base_weight": 0.1111,
+          "region_modifier": 1.0,
+          "effective_weight": 0.111,
+          "weighted_score": 0.0333,
+          "details": "Storage: AES-128"
+        },
+        "key_management_service": {
+          "score": 0.0,
+          "base_weight": 0.1111,
+          "region_modifier": 1.0,
+          "effective_weight": 0.111,
+          "weighted_score": 0.0,
+          "details": "KMS: RSA_2048, rotation: False"
+        },
+        "backup_archive": {
+          "score": 0.8,
+          "base_weight": 0.1111,
+          "region_modifier": 1.0,
+          "effective_weight": 0.111,
+          "weighted_score": 0.0889,
+          "details": "Backup encryption: True, retention: 10y"
+        },
+        "data_transfer_encryption": {
+          "score": 0.7,
+          "base_weight": 0.1111,
+          "region_modifier": 1.0,
+          "effective_weight": 0.111,
+          "weighted_score": 0.0778,
+          "details": "In-transit: TLS 1.2"
+        },
+        "access_control_iam": {
+          "score": 0.7,
+          "base_weight": 0.1111,
+          "region_modifier": 1.0,
+          "effective_weight": 0.111,
+          "weighted_score": 0.0778,
+          "details": "MFA: True, RBAC: True"
+        },
+        "certificate_security": {
+          "score": 0.4,
+          "base_weight": 0.1111,
+          "region_modifier": 1.0,
+          "effective_weight": 0.111,
+          "weighted_score": 0.0444,
+          "details": "Cert: RSA-2048, 3y validity"
+        },
+        "compliance_auditing": {
+          "score": 0.6,
+          "base_weight": 0.1111,
+          "region_modifier": 1.0,
+          "effective_weight": 0.111,
+          "weighted_score": 0.0667,
+          "details": "Audit logging: True, compliance: 2"
+        },
+        "multi_cloud_security": {
+          "score": 0.3,
+          "base_weight": 0.1111,
+          "region_modifier": 1.0,
+          "effective_weight": 0.111,
+          "weighted_score": 0.0333,
+          "details": "Cross-cloud encryption: False"
+        },
+        "regulatory_compliance": {
+          "score": 0.5,
+          "base_weight": 0.1111,
+          "region_modifier": 1.2,
+          "effective_weight": 0.133,
+          "weighted_score": 0.0667,
+          "details": "Frameworks: 2, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "data_at_rest_encryption",
+          "asset": "s3-prod-data.acmecorp.com",
+          "issue": "Weak data-at-rest encryption",
+          "details": "AES-128 provides only 64-bit quantum security",
+          "recommendation": "Upgrade to AES-256 for quantum resistance"
+        },
+        {
+          "parameter": "data_at_rest_encryption",
+          "asset": "s3-prod-data.acmecorp.com",
+          "issue": "Insecure key storage",
+          "details": "Encryption keys stored on filesystem",
+          "recommendation": "Use HSM or cloud KMS for key storage"
+        },
+        {
+          "parameter": "data_at_rest_encryption",
+          "asset": "s3-prod-data.acmecorp.com",
+          "issue": "No key rotation policy",
+          "details": "Encryption keys not rotated regularly",
+          "recommendation": "Implement 90-day key rotation"
+        },
+        {
+          "parameter": "key_management_service",
+          "asset": "s3-prod-data.acmecorp.com",
+          "component": "key_storage",
+          "value": "unknown",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+        },
+        {
+          "parameter": "key_management_service",
+          "asset": "s3-prod-data.acmecorp.com",
+          "component": "rotation_policy",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+        },
+        {
+          "parameter": "key_management_service",
+          "asset": "s3-prod-data.acmecorp.com",
+          "component": "key_algorithm",
+          "value": "unknown",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+        },
+        {
+          "parameter": "key_management_service",
+          "asset": "s3-prod-data.acmecorp.com",
+          "component": "audit_logging",
+          "risk": "MEDIUM",
+          "recommendation": "Enable key usage audit logging"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "s3-prod-data.acmecorp.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "s3-prod-data.acmecorp.com",
+          "issue": "Long certificate validity period",
+          "details": "3 years extends past quantum threat timeline",
+          "recommendation": "Reduce validity to 1-2 years maximum"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "s3-prod-data.acmecorp.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "s3-prod-data.acmecorp.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Migrate data-at-rest encryption from RSA-OAEP-2048 to RSA-OAEP-4096 or ML-KEM (FIPS 203). Current storage is vulnerable to quantum attacks.",
+        "CRITICAL: Upgrade KMS keys to quantum-resistant algorithms. Enable automatic key rotation and use HSM-backed keys.",
+        "MEDIUM: Improve certificate_security (Cert: RSA-2048, 3y validity). Score 0.4/1.0 indicates partial quantum exposure.",
+        "MEDIUM: Improve multi_cloud_security (Cross-cloud encryption: False). Score 0.3/1.0 indicates partial quantum exposure.",
+        "MEDIUM: Improve regulatory_compliance (Frameworks: 2, PQC plan: False). Score 0.5/1.0 indicates partial quantum exposure."
+      ],
+      "priority_rank": 1
+    },
+    {
+      "asset": "rds-primary.acmecorp.com",
+      "domain": "cloud_storage",
+      "region": "US",
+      "score_100": 61,
+      "verdict": "Moderate Risk",
+      "action": "\ud83d\udd36 Urgent migration within 6 months",
+      "priority_level": "MEDIUM",
+      "weighted_score": 0.6058,
+      "parameter_scores": {
+        "data_at_rest_encryption": {
+          "score": 1.0,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.1,
+          "details": "Storage: AES-256"
+        },
+        "key_management_service": {
+          "score": 0.0,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.0,
+          "details": "KMS: RSA_4096, rotation: True"
+        },
+        "backup_archive": {
+          "score": 0.8,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.08,
+          "details": "Backup encryption: True, retention: 5y"
+        },
+        "data_transfer_encryption": {
+          "score": 0.7,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.07,
+          "details": "In-transit: TLS 1.3"
+        },
+        "quantum_readiness": {
+          "score": 0.4,
+          "base_weight": 0.1,
+          "region_modifier": 1.1,
+          "effective_weight": 0.11,
+          "weighted_score": 0.044,
+          "details": "No PQC readiness"
+        },
+        "access_control_iam": {
+          "score": 0.7,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.07,
+          "details": "MFA: True, RBAC: True"
+        },
+        "certificate_security": {
+          "score": 0.5,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.05,
+          "details": "Cert: ECDSA-P384, 1y validity"
+        },
+        "compliance_auditing": {
+          "score": 0.6,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.06,
+          "details": "Audit logging: True, compliance: 3"
+        },
+        "multi_cloud_security": {
+          "score": 0.3,
+          "base_weight": 0.1,
+          "region_modifier": 1.0,
+          "effective_weight": 0.1,
+          "weighted_score": 0.03,
+          "details": "Cross-cloud encryption: False"
+        },
+        "regulatory_compliance": {
+          "score": 1.0,
+          "base_weight": 0.1,
+          "region_modifier": 1.2,
+          "effective_weight": 0.12,
+          "weighted_score": 0.12,
+          "details": "Frameworks: 3, PQC plan: True"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "key_management_service",
+          "asset": "rds-primary.acmecorp.com",
+          "component": "key_storage",
+          "value": "unknown",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+        },
+        {
+          "parameter": "key_management_service",
+          "asset": "rds-primary.acmecorp.com",
+          "component": "rotation_policy",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+        },
+        {
+          "parameter": "key_management_service",
+          "asset": "rds-primary.acmecorp.com",
+          "component": "key_algorithm",
+          "value": "unknown",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+        },
+        {
+          "parameter": "key_management_service",
+          "asset": "rds-primary.acmecorp.com",
+          "component": "audit_logging",
+          "risk": "MEDIUM",
+          "recommendation": "Enable key usage audit logging"
+        },
+        {
+          "parameter": "quantum_readiness",
+          "asset": "rds-primary.acmecorp.com",
+          "component": "pqc_deployment",
+          "risk": "HIGH",
+          "recommendation": "Begin PQC algorithm testing and deployment"
+        },
+        {
+          "parameter": "quantum_readiness",
+          "asset": "rds-primary.acmecorp.com",
+          "component": "library_support",
+          "risk": "MEDIUM",
+          "recommendation": "Upgrade crypto libraries to versions with PQC support"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "rds-primary.acmecorp.com",
+          "issue": "ECDSA certificates quantum-vulnerable",
+          "details": "All ECC-based certificates broken by Shor's algorithm",
+          "recommendation": "Migrate to ML-DSA (FIPS 204)"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade KMS keys to quantum-resistant algorithms. Enable automatic key rotation and use HSM-backed keys.",
+        "MEDIUM: Improve quantum_readiness (No PQC readiness). Score 0.4/1.0 indicates partial quantum exposure.",
+        "MEDIUM: Improve certificate_security (Cert: ECDSA-P384, 1y validity). Score 0.5/1.0 indicates partial quantum exposure.",
+        "MEDIUM: Improve multi_cloud_security (Cross-cloud encryption: False). Score 0.3/1.0 indicates partial quantum exposure."
+      ],
+      "priority_rank": 2
+    },
+    {
+      "asset": "azure-blob-archive.acmecorp.com",
+      "domain": "cloud_storage",
+      "region": "US",
+      "score_100": 62,
+      "verdict": "Moderate Risk",
+      "action": "\ud83d\udd36 Urgent migration within 6 months",
+      "priority_level": "MEDIUM",
+      "weighted_score": 0.6196,
+      "parameter_scores": {
+        "data_at_rest_encryption": {
+          "score": 1.0,
+          "base_weight": 0.1111,
+          "region_modifier": 1.0,
+          "effective_weight": 0.111,
+          "weighted_score": 0.1111,
+          "details": "Storage: AES-256"
+        },
+        "key_management_service": {
+          "score": 0.0,
+          "base_weight": 0.1111,
+          "region_modifier": 1.0,
+          "effective_weight": 0.111,
+          "weighted_score": 0.0,
+          "details": "KMS: RSA_2048, rotation: False"
+        },
+        "backup_archive": {
+          "score": 0.8,
+          "base_weight": 0.1111,
+          "region_modifier": 1.0,
+          "effective_weight": 0.111,
+          "weighted_score": 0.0889,
+          "details": "Backup encryption: True, retention: 15y"
+        },
+        "data_transfer_encryption": {
+          "score": 0.7,
+          "base_weight": 0.1111,
+          "region_modifier": 1.0,
+          "effective_weight": 0.111,
+          "weighted_score": 0.0778,
+          "details": "In-transit: TLS 1.2"
+        },
+        "access_control_iam": {
+          "score": 0.7,
+          "base_weight": 0.1111,
+          "region_modifier": 1.0,
+          "effective_weight": 0.111,
+          "weighted_score": 0.0778,
+          "details": "MFA: True, RBAC: True"
+        },
+        "certificate_security": {
+          "score": 0.6,
+          "base_weight": 0.1111,
+          "region_modifier": 1.0,
+          "effective_weight": 0.111,
+          "weighted_score": 0.0667,
+          "details": "Cert: RSA-2048, 2y validity"
+        },
+        "compliance_auditing": {
+          "score": 0.6,
+          "base_weight": 0.1111,
+          "region_modifier": 1.0,
+          "effective_weight": 0.111,
+          "weighted_score": 0.0667,
+          "details": "Audit logging: True, compliance: 2"
+        },
+        "multi_cloud_security": {
+          "score": 0.7,
+          "base_weight": 0.1111,
+          "region_modifier": 1.0,
+          "effective_weight": 0.111,
+          "weighted_score": 0.0778,
+          "details": "Cross-cloud encryption: True"
+        },
+        "regulatory_compliance": {
+          "score": 0.5,
+          "base_weight": 0.1111,
+          "region_modifier": 1.2,
+          "effective_weight": 0.133,
+          "weighted_score": 0.0667,
+          "details": "Frameworks: 2, PQC plan: False"
+        }
+      },
+      "findings": [
+        {
+          "parameter": "key_management_service",
+          "asset": "azure-blob-archive.acmecorp.com",
+          "component": "key_storage",
+          "value": "unknown",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate keys to HSM or Cloud KMS with access controls"
+        },
+        {
+          "parameter": "key_management_service",
+          "asset": "azure-blob-archive.acmecorp.com",
+          "component": "rotation_policy",
+          "value": "unknown",
+          "risk": "HIGH",
+          "recommendation": "Implement automatic key rotation (90-day cycle recommended)"
+        },
+        {
+          "parameter": "key_management_service",
+          "asset": "azure-blob-archive.acmecorp.com",
+          "component": "key_algorithm",
+          "value": "unknown",
+          "risk": "CRITICAL",
+          "recommendation": "Migrate to PQC-safe key algorithms (ML-KEM/ML-DSA)"
+        },
+        {
+          "parameter": "key_management_service",
+          "asset": "azure-blob-archive.acmecorp.com",
+          "component": "audit_logging",
+          "risk": "MEDIUM",
+          "recommendation": "Enable key usage audit logging"
+        },
+        {
+          "parameter": "certificate_security",
+          "asset": "azure-blob-archive.acmecorp.com",
+          "issue": "Quantum-vulnerable certificate algorithm",
+          "details": "RSA-2048 vulnerable to Shor's algorithm",
+          "recommendation": "Migrate to RSA-3072+ or ML-DSA"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "azure-blob-archive.acmecorp.com",
+          "issue": "No PQC migration plan",
+          "details": "No documented post-quantum cryptography migration plan",
+          "recommendation": "Develop comprehensive PQC migration roadmap"
+        },
+        {
+          "parameter": "regulatory_compliance",
+          "asset": "azure-blob-archive.acmecorp.com",
+          "issue": "Missing cryptographic documentation",
+          "details": "Cryptographic implementations not documented",
+          "recommendation": "Document all cryptographic implementations"
+        }
+      ],
+      "migration_recommendations": [
+        "CRITICAL: Upgrade KMS keys to quantum-resistant algorithms. Enable automatic key rotation and use HSM-backed keys.",
+        "MEDIUM: Improve regulatory_compliance (Frameworks: 2, PQC plan: False). Score 0.5/1.0 indicates partial quantum exposure."
+      ],
+      "priority_rank": 3
+    }
+  ]
+}

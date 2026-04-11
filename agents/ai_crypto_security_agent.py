@@ -271,8 +271,6 @@ Your analysis should:
                 {"parameter": "tls_transport", "asset": asset, **f}
                 for f in tls_result.get("findings", [])
             ])
-        else:
-            scores["tls_transport"] = (None, "No TLS config provided")
 
         # 2. Public Key Crypto
         pk_config = target.get("public_key_config", {})
@@ -295,8 +293,6 @@ Your analysis should:
                     "reason": pk_result.get("reason", ""),
                     "algorithm": pk_config.get("algorithm", "unknown"),
                 })
-        else:
-            scores["public_key_crypto"] = (None, "No public key config provided")
 
         # 3. Symmetric Crypto
         sym_config = target.get("symmetric_config", {})
@@ -319,8 +315,6 @@ Your analysis should:
                     "reason": sym_result.get("reason", ""),
                     "algorithm": sym_config.get("algorithm", "unknown"),
                 })
-        else:
-            scores["symmetric_crypto"] = (None, "No symmetric crypto config provided")
 
         # 4. Network Protocols (SSH, IKEv2, VPN)
         net_config = target.get("network_protocol_config", {})
@@ -355,8 +349,6 @@ Your analysis should:
                 {"parameter": "network_protocols", "asset": asset, **f}
                 for f in net_result.get("findings", [])
             ])
-        else:
-            scores["network_protocols"] = (None, "No network protocol config provided")
 
         # 5. Quantum Readiness
         qr_config = target.get("quantum_readiness", {})
@@ -370,8 +362,6 @@ Your analysis should:
                 {"parameter": "quantum_readiness", "asset": asset, **f}
                 for f in qr_result.get("findings", [])
             ])
-        else:
-            scores["quantum_readiness"] = (None, "No verifiable quantum readiness data")
 
         # 6. Certificate Security
         cert_config = target.get("certificate_security", {})
@@ -386,8 +376,6 @@ Your analysis should:
                 {"parameter": "certificate_security", "asset": asset, **f}
                 for f in cert_result.get("findings", [])
             ])
-        else:
-            scores["certificate_security"] = (None, "No certificate data provided")
 
         # 7. Hash Algorithms
         hash_config = target.get("hash_config", {})
@@ -437,8 +425,6 @@ Your analysis should:
                 max(0.0, hash_score),
                 "; ".join(hash_details)
             )
-        else:
-            scores["hash_algorithms"] = (None, "No hash algorithm data provided")
 
         # 8. Key Management
         keymgmt_config = target.get("key_management", {})
@@ -453,8 +439,6 @@ Your analysis should:
                 {"parameter": "key_management", "asset": asset, **f}
                 for f in km_result.get("findings", [])
             ])
-        else:
-            scores["key_management"] = (None, "No key management data provided")
 
         # 9. Code Crypto Audit
         code_config = target.get("code_audit", {})
@@ -508,8 +492,6 @@ Your analysis should:
                 0.5,
                 f"Libraries: {', '.join(code_config.get('crypto_libraries', []))}"
             )
-        else:
-            scores["code_crypto_audit"] = (None, "No code audit data available")
 
         # 10. Regulatory Compliance
         compliance_config = target.get("regulatory_compliance", {})
@@ -524,8 +506,6 @@ Your analysis should:
                 {"parameter": "regulatory_compliance", "asset": asset, **f}
                 for f in compliance_result.get("findings", [])
             ])
-        else:
-            scores["regulatory_compliance"] = (None, "No regulatory compliance data provided")
 
         return {
             "asset": asset,
@@ -578,8 +558,6 @@ Provide:
         recommendations = []
 
         for param_name, (score, details) in scores.items():
-            if score is None:
-                continue
 
             if score < 0.3:
                 if param_name == "tls_transport":
@@ -685,7 +663,7 @@ Provide:
             )
 
             # Step 3: Compute weighted score → 0–100 rating
-            asset_rating = self.scoring_engine.score_asset(
+            asset_rating = self.scoring_engine.score_asset_dynamic(
                 asset=asset,
                 scores=scan_result["scores"],
                 findings=scan_result["findings"],
@@ -1161,15 +1139,11 @@ def run_interactive_cli():
                         print(f"     Action:    {item['action']}")
                         print(f"     Score:     {item['weighted_score']:.4f}")
                         print(f"     Region:    {item.get('region', 'US')}")
-                        print(f"     Params:")
+                        print(f"     Params ({len(item.get('parameter_scores', {}))} discovered):")
                         for param, data in item.get("parameter_scores", {}).items():
-                            if data["score"] is None:
-                                bar = "░" * 20
-                                print(f"       {param:25s} {bar} N/A (Not Assessed)")
-                            else:
-                                filled = int(data["score"] * 20)
-                                bar = "█" * filled + "░" * (20 - filled)
-                                print(f"       {param:25s} {bar} {data['score']:.2f} (weight: {data.get('effective_weight', 0):.2f})")
+                            filled = int(data["score"] * 20)
+                            bar = chr(9608) * filled + chr(9617) * (20 - filled)
+                            print(f"       {param:25s} {bar} {data['score']:.2f} (weight: {data.get('effective_weight', 0):.2f})")
 
                         # Show recommendations
                         recs = item.get("migration_recommendations", [])
